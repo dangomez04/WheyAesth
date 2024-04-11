@@ -1,0 +1,35 @@
+div.navbar navbar-expand-lg navbar-light bg-light{
+    width: 50%;
+
+}
+
+div.logo{
+    margin-left: 15px;
+}
+
+#navbarSupportedContent ul li {
+    padding-top: 7px;
+    margin-left: 11px;
+}
+
+#navbarSupportedContent ul li a{
+    color: #B0B0B0;
+}
+
+#navbarSupportedContent ul li a:hover{
+    color: #C72538;
+}
+
+div.header div.logo{
+    float: left;
+}
+
+div.header div.mainMenu{
+    float: right;
+}
+
+div.header{
+    border: 1px solid black;
+    height: 72px;
+    background-color: black;
+}
