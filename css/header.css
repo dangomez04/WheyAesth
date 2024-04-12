@@ -1,24 +1,29 @@
-div.navbar navbar-expand-lg navbar-light bg-light{
-    width: 50%;
+*{
+   
+    margin: 0;
+    padding: 0;
+    }
 
+
+@font-face {
+    font-family: 'proxima-nova';
+    src: url('../fonts/ProximaNova-Regular.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'proxima-nova-bold';
+    src: url('../fonts/ProximaNova-Bold.ttf') format('truetype');
+}
+
+
+
+
+
 
 div.logo{
     margin-left: 15px;
 }
 
-#navbarSupportedContent ul li {
-    padding-top: 7px;
-    margin-left: 11px;
-}
-
-#navbarSupportedContent ul li a{
-    color: #B0B0B0;
-}
-
-#navbarSupportedContent ul li a:hover{
-    color: #C72538;
-}
 
 div.header div.logo{
     float: left;
@@ -29,7 +34,126 @@ div.header div.mainMenu{
 }
 
 div.header{
-    border: 1px solid black;
-    height: 72px;
-    background-color: black;
+    height: 68px;
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+ul#secondMenu{
+    width: 30vw;
+}
+
+ul#secondMenu li{
+    float: left;
+    margin-left: 10px;
+    padding: 21px;
+    list-style-type: none;
+    text-align: center;
+   
+
+}
+ul#secondMenu li:hover{
+    background-color: #606060 ;
+   
+
+}
+
+i.bi-person-fill{
+    margin-right: 10px;
+}
+ul#secondMenu li a{
+    text-decoration: none;
+    color: white;
+    font-family: 'proxima-nova-bold',Arial, sans-serif;;
+    font-size: 16px;
+
+}
+
+/* barra de busqueda  */
+
+
+
+
+    .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 44px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 2px;
+    }
+    
+
+    .search_input:focus, .search_input:focus-visible {
+        caret-color: black; 
+    }
+    
+    
+    
+
+    .search_input{
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 941px;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .search_input:focus{
+        cursor: text;
+    }
+  
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:black;
+    text-decoration:none;
+
+    }
+
+    .search_icon:hover{
+        color: #C72538;
+        
+        }
+
+
+
+/* menu lateral         */
+
+
+#list{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+div.logo a#lateralMenu{
+    padding: 19px;
+}
+
+div.logo a#lateralMenu:hover{
+    background-color: #606060;
+}
+
+
+div.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.logo a#logo{
+    margin-left: -5px;
 }
