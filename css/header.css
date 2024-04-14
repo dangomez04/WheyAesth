@@ -34,7 +34,6 @@ div.header div.mainMenu{
 }
 
 div.header{
-    height: 68px;
     background-color: #333333;
     display: flex;
     align-items: center;
@@ -101,7 +100,7 @@ ul#secondMenu li a{
     border: 0;
     outline: 0;
     background: none;
-    width: 941px;
+    width: 920px;
     caret-color:transparent;
     line-height: 40px;
     transition: width 0.4s linear;

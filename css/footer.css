@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'proxima-nova';
+    src: url('../fonts/ProximaNova-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'proxima-nova-bold';
+    src: url('../fonts/ProximaNova-Bold.ttf') format('truetype');
+}
+
+
+
+
+
+div.footer{
+    border: 1px solid red;
+    font-family: 'proxima-nova';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div#infoFooter{
+    
+background-color: #262626;
+display: flex;
+flex-direction: row;
+justify-content: center;
+padding: 50px 0;
+}
+
+
+div.copy{
+    background-color: #1B1B1B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-family: 'proxima-nova-bold';
+}
+
+div.copy p{
+    margin: 0;
+}
+
+ul#contactList li a{
+    color: #54595f;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 0px 0px 0px 5px;
+
+}
+
+ul#contactList li a:hover{
+   color: #C72538;
+
+}
+
+ul#contactList li {
+    padding: 0px 0px 12px;
+}
+
+ul#documentsList li a{
+    color: #54595f;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+ul#documentsList li a:hover{
+   color: #C72538;
+}
+
+ul#contactList li svg{
+color: white;    
+margin: 0px 4.75px 0px 0px;
+}
+
+
+ul#listMedia {
+    padding: 10px 0px;
+    display: flex;
+}
+
+
+
+ul#listMedia li{
+    margin-right: 12px;
+}
+
+ul#listMedia li svg{
+    color: #C72538;
+}
+
+div.copy p{
+    color: #7A7A7A;
+    font-size: 16px;
+}
+
+.icons {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .icons:hover {
+    transform: scale(1.2); /* Escala aumentada */
+  }
