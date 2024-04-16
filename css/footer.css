@@ -13,7 +13,6 @@
 
 
 div.footer{
-    border: 1px solid red;
     font-family: 'proxima-nova';
     display: flex;
     flex-direction: column;
@@ -44,9 +43,9 @@ div.copy p{
 }
 
 ul#contactList li a{
-    color: #54595f;
+    color: #7A7A7A;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
     padding: 0px 0px 0px 5px;
 
 }
@@ -58,12 +57,13 @@ ul#contactList li a:hover{
 
 ul#contactList li {
     padding: 0px 0px 12px;
+    margin: 12px 0px 0px;
 }
 
 ul#documentsList li a{
-    color: #54595f;
+    color: #7A7A7A;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 ul#documentsList li a:hover{
@@ -79,6 +79,8 @@ margin: 0px 4.75px 0px 0px;
 ul#listMedia {
     padding: 10px 0px;
     display: flex;
+    margin-top: -20px;
+    margin-left: -5px;
 }
 
 
@@ -101,5 +103,41 @@ div.copy p{
   }
   
   .icons:hover {
-    transform: scale(1.2); /* Escala aumentada */
+    transform: scale(1.2); 
+  }
+
+
+  div#contact{
+    padding: 10px 0px;
+    width: 366.67px;
+    height: 193.5px;
+  }
+
+
+  div#logo{
+    padding: 10px 0px;
+    width: 366.67px;
+    height: 193.5px;
+    text-align: center;
+  }
+
+
+  div#documents{
+    padding: 10px 0px;
+    width: 366.67px;
+    height: 193.5px;
+  }
+
+  ul#documentsList li a{
+    padding: 13px 20px;
+
+  }
+
+  ul#documentsList li{
+    margin: 20px 0px 0px;
+
+  }
+
+  ul#documentsList{
+    text-align: right;
   }
