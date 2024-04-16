@@ -132,6 +132,9 @@ ul#secondMenu li a{
 
 /* menu lateral         */
 
+a#lateralMenu{
+    cursor: pointer;
+}
 
 #list{
     color: rgb(255, 255, 255);
@@ -156,6 +159,54 @@ div.logo{
 div.logo a#logo{
     margin-left: -5px;
 }
+
+
+div.latMenu{
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    top: 100;
+    left: 0;
+    transition: all 500ms ease;
+    z-index: 100;
+
+}
+
+div.container-menu{
+    width: 100%;
+    max-width: 250px;
+    background: #1c1c1c;
+    height: 100vh;
+    position: relative;
+    transition: all 500ms ease;
+}
+
+div.container-menu nav{
+    transform: translateY(15%);
+}
+
+div.container-menu nav a{
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    color: #c7c7c7;
+    border-left: 5px solid transparent;
+    transition: all 400ms ease;
+
+}
+
+div.container-menu nav a:hover{
+    border-left: 5px solid #c7c7c7;
+    background: #1f1f1f;
+}
+
+
+
+
+
+
 
 
 /* responsive */
