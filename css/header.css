@@ -17,9 +17,6 @@
 
 
 
-
-
-
 div.logo{
     margin-left: 15px;
 }
@@ -161,8 +158,9 @@ div.logo a#logo{
 }
 
 
+
+
 div.latMenu{
-    display: none;
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -170,9 +168,19 @@ div.latMenu{
     top: 100;
     left: 0;
     transition: all 500ms ease;
+    transform: translateX(-100%);
+
     z-index: 100;
 
 }
+
+.latMenu.show-menu {
+
+    transform: translateX(0%);
+    
+    }    
+    
+
 
 div.container-menu{
     width: 100%;

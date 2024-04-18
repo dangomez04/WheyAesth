@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'proxima-nova';
+    src: url('../fonts/ProximaNova-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'proxima-nova-bold';
+    src: url('../fonts/ProximaNova-Bold.ttf') format('truetype');
+}
+
+
+div#contentContacto{
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'proxima-nova';
+    flex-direction: column;
+    align-items: center;
+
+}
+
+div.main-info{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+}
+
+div#container-form{
+    border: 1px solid red;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin: 5vw;
+    flex-direction: column;
+}
+
+
+
+
+div#container-form form#form-contacto{
+border: 1px solid blue;
+width: 40vw;
+margin: 3vw;
+}
+
+
+div#container-maps{
+    width: 50%;
+    margin: 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.content-maps{
+width: 34vw;
+margin: 3vw;
+}
+
+div#info-contacto{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3vw;
+    border: 1px solid red;
+   
+}
+
+div#info-contacto div.grid{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 3vw;
+
+    
+}
+
+div#info-contacto div.grid hr{
+    width: 100%;
+    color: #C72538;
+}
+
+div#info-contacto div.grid h3{
+    width: 100%;
+    font-size: 21px;
+    font-family: 'proxima-nova-bold';
+}
+
+div#info-contacto div.grid p{
+    font-size: 16px;
+    width: 100%;
+}
