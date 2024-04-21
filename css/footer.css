@@ -8,10 +8,6 @@
     src: url('../fonts/ProximaNova-Bold.ttf') format('truetype');
 }
 
-
-
-
-
 div.footer{
     font-family: 'proxima-nova';
     display: flex;
@@ -25,7 +21,7 @@ background-color: #262626;
 display: flex;
 flex-direction: row;
 justify-content: center;
-padding: 50px 0;
+padding: 2.605vw 0vw;
 }
 
 
@@ -34,19 +30,19 @@ div.copy{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 0.522vw;
     font-family: 'proxima-nova-bold';
 }
 
 div.copy p{
-    margin: 0;
+    margin: 0vw;
 }
 
 ul#contactList li a{
     color: #7A7A7A;
     text-decoration: none;
-    font-size: 14px;
-    padding: 0px 0px 0px 5px;
+    font-size: 0.72919vw;
+    padding: 0vw 0vw 0vw 0.261vw;
 
 }
 

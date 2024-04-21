@@ -2,3 +2,8 @@ div.content{
     min-height: 40vw;
 }
 
+
+div#carouselExampleAutoplaying{
+    width: 100%;
+    height: 100%;
+}

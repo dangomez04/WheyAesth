@@ -1,8 +1,6 @@
 $(document).ready(function() {
     $('a#lateralMenu').on('click', function() {
-        console.log("hola");
-
-        console.log("hola");
+        
 
         var iconoActual = $('svg#list').html();
         var nuevoIcono;

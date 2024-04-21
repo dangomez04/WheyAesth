@@ -18,7 +18,7 @@
 
 
 div.logo{
-    margin-left: 15px;
+    margin-left: 0.5%;
 }
 
 
@@ -38,16 +38,14 @@ div.header{
 }
 
 
-
-
 ul#secondMenu{
-    width: 30vw;
+    width: 31vw;
 }
 
 ul#secondMenu li{
     float: left;
-    margin-left: 10px;
-    padding: 21px;
+    margin-left: 1.7%;
+    padding: 1.1vw;
     list-style-type: none;
     text-align: center;
    
@@ -59,14 +57,17 @@ ul#secondMenu li:hover{
 
 }
 
-i.bi-person-fill{
-    margin-right: 10px;
+i.bi-person-fill,
+i.bi-cart,
+i.bi-envelope-fill
+{
+    margin-right: 0.55vw;
 }
 ul#secondMenu li a{
     text-decoration: none;
     color: white;
     font-family: 'proxima-nova-bold',Arial, sans-serif;;
-    font-size: 16px;
+    font-size: 0.6w;
 
 }
 
@@ -78,10 +79,12 @@ ul#secondMenu li a{
     .searchbar{
     margin-bottom: auto;
     margin-top: auto;
-    height: 44px;
+    height: 2.3vw;
     background-color: white;
-    border-radius: 30px;
-    padding: 2px;
+    border-radius: 2vw;
+    padding: 0.109vw;
+    width: 50vw;
+
     }
     
 
@@ -97,10 +100,8 @@ ul#secondMenu li a{
     border: 0;
     outline: 0;
     background: none;
-    width: 920px;
     caret-color:transparent;
-    line-height: 40px;
-    transition: width 0.4s linear;
+    line-height: 2.2vw;
     }
 
     .search_input:focus{
@@ -108,8 +109,8 @@ ul#secondMenu li a{
     }
   
     .search_icon{
-    height: 40px;
-    width: 40px;
+    height: 2.1vw;
+    width: 2.1vw;
     float: left;
     display: flex;
     justify-content: center;
@@ -139,7 +140,7 @@ a#lateralMenu{
 }
 
 div.logo a#lateralMenu{
-    padding: 19px;
+    padding: 1vw;
 }
 
 div.logo a#lateralMenu:hover{
@@ -154,7 +155,7 @@ div.logo{
 }
 
 div.logo a#logo{
-    margin-left: -5px;
+    margin-left: -0.1vw;
 }
 
 
@@ -221,10 +222,7 @@ div.container-menu nav a:hover{
 
 @media screen and (max-width: 768px) {
  
- div#mainContainer{
-    width: 767px;
-    
- }
+
     
     
    }

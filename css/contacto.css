@@ -28,36 +28,38 @@ div.main-info{
 }
 
 div#container-form{
-    border: 1px solid red;
     width: 50%;
     display: flex;
     align-items: center;
-    margin: 5vw;
+    margin: 4vw;
     flex-direction: column;
+    background-color: #F5F5F5;
+    height: 25vw;
 }
 
 
 
 
 div#container-form form#form-contacto{
-border: 1px solid blue;
 width: 40vw;
-margin: 3vw;
+margin: 1vw;
 }
 
 
 div#container-maps{
     width: 50%;
-    margin: 5vw;
+    margin: 4vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    height: 25vw;
+
 }
 
 div.content-maps{
-width: 34vw;
-margin: 3vw;
+width: 40vw;
+margin: 1vw;
+
 }
 
 div#info-contacto{
@@ -65,7 +67,7 @@ div#info-contacto{
     display: flex;
     flex-direction: row;
     margin-bottom: 3vw;
-    border: 1px solid red;
+    margin-top: 1vw;
    
 }
 
@@ -93,3 +95,36 @@ div#info-contacto div.grid p{
     font-size: 16px;
     width: 100%;
 }
+
+
+form#form-contacto div.mb-3 input[type="text"],
+form#form-contacto div.mb-3 input[type="email"],
+form#form-contacto div.mb-3 textarea,
+form#form-contacto div.mb-3 select,
+form#form-contacto div.mb-3 input[type="submit"]
+
+{
+    padding: 10px;
+    border-radius: 0px;
+    }
+
+form#form-contacto h1,
+div.content-maps h2
+{
+    margin-bottom: 2vw;
+    font-family: 'proxima-nova-bold';
+
+}
+
+div.content-maps h2{
+    font-size: 40px;
+}
+
+input#enviar-contacto{
+    background-color: black;
+    color: white;
+    font-family: 'proxima-nova-bold';
+    margin-top: 2vw;
+}
+
+
