@@ -218,7 +218,7 @@ div.container-menu nav a:hover{
 
 
 
-/* responsive */
+/* responsive  movil*/
 
 @media screen and (max-width: 768px) {
  
@@ -226,3 +226,25 @@ div.container-menu nav a:hover{
     
     
    }
+
+
+/* responsive portatil    */
+
+
+@media screen and (min-width: 1281px) and (max-width: 1440px) and (min-height: 721px) and (max-height: 900px) {
+    .searchbar{
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 2.3vw;
+        background-color: white;
+        border-radius: 2vw;
+        padding: 0.109vw;
+        width: 35vw;
+    }
+
+
+    ul#secondMenu {
+        width: 38vw;
+    }
+  }
+  
