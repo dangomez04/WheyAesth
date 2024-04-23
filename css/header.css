@@ -233,7 +233,7 @@ div.container-menu nav a:hover{
         width: 100%;
         max-width: 289px;
         background: #1c1c1c;
-        height: 100vh;
+        height: 94vh;
         position: relative;
         transition: all 500ms ease;
     }
@@ -307,6 +307,8 @@ div.container-menu nav a:hover{
     }
     
    }
+
+   
 
 
 /* responsive portatil    */
