@@ -150,7 +150,7 @@ input#enviar-contacto{
         margin-top: 35vw;
     }
     div#container-maps {
-        width: 85%;
+        width: 85vw;
         margin: 4vw;
         display: flex;
         flex-direction: column;
@@ -160,6 +160,11 @@ input#enviar-contacto{
         text-align: center;
     }
 
+    iframe#maps{
+        border: 0;
+    margin: 1vw;
+}
+    
 
     div.content-maps{
         width: 100%;

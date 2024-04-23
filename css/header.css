@@ -31,7 +31,7 @@ div.header div.mainMenu{
 }
 
 div.header{
-    background-color: #333333;
+    background-color: #262626;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -203,7 +203,7 @@ div.container-menu nav a{
     color: #c7c7c7;
     border-left: 5px solid transparent;
     transition: all 400ms ease;
-
+    font-family: 'proxima-nova';
 }
 
 div.container-menu nav a:hover{
@@ -221,9 +221,90 @@ div.container-menu nav a:hover{
 /* responsive  movil*/
 
 @media screen and (max-width: 768px) {
- 
+    i.bi-person-fill, i.bi-cart, i.bi-envelope-fill {
+        margin-right: 2.55vw;
+    }
 
-    
+    div.latMenu{
+        margin-top: -1px;
+    }
+
+    div.container-menu {
+        width: 100%;
+        max-width: 289px;
+        background: #1c1c1c;
+        height: 100vh;
+        position: relative;
+        transition: all 500ms ease;
+    }
+
+    div.container-menu nav a {
+        display: block;
+        text-decoration: none;
+        padding: 20px;
+        color: #c7c7c7;
+        border-left: 5px solid transparent;
+        transition: all 400ms ease;
+        font-family: 'proxima-nova';
+        width: 69vw;
+    }
+
+
+    div#carouselExampleAutoplaying {
+        width: 100%;
+        height: 100%;
+        margin-top: -1px;
+    }
+
+
+    input.search_input{
+        display: none;
+    }
+
+    div.searchbar {
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 2.3vw;
+        border-radius: 2vw;
+        padding: 0.109vw;
+        background-color: transparent;
+        width: 0;
+        margin-left: -10vw;
+    }
+
+    .search_icon {
+        height: 2.1vw;
+        width: 2.1vw;
+        float: left;
+        display: flex;
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+    }
+
+    div.logo a#logo {
+        margin-left: 6.9vw;
+    }
+
+
+
+    div.logo {
+        margin-left: 1.2%;
+    }
+
+    div.header {
+        background-color: #262626;        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3vw;
+    }
+
+
+    div.mainMenu{
+        display: none;
+    }
     
    }
 
