@@ -17,26 +17,28 @@
   <!-- jquery -->
   <script src="js/jquery-3.7.1.min.js"></script>
 
-  <!-- js -->
-  <!-- <script src="js/home.js"></script> -->
+
 
   <!-- css -->
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/search-phone.css">
+
 
   <!-- footer y header -->
-	<script>
+  <script>
 
 
-		$(document).ready(function () {
-      
-			$("div#containerHeader").load("templates/header.html");
-			$("div#containerFooter").load("templates/footer.html");
-			$("div#lat-menu").load("templates/lat-menu.html");
+    $(document).ready(function () {
 
-		});
-	</script>
+      $("div#containerHeader").load("templates/header.html");
+      $("div#containerFooter").load("templates/footer.html");
+      $("div#lat-menu").load("templates/lat-menu.html");
+      $("div#container-search-phone").load("templates/search-phone.html");
+
+    });
+  </script>
 
 </head>
 
@@ -46,22 +48,21 @@
 
 
     <div id="containerHeader">
-      
+
     </div>
 
 
     <div class="content">
-      
+
       <div id="lat-menu">
 
       </div>
+
       <div id="container-search-phone">
-        <div id="search-phone">
-          <input id="search_input" type="text" placeholder="Buscar...">
-  
-        </div>
+
       </div>
-      
+
+
       <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -93,11 +94,11 @@
 
 
     <div id="containerFooter">
-      
+
     </div>
-  
-  
-</div>
+
+
+  </div>
 
 
 
