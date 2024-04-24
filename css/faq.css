@@ -23,9 +23,30 @@ div#content-faq div#title h1{
 }
 
 div#faq{
-    width: 50vw;
+    width: 60vw;
     margin-bottom: 3vw;
+    padding: 1vw;
+    background-color: #f5f5f5;
 }
+
+.accordion-button:not(.collapsed) {
+    color: #212529;
+    background-color: #d0d0d0;
+    box-shadow: none;
+}
+
+div.accordion-item button.accordion-button{
+    font-family: 'proxima-nova-bold';
+    font-size: 18px;
+}
+
+
+.accordion{
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgb(147 147 147 / 25%);
+}
+
+
+
 
 @media screen and (max-width: 768px) {
     
@@ -35,7 +56,7 @@ div#faq{
 
         div#title h3{
             text-align: center;
-            font-size: 20px;
+            font-size: 19px;
         }
 
         div#faq{
