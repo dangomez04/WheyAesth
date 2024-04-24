@@ -1,0 +1,54 @@
+div#content-privacidad{
+    width: 100%;
+    min-height: 94vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'proxima-nova';
+    margin-bottom: 2vw;
+}
+
+
+div#content-privacidad div#title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+
+}
+
+
+div#content-privacidad div.privacidad{
+    text-align: center;
+    width: 50%;
+    line-height: 1.8vw;
+
+    font-size: 18px;
+}
+
+div#content-privacidad div#title h1{
+    font-family: 'proxima-nova-bold';
+
+}
+
+@media screen and (max-width: 768px) {
+    
+    
+    div#content-privacidad{
+        margin-top: 16vw;
+        margin-bottom: 25vw;
+    }
+
+    div#content-privacidad div.privacidad {
+        text-align: center;
+        width: 81%;
+        line-height: 5.8vw;
+        font-size: 16px;
+        margin-top: 5vw;
+    }
+
+
+
+
+}
