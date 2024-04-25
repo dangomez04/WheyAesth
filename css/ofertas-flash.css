@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'proxima-nova';
+    src: url('../fonts/ProximaNova-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'proxima-nova-bold';
+    src: url('../fonts/ProximaNova-Bold.ttf') format('truetype');
+}
+
+
+div#content-ofertas{
+min-height: 70vw;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+font-family: 'proxima-nova';
+
+}
+
+
+div.container-ofertas{
+    display: flex;
+    flex-direction: row;
+}
+
+div#content-ofertas div#title-ofertas h1{ 
+    font-family: 'proxima-nova-bold';
+
+}
+
+
+
+div#content-ofertas div.container-ofertas div#oferta-activa{
+
+width: 50vw;
+border: 1px solid orange;
+}
+
+
+
+div#content-ofertas div.container-ofertas div#contador{
+    
+    width: 50vw;
+    border: 1px solid red;
+}
+
+
+
+
+div#contador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 90px;
+}
+
+div#oferta-activa{
+    display: flex;
+    flex-direction: column;
+
+}
+
+div.cont-oferta{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+div.img-oferta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
