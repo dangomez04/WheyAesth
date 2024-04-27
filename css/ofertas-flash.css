@@ -10,13 +10,13 @@
 
 
 div#content-ofertas{
-min-height: 70vw;
 width: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
 font-family: 'proxima-nova';
-
+margin-top: 3vw;
+margin-bottom: 4vw;
 }
 
 
@@ -30,20 +30,24 @@ div#content-ofertas div#title-ofertas h1{
 
 }
 
+div#content-ofertas div#title-ofertas{ 
+    margin-bottom: 2vw;
+
+}
+
 
 
 div#content-ofertas div.container-ofertas div#oferta-activa{
 
-width: 50vw;
-border: 1px solid orange;
+width: 59vw;
+background-color: #F5F5F5;
 }
 
 
 
 div#content-ofertas div.container-ofertas div#contador{
     
-    width: 50vw;
-    border: 1px solid red;
+    width: 40vw;
 }
 
 
@@ -72,4 +76,206 @@ div.img-oferta{
     display: flex;
     flex-direction: column;
     align-items: center;
+} 
+
+
+div.img-oferta h3{
+   font-size: 28px;
+   margin-bottom: 1vw;
+    margin-top: 1vw;
+
+} 
+
+div.stock-flash h3{
+    font-size: 28px;
+    margin-top: 1vw;
 }
+
+div.info-oferta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+div#valoraciones span.estrellas{
+    margin-left: 0.3vw;
+}
+
+div#title-oferta-activa h2{
+    font-size: 35px;
+}
+
+div#sabor-oferta p{
+    font-size: 23px;
+}
+
+div#info-nutri-oferta{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+div#info-nutri-oferta p{
+    font-size: 23px;
+}
+
+div#info-nutri-oferta p#macros-oferta{
+    font-size: 20px;
+    margin-left: 7px;
+}
+
+div#valoraciones p{
+    font-size: 23px;
+
+}
+
+div.precio-oferta span{
+    font-size: 30px;
+}
+
+div#container-foot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1vw;
+}
+
+#btn-añadir button{
+font-size: 20px;
+padding: 7px;
+border-radius: 10px;
+background-color: #C72538;
+color: white;
+font-family: 'proxima-nova-bold';
+transition: transform 1s ease; 
+
+}
+
+
+#btn-añadir button:hover {
+    transform: scale(1.1); 
+}
+
+/* responsive  movil*/
+
+@media screen and (max-width: 768px) {
+ 
+    div#content-ofertas {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'proxima-nova';
+        margin-top: 16vw;
+        margin-bottom: 25vw;
+    }
+
+    div#content-ofertas div#title-ofertas {
+        margin-bottom: 15vw;
+    }
+
+    div.container-ofertas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div.cont-oferta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    div#content-ofertas div.container-ofertas div#oferta-activa {
+        width: 94vw;
+        background-color: #F5F5F5;
+    }
+
+
+    div.img-oferta h3 {
+        font-size: 25px;
+        margin-bottom: 1vw;
+        margin-top: 10vw;
+    }
+
+    #img-oferta-flash{
+        width: 300px;
+        height: 300px;
+    }
+
+    div.info-oferta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 13vw;
+        align-items: center;
+    }
+
+    div#container-foot {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 6vw;
+        margin-bottom: 6vw;
+    }
+
+    div#content-ofertas div.container-ofertas div#contador {
+        width: 77vw;
+        margin-top: 10vw;
+    }
+
+    div.info-oferta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 13vw;
+        padding: 10px;
+    }
+
+    div#info-nutri-oferta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #macros-oferta{
+        margin-top: -3vw;
+    }
+
+    #valoraciones{
+        margin-top: 5vw;
+    }
+
+    .precio-oferta{
+        margin-right: 9vw;
+    }
+
+    div#contador {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 70px;
+    }
+
+    #title-oferta-activa{
+        margin-bottom: 5vw;
+    }
+
+    div#valoraciones p {
+        font-size: 23px;
+        margin-top: -4vw;
+    }
+
+    div#info-nutri-oferta p#macros-oferta {
+        font-size: 20px;
+        margin-left: 0px;
+    }
+}
+
+
+
+

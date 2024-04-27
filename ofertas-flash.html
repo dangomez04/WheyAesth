@@ -16,8 +16,11 @@
     <!-- jquery -->
     <script src="js/jquery-3.7.1.min.js"></script>
 
+    <!-- js -->
+
+    <script src="js/contador.js"></script>
+
     <!-- css -->
-    <link rel="stylesheet" href="css/cookies.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/search-phone.css">
@@ -64,12 +67,14 @@
 
 
             <div id="oferta-activa">
-                <h3>Oferta activa</h3>
                 <div class="cont-oferta">
+
                     <div class="img-oferta">
-                        <img src="img/proteina-cacaolat.png" alt="Proteina cacaolat">
+                        <h3>Oferta activa</h3>
+
+                        <img id="img-oferta-flash" width="500" height="500" src="img/proteina-cacaolat.png" alt="Proteina cacaolat">
                         <div class="stock-flash">
-                            <h3>5 en stock</h3>
+                            <h3><span id="stock">5</span>  en stock</h3>
                         </div>
                     </div>
                     <div class="info-oferta">
@@ -77,21 +82,23 @@
                             <h2>Whey Protein - 500g</h2>
                         </div>
                         <div id="sabor-oferta">
-                            <p>Sabor: <span>Chocolate</span></p>
+                            <p>Sabor: <span id="sabor">Chocolate</span></p>
                         </div>
                         <div id="info-nutri-oferta">
-                            <p>Información nutricional: C:20g P: 75g G: 10g</p>
+                            <p>Información nutricional: </p>
+                            <p id="macros-oferta">C:20g P: 75g G: 10g</p>
 
                         </div>
                         <div id="valoraciones">
-                            <p>Valoraciones: </p>
+                            <p>Valoraciones: <span class="estrellas"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span></p>
                         </div>
                         <div id="container-foot">
                             <div class="precio-oferta">
-                                27,99 €
+                                <span id="precio-oferta-flash">27,99 €</span>
+                                
                             </div>
-                            <div class="btn-añadir">
-                                <button>Añadir al carrito</button>
+                            <div id="btn-añadir">
+                                <button id="añadir-oferta-carrito">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
@@ -99,7 +106,7 @@
             </div>
 
             <div id="contador">
-                <span>12:45:09</span>
+                <span id="contador-oferta"></span>
             </div>
 
         </div>
