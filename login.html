@@ -16,7 +16,8 @@
     <!-- jquery -->
     <script src="js/jquery-3.7.1.min.js"></script>
 
-   
+   <!-- js -->
+   <script src="js/login.js"></script>
 
     <!-- css -->
     <link rel="stylesheet" href="css/header.css">
@@ -67,12 +68,15 @@
             </div>
 
             <div class="mb-3">
-                <a href="#">¿Has olvidado tu contraseña?</a>
+                <a href="#" id="olvidado">¿Has olvidado tu contraseña?</a>
+            </div>
+
+            <div class="mb-3">
                 <input type="submit" class="form-control" id="enviar-login" value="Iniciar sesión">
             </div>
 
             <div class="mb-3">
-                <p>¿Primera vez por aquí?</p>
+                <p id="fst">¿Primera vez por aquí?</p>
                 <input type="submit" class="form-control" id="registrarse" value="Crear cuenta">
             </div>
         </form>
