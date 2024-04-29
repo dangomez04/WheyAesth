@@ -37,3 +37,8 @@
 .card.shadow.mb-4{
     width: 77vw;
 }
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #e3e6f0;
+    vertical-align: middle;
+}
