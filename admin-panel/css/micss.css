@@ -35,10 +35,54 @@
 }
 
 .card.shadow.mb-4{
-    width: 77vw;
+    width: 84vw;
 }
 
 .table-bordered td, .table-bordered th {
     border: 1px solid #e3e6f0;
     vertical-align: middle;
+    text-align: center;
+}
+
+div.table-responsive{
+    height: 70vh;
+    overflow: auto;
+}
+
+tbody tr td#descripcion {
+    width: 700px;
+    max-width: 700px;
+    height: 162px;
+    max-height: 250px;
+    overflow: auto;
+    display: block; 
+    word-wrap: break-word; 
+    white-space: normal; 
+    padding-top: 15px;
+}
+
+.card-body{
+    cursor: pointer;
+}
+
+#desc-head{
+    width: 20vw ;
+}
+
+#accordionSidebar li.nav-item {
+    transition: transform 0.3s ease;
+}
+
+#accordionSidebar li.nav-item:hover {
+    transform: scale(1.03);
+}
+
+div.col-lg-6.mb-4 div.card{
+    transition: transform 0.3s ease;
+
+}
+
+div.col-lg-6.mb-4 div.card:hover{
+    transform: scale(1.05);
+
 }
