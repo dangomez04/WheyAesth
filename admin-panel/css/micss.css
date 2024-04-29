@@ -86,3 +86,10 @@ div.col-lg-6.mb-4 div.card:hover{
     transform: scale(1.05);
 
 }
+
+
+div#logo-title span:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), /* Sombra blanca para el brillo */
+                 0 0 20px rgba(255, 255, 255, 0.5), /* Sombra blanca más amplia para un brillo más fuerte */
+                 0 0 30px rgba(255, 255, 255, 0.5); /* Sombra blanca aún más amplia para un brillo intenso */
+}
