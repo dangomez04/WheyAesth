@@ -9,7 +9,7 @@ class Usuarios{
 
         $sqlConnection = new Connection();
         $mySQL = $sqlConnection->getConnection();
-        $stmt = $mySQL->prepare("SELECT usuarios.*,roles.rol FROM usuarios JOIN roles ON usuarios.id_rol=roles.id_rol");
+        $stmt = $mySQL->prepare("SELECT usuarios.*,roles.rol FROM usuarios JOIN roles ON usuarios.rol_usuario=roles.id_rol");
 
         try{
             $stmt->execute();

@@ -46,6 +46,7 @@ $(document).ready(function () {
                     +"<td>"+usuario.id_usuario+"</td>"
                     +"<td>"+usuario.nombre_usuario+"</td>"
                     +"<td>"+usuario.correo_usuario+"</td>"
+                    +"<td>"+usuario.contraseña_usuario+"</td>"
                     +"<td>"+usuario.rol+"</td>"
                    
 
