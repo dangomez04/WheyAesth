@@ -21,14 +21,17 @@ if (isset($_GET['action'])){
 		$result = $dataBase->show();
 		
 
-        // if($result == "No hay accesorios en la base de datos" || $result == "Error al obtener los accesorios"){
-        //     echo $result;
-        // }else{
-        //     // $accesorios = $result->fetch_assoc();
+        if($result == "No hay accesorios en la base de datos" || $result == "Error al obtener los accesorios"){
+            echo $result;
+        }else{
+            $accesorios = array(); 
 
-        //     echo json_encode($result);
+        while ($row = $result->fetch_assoc()) {
+            $accesorios[] = $row;
+        }
 
-        // }
+        echo json_encode($accesorios);
+        }
 
 
 	}

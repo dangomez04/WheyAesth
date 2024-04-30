@@ -15,7 +15,8 @@ $(document).ready(function () {
                 success: function (resultado) {
                   
 
-                    console.log(resultado);
+                    pintar_accesorios(resultado);
+
                 },
 
 
@@ -25,5 +26,65 @@ $(document).ready(function () {
                 },
 
             });
+
+
+
+            function pintar_accesorios(array_accesorios){
+                console.log(array_accesorios);
+                // $('table#dataTable tbody').append("<tr><td>hola</td>/tr>");
+                for (const accesorio of array_accesorios) {
+                
+                 $('table#dataTable tbody').append(
+
+                 "<tr>"
+                 
+                 +"<td>"+accesorio.id_accesorio+"</td>"
+                 +"<td>"+accesorio.nombre_accesorio+"</td>"
+                 +"<td>"+accesorio.precio_accesorio+"</td>"
+                 +"<td>"+accesorio.descripcion_accesorio+"</td>"
+                 +"<td>"+accesorio.color_accesorio+"</td>"
+                 +"<td>"+accesorio.stock+"</td>"
+                 +"<td>"+accesorio.novedad+"</td>"
+                 +"<td>"+"<a target='_blank' href='img/" + accesorio.imagen_accesorio + "'><img width='100' height='100' src='img/" + accesorio.imagen_accesorio + "' alt='" + accesorio.imagen_accesorio + "'></a>"+"</td>"
+                 +"<td>"
+
+                 +"<a href='#' class='btn btn-primary btn-icon-split'>"
+                 
+                 +"<span class='icon text-white-50'>"
+                    +"<i class='bi bi-pencil-fill'></i>"
+                 +"</span>"
+                 +"<span class='text'>Editar</span>"
+                 
+                 +"</a>"
+                 
+                 +"</td>"
+
+                 +"<td>"
+
+                 +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                 
+                 +"<span class='icon text-white-50'>"
+                    +"<i class='fas fa-trash'></i>"
+                 +"</span>"
+                 +"<span class='text'>Eliminar</span>"
+                 
+                 +"</a>"
+                 
+                 +"</td>"
+
+                 +"</tr>"
+                
+                
+                
+                );
+
+                }
+
+            }   
+
+
+
+
+
         
     });
