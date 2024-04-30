@@ -1,7 +1,7 @@
 <?php 
 require("Connection.php");
 
-class Reuniones{
+class Ofertas{
 
    
 
@@ -9,19 +9,19 @@ class Reuniones{
 
         $sqlConnection = new Connection();
         $mySQL = $sqlConnection->getConnection();
-        $stmt = $mySQL->prepare("SELECT reuniones.*,entrenadores.nombre_entrenador FROM reuniones JOIN entrenadores ON reuniones.id_entrenador=entrenadores.id_entrenador");
+        $stmt = $mySQL->prepare("SELECT ofertas_flash.*,suplementos.nombre_suplemento,accesorios.nombre_accesorio FROM ofertas_flash JOIN suplementos ON ofertas_flash.id_suplemento=suplementos.id_suplemento JOIN accesorios ON ofertas_flash.id_accesorio=accesorios.id_accesorio");
 
         try{
             $stmt->execute();
             $result = $stmt->get_result();
             $stmt->close();
             if($result->num_rows==0){
-                return "No hay reuniones en la base de datos";
+                return "No hay ofertas en la base de datos";
             }
             return $result;
 
         }catch(Exception $e){
-            return "Error al obtener los reuniones";
+            return "Error al buscar ofertas";
         }
 
 

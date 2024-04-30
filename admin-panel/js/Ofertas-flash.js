@@ -5,7 +5,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "GET",
-                url: "php/Reuniones.php",
+                url: "php/Ofertas-flash.php",
                 dataType: "json",
 
                 data: {
@@ -15,7 +15,7 @@ $(document).ready(function () {
                 success: function (resultado) {
                   
 
-                    pintar_reuniones(resultado);
+                    pintar_ofertas(resultado);
 
                 },
 
@@ -29,31 +29,24 @@ $(document).ready(function () {
 
 
 
-            function pintar_reuniones(array_reuniones){
-
-                for (const reunion of array_reuniones) {
-
-                    var fechaReunion = new Date(reunion.fecha_reunion);
-
-                    var opcionesFecha = { day: '2-digit', month: '2-digit', year: 'numeric' };
-
-                    var fechaFormateada = fechaReunion.toLocaleDateString('es-ES',opcionesFecha);
+            function pintar_ofertas(array_ofertas){
 
 
 
+                for (const oferta of array_ofertas) {
 
-                
+
+            
                     $('table#dataTable tbody').append(
    
                     "<tr>"
                     
-                    +"<td>"+reunion.id_reunion+"</td>"
-                    +"<td>"+fechaFormateada+"</td>"
-                    +"<td>"+reunion.hora_reunion+"</td>"
-                    +"<td>"+reunion.duracion_reunion+"</td>"
-                    +"<td>"+reunion.tematica_reunion+"</td>"
-                    +"<td>"+reunion.aforo_reunion+"</td>"
-                    +"<td>"+reunion.nombre_entrenador+"</td>"
+                    +"<td>"+oferta.id_oferta_flash+"</td>"
+                    +"<td>"+oferta.precio_oferta+"</td>"
+                    +"<td>"+oferta.stock_oferta+"</td>"
+                    +"<td>"+oferta.nombre_suplemento+"</td>"
+                    +"<td>"+oferta.nombre_accesorio+"</td>"
+
 
                     +"<td>"
    

@@ -5,7 +5,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "GET",
-                url: "php/Reuniones.php",
+                url: "php/Usuarios.php",
                 dataType: "json",
 
                 data: {
@@ -15,7 +15,7 @@ $(document).ready(function () {
                 success: function (resultado) {
                   
 
-                    pintar_reuniones(resultado);
+                    pintar_usuario(resultado);
 
                 },
 
@@ -29,31 +29,25 @@ $(document).ready(function () {
 
 
 
-            function pintar_reuniones(array_reuniones){
-
-                for (const reunion of array_reuniones) {
-
-                    var fechaReunion = new Date(reunion.fecha_reunion);
-
-                    var opcionesFecha = { day: '2-digit', month: '2-digit', year: 'numeric' };
-
-                    var fechaFormateada = fechaReunion.toLocaleDateString('es-ES',opcionesFecha);
+            function pintar_usuario(array_usuarios){
 
 
 
+                for (const usuario of array_usuarios) {
 
-                
+
+                  
+    
+
                     $('table#dataTable tbody').append(
    
                     "<tr>"
                     
-                    +"<td>"+reunion.id_reunion+"</td>"
-                    +"<td>"+fechaFormateada+"</td>"
-                    +"<td>"+reunion.hora_reunion+"</td>"
-                    +"<td>"+reunion.duracion_reunion+"</td>"
-                    +"<td>"+reunion.tematica_reunion+"</td>"
-                    +"<td>"+reunion.aforo_reunion+"</td>"
-                    +"<td>"+reunion.nombre_entrenador+"</td>"
+                    +"<td>"+usuario.id_usuario+"</td>"
+                    +"<td>"+usuario.nombre_usuario+"</td>"
+                    +"<td>"+usuario.correo_usuario+"</td>"
+                    +"<td>"+usuario.rol+"</td>"
+                   
 
                     +"<td>"
    

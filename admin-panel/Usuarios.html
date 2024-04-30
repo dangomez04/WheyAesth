@@ -21,7 +21,8 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/micss.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/Usuarios.js"></script>
 </head>
 
 <body id="page-top">
@@ -204,7 +205,7 @@
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">Accesorios</h6>
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">Usuarios</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -213,143 +214,25 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Nombre</th>
-                                                <th>Precio</th>
-                                                <th id="desc-head">Descripcion</th>
-                                                <th>Talla</th>
-                                                <th>Color</th>
-                                                <th>Novedad</th>
-                                                <th>img</th>
-                                                <th>Editar</th>
-                                                <th>Eliminar</th>
+                                                <th>Correo electrónico</th>
+                                                <th>Contraseña</th>
+                                                <th>rol</th>
+                                             
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Nombre</th>
-                                                <th>Precio</th>
-                                                <th>Descripcion</th>
-                                                <th>Talla</th>
-                                                <th>Color</th>
-                                                <th>Novedad</th>
-                                                <th>img</th>
-                                                <th>Editar</th>
-                                                <th>Eliminar</th>
+                                                <th>Correo electrónico</th>
+                                                <th>Contraseña</th>
+                                                <th>rol</th>
 
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                            
         
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Muñequeras</td>
-                                                <td>24,99</td>
-                                                <td id="descripcion"> de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123</td>
-                                                <td>M</td>
-                                                <td>Rojo</td>
-                                                <td>False</td>
-                                                <td><a target="_blank" href="../img/proteina-cacaolat.png"><img width="100" height="100" src="../img/proteina-cacaolat.png" alt="proteina imagen"></a></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </span>
-                                                        <span class="text">Editar</span>
-                                                    </a>
-                                                </td>
-                                                
-                                                <td>
-                                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-trash"></i>
-                                                        </span>
-                                                        <span class="text">Eliminar</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Muñequeras</td>
-                                                <td>24,99</td>
-                                                <td id="descripcion"> de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123</td>
-                                                <td>M</td>
-                                                <td>Rojo</td>
-                                                <td>False</td>
-                                                <td><a target="_blank" href="../img/proteina-cacaolat.png"><img width="100" height="100" src="../img/proteina-cacaolat.png" alt="proteina imagen"></a></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </span>
-                                                        <span class="text">Editar</span>
-                                                    </a>
-                                                </td>
-                                                
-                                                <td>
-                                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-trash"></i>
-                                                        </span>
-                                                        <span class="text">Eliminar</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Muñequeras</td>
-                                                <td>24,99</td>
-                                                <td id="descripcion"> de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123</td>
-                                                <td>M</td>
-                                                <td>Rojo</td>
-                                                <td>False</td>
-                                                <td><a target="_blank" href="../img/proteina-cacaolat.png"><img width="100" height="100" src="../img/proteina-cacaolat.png" alt="proteina imagen"></a></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </span>
-                                                        <span class="text">Editar</span>
-                                                    </a>
-                                                </td>
-                                                
-                                                <td>
-                                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-trash"></i>
-                                                        </span>
-                                                        <span class="text">Eliminar</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Muñequeras</td>
-                                                <td>24,99</td>
-                                                <td id="descripcion"> de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123de prueba 123 Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123Descripcion de prueba 123</td>
-                                                <td>M</td>
-                                                <td>Rojo</td>
-                                                <td>False</td>
-                                                <td><a target="_blank" href="../img/proteina-cacaolat.png"><img width="100" height="100" src="../img/proteina-cacaolat.png" alt="proteina imagen"></a></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </span>
-                                                        <span class="text">Editar</span>
-                                                    </a>
-                                                </td>
-                                                
-                                                <td>
-                                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-trash"></i>
-                                                        </span>
-                                                        <span class="text">Eliminar</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
                                         
                                             
                                             
