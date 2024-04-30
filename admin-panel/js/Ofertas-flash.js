@@ -32,7 +32,6 @@ $(document).ready(function () {
             function pintar_ofertas(array_ofertas){
 
 
-
                 for (const oferta of array_ofertas) {
 
 

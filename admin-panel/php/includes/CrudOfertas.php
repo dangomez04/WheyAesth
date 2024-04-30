@@ -9,7 +9,7 @@ class Ofertas{
 
         $sqlConnection = new Connection();
         $mySQL = $sqlConnection->getConnection();
-        $stmt = $mySQL->prepare("SELECT ofertas_flash.*,suplementos.nombre_suplemento,accesorios.nombre_accesorio FROM ofertas_flash JOIN suplementos ON ofertas_flash.id_suplemento=suplementos.id_suplemento JOIN accesorios ON ofertas_flash.id_accesorio=accesorios.id_accesorio");
+        $stmt = $mySQL->prepare("SELECT ofertas_flash.*,suplementos.nombre_suplemento,accesorios.nombre_accesorio FROM ofertas_flash LEFT JOIN suplementos ON ofertas_flash.id_suplemento=suplementos.id_suplemento LEFT JOIN accesorios ON ofertas_flash.id_accesorio=accesorios.id_accesorio");
 
         try{
             $stmt->execute();
