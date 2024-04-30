@@ -30,10 +30,15 @@ $(document).ready(function () {
 
 
             function pintar_accesorios(array_accesorios){
-                console.log(array_accesorios);
-                // $('table#dataTable tbody').append("<tr><td>hola</td>/tr>");
+                var booleanValue = false;
+
                 for (const accesorio of array_accesorios) {
-                
+                if(accesorio.novedad == 1){
+                    booleanValue=true;
+                }else{
+                    booleanValue=false;
+                }
+
                  $('table#dataTable tbody').append(
 
                  "<tr>"
@@ -44,7 +49,7 @@ $(document).ready(function () {
                  +"<td>"+accesorio.descripcion_accesorio+"</td>"
                  +"<td>"+accesorio.color_accesorio+"</td>"
                  +"<td>"+accesorio.stock+"</td>"
-                 +"<td>"+accesorio.novedad+"</td>"
+                 +"<td>"+booleanValue+"</td>"
                  +"<td>"+"<a target='_blank' href='img/" + accesorio.imagen_accesorio + "'><img width='100' height='100' src='img/" + accesorio.imagen_accesorio + "' alt='" + accesorio.imagen_accesorio + "'></a>"+"</td>"
                  +"<td>"
 
