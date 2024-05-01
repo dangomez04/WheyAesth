@@ -94,12 +94,47 @@ div#logo-title span:hover {
                  0 0 30px rgba(255, 255, 255, 0.5); /* Sombra blanca aún más amplia para un brillo intenso */
 }
 
+.text-white-50 {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+
+.btn-crear{
+    position: relative;
+    left: 36vw;
+    margin-bottom: 20px;
+
+}
+
+
+input[type='file']{
+    padding: 4px;
+}
+
+.card.shadow.mb-4.crud{
+    width: 40vw;
+}
+
 
 @media only screen and (max-width: 767px) {
    
     a#searchDropdown{
         display: none;
     }
+
+
+    .btn-crear {
+        position: relative;
+        left: 2vw;
+        margin-bottom: 20px;
+    }
+
+    .card.shadow.mb-4.crud {
+        width: 90vw;
+    }
+
+
+
 
   }
   

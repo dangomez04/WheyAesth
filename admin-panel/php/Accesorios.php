@@ -8,6 +8,10 @@ if (isset($_GET['action'])){
         case "show":
             echo showAccesorios();
             break;
+
+        case "insertar-accesorio":
+            echo insertAccesorio();
+            break;   
        
     }
 }
@@ -35,6 +39,44 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function insertAccesorio(){
+        $nombre_accesorio = $_POST['nombre_accesorio'];
+        $precio_accesorio = $_POST['precio_accesorio'];
+        $desc_accesorio = $_POST['desc_accesorio'];
+        $color_accesorio = $_POST['color_accesorio'];
+        $stock_accesorio = $_POST['stock_accesorio'];
+        $novedad_accesorio = $_POST['novedad_accesorio'];
+        $imagenprovisional = $_POST['imagenprovisional'];
+
+
+        $data = array(
+            
+           'nombre_accesorio' => $nombre_accesorio,
+           'precio_accesorio' => $precio_accesorio,
+           'desc_accesorio' => $desc_accesorio,
+           'color_accesorio' => $color_accesorio,
+           'stock_accesorio' => $stock_accesorio,
+           'novedad_accesorio' => $novedad_accesorio,
+           'imagenprovisional' =>  $imagenprovisional
+        
+        
+        
+        );
+
+      
+
+        $dataBase = new Accesorios();
+        $result = $dataBase->insertAccesorio($data);
+
+        if($result === true){
+            echo true;
+
+        }else {
+            echo $result;
+        }
+
+    }
 
 ?>
 

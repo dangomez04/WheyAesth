@@ -16,7 +16,7 @@ $(document).ready(function () {
                   
 
                     pintar_reuniones(resultado);
-
+                    pintar_reuniones_select(resultado);
                 },
 
 
@@ -90,8 +90,14 @@ $(document).ready(function () {
                    }
              
                 
-
             }   
+
+
+            function pintar_reuniones_select(array_reuniones){
+                for (const reunion of array_reuniones) {
+                        $('select[name="reunion-reserva"]').append("<option value="+reunion.id_reunion+">"+reunion.tematica_reunion+"</option>")
+                }
+            }
 
 
 

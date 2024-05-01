@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Usuarios | WheyAesth</title>
+    <title>Crear Reunión | WheyAesth</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,9 +20,19 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/micss.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- jquery -->
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/Usuarios.js"></script>
+    <script src="js/Reuniones.js"></script>
+    <script src="js/Entrenadores.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 </head>
 
 <body id="page-top">
@@ -58,25 +68,25 @@
             <div class="sidebar-heading">
                 Tablas
             </div>
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="Accesorios.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Accesorios</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="Suplementos.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Suplementos</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="Entrenadores.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Entrenadores</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="Reuniones.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Reuniones</span></a>
@@ -92,7 +102,7 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Ofertas flash</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="Usuarios.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Usuarios</span></a>
@@ -102,18 +112,18 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Roles</span></a>
             </li>
-           
+
 
             <!-- Divider -->
 
-        
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-         
+
             <!-- Sidebar Message -->
-           
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -160,9 +170,9 @@
                             </div>
                         </li>
 
-                       
 
-                    
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -171,13 +181,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                               
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -194,64 +203,71 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                 
 
-                  
+
+
 
                     <!-- Content Row -->
 
-                    
+
                     <div class="row" id="row-tables">
-                        <a href="form-usuario.html" class="btn btn-info btn-icon-split btn-crear">
-                            <span class="icon text-white-50">
-                                <i class="bi bi-plus-circle"></i>
-                            </span>
-                            <span class="text">Crear Usuario</span>
-                        </a>
-                        <div class="card shadow mb-4">
+
+                        <div class="card shadow mb-4 crud">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">Usuarios</h6>
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">
+                                    Crear Reunión</h6>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Nombre</th>
-                                                <th>Correo electrónico</th>
-                                                <th>Contraseña</th>
-                                                <th>rol</th>
-                                                <th>Editar</th>
-                                                <th>Eliminar</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Nombre</th>
-                                                <th>Correo electrónico</th>
-                                                <th>Contraseña</th>
-                                                <th>rol</th>
-                                                <th>Editar</th>
-                                                <th>Eliminar</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                           
-        
-                                        
-                                            
-                                            
-                                            
-                                        </tbody>
-                                    </table>
+                                <div class="mb-3">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" id="fecha-reunion">
                                 </div>
-                            </div>
-                        </div>
 
-                       
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="hora-reunion" placeholder="Hora. P.ej: 16.30">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="duracion-reunion" placeholder="Duración (min)">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="tematica-reunion" placeholder="Temática. P.ej: Ganancia de músculo">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="aforo-reunion" placeholder="Aforo">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="entrenador" class="form-label">Entrenador</label>
+
+                                    <select class="form-control" name="id_entrenador">
+
+                                    </select>
+                                    
+                                </div>
+
+
+
+                               
+                                <div class="mb-3">
+
+                                    <input type="submit" class="form-control btn btn-success btn-icon-split" id="submit-crear-reunion" value="Crear">
+
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <input type="submit" class="form-control btn btn-secondary btn-icon-split" id="cancelar-crear-reunion" value="Cancelar">
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
@@ -302,7 +318,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -311,7 +327,10 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
- 
+
+
+
 
 </body>
+
 </html>

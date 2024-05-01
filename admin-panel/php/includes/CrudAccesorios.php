@@ -28,6 +28,38 @@ class Accesorios{
 
     }
 
+    function insertAccesorio($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $nombre_accesorio = $data['nombre_accesorio'];
+        $precio_accesorio = $data['precio_accesorio'];
+        $desc_accesorio = $data['desc_accesorio'];
+        $color_accesorio = $data['color_accesorio'];
+        $stock_accesorio = $data['stock_accesorio'];
+        $novedad_accesorio = $data['novedad_accesorio'];
+        $imagenprovisional = $data['imagenprovisional'];
+
+
+		$stmt = $conexion->prepare("INSERT INTO accesorios (nombre_accesorio, precio_accesorio, descripcion_accesorio, color_accesorio, stock, novedad, imagen_accesorio) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+        $stmt->bind_param("sdssiis", $nombre_accesorio,$precio_accesorio,$desc_accesorio,$color_accesorio, $stock_accesorio, $novedad_accesorio,$imagenprovisional);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar el accesorio";
+        }
+
+
+   		 $conexion->close();
+    }
+
     
 
 

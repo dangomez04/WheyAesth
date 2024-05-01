@@ -16,6 +16,7 @@ $(document).ready(function () {
                   
 
                     pintar_suplementos(resultado);
+                    pintar_suplementos_select(resultado);
 
                 },
 
@@ -93,6 +94,12 @@ $(document).ready(function () {
                 
 
             }   
+
+            function pintar_suplementos_select(array_suplementos){
+                for (const suplemento of array_suplementos) {
+                        $('select[name="id_suplemento"]').append("<option value="+suplemento.id_suplemento+">"+suplemento.nombre_suplemento+"</option>");
+                }
+            }
 
 
 

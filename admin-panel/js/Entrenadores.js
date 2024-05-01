@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    console.log("hola");
 
     let currentAction = 'show';
 
@@ -16,7 +16,7 @@ $(document).ready(function () {
                   
 
                     pintar_entrenadores(resultado);
-
+                    pintar_entrenadores_select(resultado);
                 },
 
 
@@ -75,9 +75,15 @@ $(document).ready(function () {
    
                    }
              
-                
-
             }   
+
+            function pintar_entrenadores_select(array_entrenadores){
+
+                for (const entrenador of array_entrenadores) {
+                    $('select[name="id_entrenador"]').append("<option value="+entrenador.id_entrenador+">"+entrenador.nombre_entrenador+"</option>");
+                }
+
+            }
 
 
 

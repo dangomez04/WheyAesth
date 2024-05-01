@@ -16,7 +16,7 @@ $(document).ready(function () {
                   
 
                     pintar_rol(resultado);
-
+                    pintar_rol_select(resultado);
                 },
 
 
@@ -84,6 +84,12 @@ $(document).ready(function () {
                 
 
             }   
+
+            function pintar_rol_select(array_roles){
+                for (const rol of array_roles) {
+                        $('select[name="id_rol"]').append("<option value="+rol.id_rol+">"+rol.rol+"</option>")
+                }
+            }
 
 
 

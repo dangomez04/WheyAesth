@@ -16,7 +16,7 @@ $(document).ready(function () {
                   
 
                     pintar_usuario(resultado);
-
+                    pintar_usuario_select(resultado);
                 },
 
 
@@ -84,9 +84,17 @@ $(document).ready(function () {
    
                    }
              
-                
-
             }   
+
+            function pintar_usuario_select(array_usuarios){
+
+
+                for (const usuario of array_usuarios) {
+                    $('select[name="usuario-reserva"]').append("<option value="+usuario.id_usuario+">"+usuario.nombre_usuario+"</option>")
+
+                }
+
+            }
 
 
 
