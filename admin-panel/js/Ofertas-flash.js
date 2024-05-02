@@ -28,9 +28,9 @@ $(document).ready(function () {
             });
 
 
-            $('select#cancelar-crear-oferta').on('click',function(){
-                location.href="Ofertas-flash.html";
-            });
+            //control de selects, ya que el usuario solo puede elegir en uno de los dos select
+
+           
 
             $('select[name="id_suplemento"]').change(function () {
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 }
 
 
-                if ($(this).val() === 'none') {
+                if ($(this).val() === 'null') {
                     $('select[name="id_accesorio"]').prop('disabled', false);
                 } else {
                     $('select[name="id_accesorio"]').prop('disabled', true);
@@ -60,12 +60,101 @@ $(document).ready(function () {
                     $('select[name="id_suplemento"]').prop('disabled', false);
                 }
 
-                if ($(this).val() === 'none') {
+                if ($(this).val() === 'null') {
                     $('select[name="id_suplemento"]').prop('disabled', false);
                 } else {
                     $('select[name="id_suplemento"]').prop('disabled', true);
                 }
             });
+
+
+            $('input#submit-crear-oferta').on('click',function(event){
+                event.preventDefault();
+                insertar_oferta();
+
+            });
+
+            $('input#cancelar-crear-oferta').on('click',function(event){
+                event.preventDefault();
+                location.href="Ofertas-flash.html";
+
+            });
+
+
+            function insertar_oferta(){
+
+                var precio_oferta = parseFloat($('input#precio-oferta').val());
+                var stock_oferta = parseFloat($('input#stock-oferta').val());
+                var suplemento_oferta = $('select[name="id_suplemento"]').val();
+                var accesorio_oferta = $('select[name="id_accesorio"]').val();
+
+               
+
+                if(isNaN(precio_oferta) || isNaN(stock_oferta)){
+                    $('p#create-help').css({color: "red"});
+                    $('p#create-help').text("Todos los campos son obligatorios!");
+                }else if(suplemento_oferta == "null" && accesorio_oferta == "null"){
+                    $('p#create-help').css({color: "red"});
+                    $('p#create-help').text("Todos los campos son obligatorios!");
+                }else{
+                    
+                    var formData = new FormData();
+                    formData.append('precio_oferta', precio_oferta);
+                    formData.append('stock_oferta', stock_oferta);
+                    if(suplemento_oferta == "null"){
+                        formData.append('suplemento_oferta', null);
+                        formData.append('accesorio_oferta', accesorio_oferta);
+
+                    }else{
+                        formData.append('suplemento_oferta', suplemento_oferta);
+                        formData.append('accesorio_oferta', null);
+
+                    }
+
+                    let action = "insertar-oferta";
+
+                    $.ajax({
+                        type: "POST",
+                        url: "php/Ofertas-flash.php?action=" + action,
+                        data: formData,
+            
+                        processData: false,
+                        contentType: false,
+            
+                        success: function (resultado) {
+            
+            
+                            if (resultado == true) {
+                               
+            
+                                $('p#create-help').css({color: "green"});
+                                $('p#create-help').text("Oferta creada correctamente!");
+            
+                                setTimeout(() => {
+                                    location.href="Ofertas-flash.html";
+                                }, 1300);
+            
+                            } else {
+                                console.log(resultado);
+                            }
+            
+            
+            
+            
+            
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                        },
+            
+                    });
+
+
+                }
+
+
+            }
+
 
 
             function pintar_ofertas(array_ofertas){

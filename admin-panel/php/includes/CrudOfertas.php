@@ -25,7 +25,37 @@ class Ofertas{
         }
 
 
+    }
 
+    function insertOferta($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $precio_oferta = $data['precio_oferta'];
+        $stock_oferta = $data['stock_oferta'];
+        $suplemento_oferta = $data['suplemento_oferta'];
+        $accesorio_oferta = $data['accesorio_oferta'];
+      
+
+    
+		$stmt = $conexion->prepare("INSERT INTO ofertas_flash (precio_oferta, stock_oferta, id_suplemento,id_accesorio) VALUES (?, ?, ?, ?)");
+
+        $stmt->bind_param("diii", $precio_oferta,$stock_oferta,$suplemento_oferta, $accesorio_oferta);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar la reunión";
+        }
+
+
+   		 $conexion->close();
+    
     }
 
     
