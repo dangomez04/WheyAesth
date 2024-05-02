@@ -8,6 +8,10 @@ if (isset($_GET['action'])){
         case "show":
             echo showSuplementos();
             break;
+
+        case "insertar-suplemento":
+            echo insertSuplemento();
+             break;       
        
     }
 }
@@ -35,6 +39,46 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function insertSuplemento(){
+        $nombre_suplemento = $_POST['nombre_suplemento'];
+        $precio_suplemento = $_POST['precio_suplemento'];
+        $peso_suplemento = $_POST['peso_suplemento'];
+        $sabor_suplemento = $_POST['sabor_suplemento'];
+        $descripcion_suplemento = $_POST['descripcion_suplemento'];
+        $stock_suplemento = $_POST['stock_suplemento'];
+        $novedad_suplemento = $_POST['novedad_suplemento'];
+        $tipo_suplemento = $_POST['tipo_suplemento'];
+        $imagenprovisional = $_POST['imagenprovisional'];
+
+
+        $data = array(
+
+            'nombre_suplemento' => $nombre_suplemento,
+            'precio_suplemento' => $precio_suplemento,
+            'peso_suplemento' => $peso_suplemento,
+            'sabor_suplemento' => $sabor_suplemento,
+            'descripcion_suplemento' => $descripcion_suplemento,
+            'stock_suplemento' => $stock_suplemento,
+            'novedad_suplemento' => $novedad_suplemento,
+            'tipo_suplemento' => $tipo_suplemento,
+            'imagenprovisional' => $imagenprovisional
+        );
+        
+
+
+        $dataBase = new Suplementos();
+        $result = $dataBase->insertSuplemento($data);
+
+        if($result === true){
+            echo true;
+
+        }else {
+            echo $result;
+        }
+
+
+    }
 
 ?>
 

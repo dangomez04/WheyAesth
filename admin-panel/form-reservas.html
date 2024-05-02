@@ -218,51 +218,55 @@
                                     Crear Reserva</h6>
                             </div>
                             <div class="card-body">
+                                <form method="post" enctype="multipart/form-data">
 
-                                <div class="mb-3">
-                                    <label for="Reserva confirmada" class="form-label">Reserva confirmada</label>
+                                    <div class="mb-3">
+                                        <label for="Reserva confirmada" class="form-label">Reserva confirmada</label>
 
-                                    <select name="reserva-confirmada" class="form-control">
-                                        <option value="1">True</option>
-                                        <option value="0">False</option>
+                                        <select name="reserva-confirmada" class="form-control">
+                                            <option value="1">True</option>
+                                            <option value="0">False</option>
 
-                                    </select>
-                                </div>
+                                        </select>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="Usuario" class="form-label">Usuario</label>
+                                    <div class="mb-3">
+                                        <label for="Usuario" class="form-label">Usuario</label>
 
-                                    <select name="usuario-reserva" class="form-control">
-                                       
-
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="Reunión" class="form-label">Reunión</label>
-
-                                    <select name="reunion-reserva" class="form-control">
-
-                                    </select>
-                                </div>
+                                        <select name="usuario-reserva" class="form-control">
 
 
+                                        </select>
+                                    </div>
 
-                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="Reunión" class="form-label">Reunión</label>
 
-                                    <input type="submit" class="form-control btn btn-success btn-icon-split"
-                                        id="submit-crear-reserva" value="Crear">
+                                        <select name="reunion-reserva" class="form-control">
 
-                                </div>
+                                        </select>
+                                        <br>
+                                        <p id="create-help"></p>
 
-                                <div class="mb-3">
-
-                                    <input type="submit" class="form-control btn btn-secondary btn-icon-split"
-                                        id="cancelar-crear-reserva" value="Cancelar">
-
-                                </div>
+                                    </div>
 
 
+
+                                    <div class="mb-3">
+
+                                        <input type="submit" class="form-control btn btn-success btn-icon-split"
+                                            id="submit-crear-reserva" value="Crear">
+
+                                    </div>
+
+                                    <div class="mb-3">
+
+                                        <input type="submit" class="form-control btn btn-secondary btn-icon-split"
+                                            id="cancelar-crear-reserva" value="Cancelar">
+
+                                    </div>
+
+                                </form>
                             </div>
 
                         </div>

@@ -30,6 +30,103 @@ $(document).ready(function () {
 
 
 
+                $('input#submit-crear-suplemento').on('click',function(event){
+                    event.preventDefault();
+                    insertar_suplemento();
+
+                });
+
+                $('input#cancelar-crear-suplemento').on('click',function(event){
+                    event.preventDefault();
+                    location.href="Suplementos.html";
+
+                });
+
+
+
+
+            function insertar_suplemento(){
+
+                var nombre_suplemento = $('input#nombre-suplemento').val();
+                var precio_suplemento = parseFloat($('input#precio-suplemento').val());
+                var peso_suplemento = parseInt($('input#peso-suplemento').val());
+                var sabor_suplemento = $('input#sabor-suplemento').val();
+                var descripcion_suplemento = $('textarea#desc-suplemento').val();
+                var stock_suplemento = parseInt($('input#stock-suplemento').val());
+                var novedad_suplemento = parseInt($('select[name="novedad-suplemento"]').val());
+                var tipo_suplemento = $('input#tipo-suplemento').val();
+                var imagenprovisional = 'noimage.png';
+
+                if(nombre_suplemento=="" || isNaN(precio_suplemento) || isNaN(peso_suplemento) || sabor_suplemento=="" || descripcion_suplemento=="" || isNaN(stock_suplemento) || isNaN(novedad_suplemento) || tipo_suplemento==""){
+                 
+                    $('p#create-help').css({color: "red"});
+                    $('p#create-help').text("Todos los campos son obligatorios!");
+
+                }else{
+                    
+                    var formData = new FormData();
+                    formData.append('nombre_suplemento', nombre_suplemento);
+                    formData.append('precio_suplemento', precio_suplemento);
+                    formData.append('peso_suplemento', peso_suplemento);
+                    formData.append('sabor_suplemento', sabor_suplemento);
+                    formData.append('descripcion_suplemento', descripcion_suplemento);
+                    formData.append('stock_suplemento', stock_suplemento);
+                    formData.append('novedad_suplemento', novedad_suplemento);
+                    formData.append('tipo_suplemento', tipo_suplemento);
+                    formData.append('imagenprovisional', imagenprovisional);
+    
+                    let action = "insertar-suplemento";
+    
+                    $.ajax({
+                        type: "POST",
+                        url: "php/Suplementos.php?action=" + action,
+                        data: formData,
+            
+                        processData: false,
+                        contentType: false,
+            
+                        success: function (resultado) {
+            
+            
+                            if (resultado == true) {
+                               
+                                console.log("todo bvien");
+            
+                                $('p#create-help').css({color: "green"});
+                                $('p#create-help').text("Suplemento creado correctamente!");
+            
+                                setTimeout(() => {
+                                    location.href="Suplementos.html";
+                                }, 1300);
+            
+                            } else {
+                                console.log(resultado);
+                            }
+            
+            
+            
+            
+            
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                        },
+            
+                    });
+
+
+
+                }
+
+             
+
+
+
+            }
+
+
+
+
             function pintar_suplementos(array_suplementos){
 
                 var booleanValue = false;

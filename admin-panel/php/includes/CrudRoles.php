@@ -28,6 +28,34 @@ class Roles{
 
     }
 
+
+    function insertRol($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $nombre_rol = $data['nombre_rol'];
+
+        $stmt = $conexion->prepare("INSERT INTO roles (rol) VALUES (?)");
+
+        $stmt->bind_param("s", $nombre_rol);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar el rol";
+        }
+
+
+   		 $conexion->close();
+
+
+    }
     
 
 

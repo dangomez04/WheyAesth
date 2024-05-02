@@ -218,47 +218,57 @@
                             </div>
                             <div class="card-body">
 
-                               
-
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="nombre-usuario" placeholder="Nombre">
-                                </div>
-
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" id="correo-usuario" placeholder="Correo electrónico">
-                                </div>
-
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" id="contraseña-usuario" placeholder="Contraseña">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" id="confirmar-contraseña-usuario" placeholder="Confirmar Contraseña">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="entrenador" class="form-label">Rol</label>
-
-                                    <select class="form-control" name="id_rol">
-                                    </select>
-                                    
-                                </div>
+                                <form method="post" enctype="multipart/form-data">
 
 
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="nombre-usuario"
+                                            placeholder="Nombre">
+                                    </div>
 
-                               
-                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" id="correo-usuario"
+                                            placeholder="Correo electrónico">
+                                    </div>
 
-                                    <input type="submit" class="form-control btn btn-success btn-icon-split" id="submit-crear-usuario" value="Crear">
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" id="contraseña-usuario"
+                                            placeholder="Contraseña">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" id="confirmar-contraseña-usuario"
+                                            placeholder="Confirmar Contraseña">
+                                    </div>
 
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="rol" class="form-label">Rol</label>
 
-                                <div class="mb-3">
-
-                                    <input type="submit" class="form-control btn btn-secondary btn-icon-split" id="cancelar-crear-usuario" value="Cancelar">
-
-                                </div>
+                                        <select class="form-control" name="id_rol">
+                                        </select>
 
 
+                                        <br>
+                                        <p id="create-help"></p>
+
+                                    </div>
+
+
+
+                                    <div class="mb-3">
+
+                                        <input type="submit" class="form-control btn btn-success btn-icon-split"
+                                            id="submit-crear-usuario" value="Crear">
+
+                                    </div>
+
+                                    <div class="mb-3">
+
+                                        <input type="submit" class="form-control btn btn-secondary btn-icon-split"
+                                            id="cancelar-crear-usuario" value="Cancelar">
+
+                                    </div>
+
+                                </form>
                             </div>
 
                         </div>

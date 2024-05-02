@@ -8,7 +8,10 @@ if (isset($_GET['action'])){
         case "show":
             echo showEntrenadores();
             break;
-       
+
+        case "insertar-entrenador":
+            echo insertEntrenador();
+             break; 
     }
 }
 
@@ -35,6 +38,32 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function insertEntrenador(){
+        $nombre_entrenador = $_POST['nombre_entrenador'];
+        $especialidad_entrenador = $_POST['especialidad_entrenador'];
+        $email_entrenador = $_POST['email_entrenador'];
+
+
+        $data = array(
+            'nombre_entrenador' => $nombre_entrenador,
+            'especialidad_entrenador' => $especialidad_entrenador,
+            'email_entrenador' => $email_entrenador
+
+        );
+
+        $dataBase = new Entrenadores();
+        $result = $dataBase->insertEntrenador($data);
+
+        if($result === true){
+            echo true;
+
+        }else {
+            echo $result;
+        }
+
+
+    }
 
 ?>
 

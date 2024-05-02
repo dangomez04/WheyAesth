@@ -218,52 +218,61 @@
                                     Crear Reunión</h6>
                             </div>
                             <div class="card-body">
+                                <form method="post" enctype="multipart/form-data">
 
-                                <div class="mb-3">
-                                    <label for="fecha" class="form-label">Fecha</label>
-                                    <input type="date" class="form-control" id="fecha-reunion">
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="fecha" class="form-label">Fecha</label>
+                                        <input type="date" class="form-control" id="fecha-reunion">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" id="hora-reunion" placeholder="Hora. P.ej: 16.30">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" id="hora-reunion"
+                                            placeholder="Hora. P.ej: 16.30">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" id="duracion-reunion" placeholder="Duración (min)">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" id="duracion-reunion"
+                                            placeholder="Duración (min)">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="tematica-reunion" placeholder="Temática. P.ej: Ganancia de músculo">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="tematica-reunion"
+                                            placeholder="Temática. P.ej: Ganancia de músculo">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" id="aforo-reunion" placeholder="Aforo">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" id="aforo-reunion"
+                                            placeholder="Aforo">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="entrenador" class="form-label">Entrenador</label>
+                                    <div class="mb-3">
+                                        <label for="entrenador" class="form-label">Entrenador</label>
 
-                                    <select class="form-control" name="id_entrenador">
+                                        <select class="form-control" name="id_entrenador">
 
-                                    </select>
-                                    
-                                </div>
+                                        </select>
+                                        <br>
+                                        <p id="create-help"></p>
+
+                                    </div>
 
 
 
-                               
-                                <div class="mb-3">
 
-                                    <input type="submit" class="form-control btn btn-success btn-icon-split" id="submit-crear-reunion" value="Crear">
+                                    <div class="mb-3">
 
-                                </div>
+                                        <input type="submit" class="form-control btn btn-success btn-icon-split"
+                                            id="submit-crear-reunion" value="Crear">
 
-                                <div class="mb-3">
+                                    </div>
 
-                                    <input type="submit" class="form-control btn btn-secondary btn-icon-split" id="cancelar-crear-reunion" value="Cancelar">
+                                    <div class="mb-3">
 
-                                </div>
+                                        <input type="submit" class="form-control btn btn-secondary btn-icon-split"
+                                            id="cancelar-crear-reunion" value="Cancelar">
 
+                                    </div>
+                                </form>
 
                             </div>
 

@@ -28,6 +28,45 @@ $(document).ready(function () {
             });
 
 
+            $('select#cancelar-crear-oferta').on('click',function(){
+                location.href="Ofertas-flash.html";
+            });
+
+            $('select[name="id_suplemento"]').change(function () {
+
+                if ($(this).val() !== '') {
+
+                    $('select[name="id_accesorio"]').prop('disabled', true);
+                } else {
+
+                    $('select[name="id_accesorio"]').prop('disabled', false);
+                }
+
+
+                if ($(this).val() === 'none') {
+                    $('select[name="id_accesorio"]').prop('disabled', false);
+                } else {
+                    $('select[name="id_accesorio"]').prop('disabled', true);
+                }
+            });
+        
+            $('select[name="id_accesorio"]').change(function () {
+
+                if ($(this).val() !== '') {
+
+                    $('select[name="id_suplemento"]').prop('disabled', true);
+                } else {
+
+                    $('select[name="id_suplemento"]').prop('disabled', false);
+                }
+
+                if ($(this).val() === 'none') {
+                    $('select[name="id_suplemento"]').prop('disabled', false);
+                } else {
+                    $('select[name="id_suplemento"]').prop('disabled', true);
+                }
+            });
+
 
             function pintar_ofertas(array_ofertas){
 

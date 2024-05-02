@@ -28,6 +28,36 @@ class Reservas{
 
     }
 
+    function insertReserva($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $reserva_confirmada = $data['reserva_confirmada'];
+        $usuario_reserva = $data['usuario_reserva'];
+        $reunion_reserva = $data['reunion_reserva'];
+
+        $stmt = $conexion->prepare("INSERT INTO reserva_reuniones (reserva_confirmada, id_usuario, id_reunion) VALUES (?, ?, ?)");
+
+        $stmt->bind_param("iii", $reserva_confirmada,$usuario_reserva,$reunion_reserva);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar la reserva";
+        }
+
+
+   		 $conexion->close();
+
+
+
+    }
+
     
 
 

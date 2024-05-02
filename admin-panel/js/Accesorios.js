@@ -30,73 +30,92 @@ $(document).ready(function () {
 
 
 
-     //insertar
         
-     $('input#submit-crear-accesorio').on('click',function(event){
-        event.preventDefault();
-       var nombre_accesorio = $('input#nombre-accesorio').val();
-       var precio_accesorio = parseFloat($('input#precio-accesorio').val());
-       var desc_accesorio = $('textarea#desc-accesorio').val();
-       var color_accesorio = $('input#color-accesorio').val();
-       var stock_accesorio = parseInt($('input#stock-accesorio').val());
-       var novedad_accesorio = parseInt($('select[name="novedad-accesorio"]').val());
-       var imagenprovisional = 'noimage.png';
 
-       var formData = new FormData();
-       formData.append('nombre_accesorio', nombre_accesorio);
-       formData.append('precio_accesorio',precio_accesorio);
-       formData.append('desc_accesorio', desc_accesorio);
-       formData.append('color_accesorio', color_accesorio);
-       formData.append('stock_accesorio', stock_accesorio);
-       formData.append('novedad_accesorio', novedad_accesorio);
-       formData.append('imagenprovisional', imagenprovisional);
+  
+        $('input#submit-crear-accesorio').on('click',function(event){
+            event.preventDefault();
+            insertar_accesorio();
 
-       let action = "insertar-accesorio";
+         });           
+         
+        
+         $('input#cancelar-crear-accesorio').on('click',function(event){
+            event.preventDefault();
+            location.href="Accesorios.html";
 
-        $.ajax({
-            type: "POST",
-            url: "php/Accesorios.php?action=" + action,
-            data: formData,
-
-            processData: false,
-            contentType: false,
-
-            success: function (resultado) {
+         });    
+    
+    
+   
 
 
-                if (resultado == true) {
-                   
-                    console.log("todo bvien");
+            function insertar_accesorio(){
+                var nombre_accesorio = $('input#nombre-accesorio').val();
+                var precio_accesorio = parseFloat($('input#precio-accesorio').val());
+                var desc_accesorio = $('textarea#desc-accesorio').val();
+                var color_accesorio = $('input#color-accesorio').val();
+                var stock_accesorio = parseInt($('input#stock-accesorio').val());
+                var novedad_accesorio = parseInt($('select[name="novedad-accesorio"]').val());
+                var imagenprovisional = 'noimage.png';
 
-                    $('p#create-help').css({color: "green"});
-                    $('p#create-help').text("Accesorio creado correctamente!");
-
-                    setTimeout(() => {
-                        location.href="Accesorios.html";
-                    }, 1300);
-
-                } else {
-                    console.log(resultado);
+                //falta comprobar imagen
+                if(nombre_accesorio=="" || isNaN(precio_accesorio) || desc_accesorio=="" || color_accesorio=="" || isNaN(stock_accesorio) || isNaN(novedad_accesorio)){
+                    $('p#create-help').css({color: "red"});
+                    $('p#create-help').text("Todos los campos son obligatorios!");
+                }else{
+                  
+                
+                    var formData = new FormData();
+                    formData.append('nombre_accesorio', nombre_accesorio);
+                    formData.append('precio_accesorio',precio_accesorio);
+                    formData.append('desc_accesorio', desc_accesorio);
+                    formData.append('color_accesorio', color_accesorio);
+                    formData.append('stock_accesorio', stock_accesorio);
+                    formData.append('novedad_accesorio', novedad_accesorio);
+                    formData.append('imagenprovisional', imagenprovisional);
+             
+                    let action = "insertar-accesorio";
+             
+                     $.ajax({
+                         type: "POST",
+                         url: "php/Accesorios.php?action=" + action,
+                         data: formData,
+             
+                         processData: false,
+                         contentType: false,
+             
+                         success: function (resultado) {
+             
+             
+                             if (resultado == true) {
+                                
+             
+                                 $('p#create-help').css({color: "green"});
+                                 $('p#create-help').text("Accesorio creado correctamente!");
+             
+                                 setTimeout(() => {
+                                     location.href="Accesorios.html";
+                                 }, 1300);
+             
+                             } else {
+                                 console.log(resultado);
+                             }
+             
+             
+             
+             
+             
+                         },
+                         error: function (xhr) {
+                             console.log(xhr);
+                         },
+             
+                     });
                 }
-
-
-
-
-
-            },
-            error: function (xhr) {
-                console.log(xhr);
-            },
-
-        });
-
-
-
-     });           
-
-
-
-
+         
+              
+            }
 
 
 

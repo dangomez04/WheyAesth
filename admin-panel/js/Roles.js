@@ -28,6 +28,75 @@ $(document).ready(function () {
             });
 
 
+            $('input#submit-crear-rol').on('click',function(event){
+                event.preventDefault();
+                insertar_rol();
+
+            });
+
+            $('input#cancelar-crear-rol').on('click',function(event){
+                event.preventDefault();
+                location.href="Roles.html";
+
+            });
+
+
+
+            function insertar_rol(){
+                
+                var nombre_rol = $('input#nombre-rol').val();
+
+                if(nombre_rol==""){
+                    $('p#create-help').css({color: "red"});
+                    $('p#create-help').text("Todos los campos son obligatorios!");
+                }else{
+                    var formData = new FormData();
+                    formData.append('nombre_rol', nombre_rol);
+    
+    
+                    let action = "insertar-rol";
+    
+                    $.ajax({
+                        type: "POST",
+                        url: "php/Roles.php?action=" + action,
+                        data: formData,
+            
+                        processData: false,
+                        contentType: false,
+            
+                        success: function (resultado) {
+            
+            
+                            if (resultado == true) {
+                               
+            
+                                $('p#create-help').css({color: "green"});
+                                $('p#create-help').text("Rol creado correctamente!");
+            
+                                setTimeout(() => {
+                                    location.href="Roles.html";
+                                }, 1300);
+            
+                            } else {
+                                console.log(resultado);
+                            }
+            
+            
+            
+            
+            
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                        },
+            
+                    });
+    
+                }
+              
+            
+            }
+
 
             function pintar_rol(array_roles){
 

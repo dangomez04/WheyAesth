@@ -8,6 +8,10 @@ if (isset($_GET['action'])){
         case "show":
             echo showRoles();
             break;
+
+            case "insertar-rol":
+                echo insertRol();
+                break;
        
     }
 }
@@ -36,5 +40,25 @@ if (isset($_GET['action'])){
 
 	}
 
+
+    function insertRol(){
+        $nombre_rol = $_POST['nombre_rol'];
+
+        $data = array(
+            'nombre_rol' => $nombre_rol
+           
+        );
+
+        $dataBase = new Roles();
+        $result = $dataBase->insertRol($data);
+
+        if($result === true){
+            echo true;
+
+        }else {
+            echo $result;
+        }
+
+    }
 ?>
 

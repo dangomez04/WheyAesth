@@ -28,6 +28,42 @@ class Suplementos{
 
     }
 
+
+    function insertSuplemento($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $nombre_suplemento = $data['nombre_suplemento'];
+        $precio_suplemento = $data['precio_suplemento'];
+        $peso_suplemento = $data['peso_suplemento'];
+        $sabor_suplemento = $data['sabor_suplemento'];
+        $descripcion_suplemento = $data['descripcion_suplemento'];
+        $stock_suplemento = $data['stock_suplemento'];
+        $novedad_suplemento = $data['novedad_suplemento'];
+        $tipo_suplemento = $data['tipo_suplemento'];
+        $imagenprovisional = $data['imagenprovisional'];
+
+
+		$stmt = $conexion->prepare("INSERT INTO suplementos (nombre_suplemento, precio_suplemento, peso_suplemento, sabor_suplemento, descripcion_suplemento, stock, novedad, tipo_suplemento, imagen_suplemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        $stmt->bind_param("sdissiiss", $nombre_suplemento,$precio_suplemento,$peso_suplemento,$sabor_suplemento, $descripcion_suplemento, $stock_suplemento,$novedad_suplemento, $tipo_suplemento, $imagenprovisional);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar el suplemento";
+        }
+
+
+   		 $conexion->close();
+    }
+
+
     
 
 

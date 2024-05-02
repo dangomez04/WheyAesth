@@ -28,6 +28,38 @@ class Entrenadores{
 
     }
 
+    function insertEntrenador($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $nombre_entrenador = $data['nombre_entrenador'];
+        $especialidad_entrenador = $data['especialidad_entrenador'];
+        $email_entrenador = $data['email_entrenador'];
+    
+
+
+		$stmt = $conexion->prepare("INSERT INTO entrenadores (nombre_entrenador, especialidad_entrenador, correo_entrenador) VALUES (?, ?, ?)");
+
+        $stmt->bind_param("sss", $nombre_entrenador,$especialidad_entrenador,$email_entrenador);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar el entrenador";
+        }
+
+
+   		 $conexion->close();
+
+
+    }
+
     
 
 

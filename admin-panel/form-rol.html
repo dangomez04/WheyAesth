@@ -24,7 +24,7 @@
 
     <!-- jquery -->
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/Accesorios.js"></script>
+    <script src="js/Roles.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8"
@@ -217,26 +217,31 @@
                             </div>
                             <div class="card-body">
 
-                               
-
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="nombre-rol" placeholder="Rol">
-                                </div>
-
-                            
-                                <div class="mb-3">
-
-                                    <input type="submit" class="form-control btn btn-success btn-icon-split" id="submit-crear-rol" value="Crear">
-
-                                </div>
-
-                                <div class="mb-3">
-
-                                    <input type="submit" class="form-control btn btn-secondary btn-icon-split" id="cancelar-crear-rol" value="Cancelar">
-
-                                </div>
+                                <form method="post" enctype="multipart/form-data">
 
 
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="nombre-rol" placeholder="Rol">
+                                        <br>
+                                        <p id="create-help"></p>
+                                    </div>
+
+
+                                    <div class="mb-3">
+
+                                        <input type="submit" class="form-control btn btn-success btn-icon-split"
+                                            id="submit-crear-rol" value="Crear">
+
+                                    </div>
+
+                                    <div class="mb-3">
+
+                                        <input type="submit" class="form-control btn btn-secondary btn-icon-split"
+                                            id="cancelar-crear-rol" value="Cancelar">
+
+                                    </div>
+
+                                </form>
                             </div>
 
                         </div>

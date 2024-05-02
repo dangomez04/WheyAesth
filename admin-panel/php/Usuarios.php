@@ -8,7 +8,10 @@ if (isset($_GET['action'])){
         case "show":
             echo showUsuarios();
             break;
-       
+
+         case "insertar-usuario":
+                echo insertUsuario();
+                break;
     }
 }
 
@@ -35,6 +38,34 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function insertUsuario(){
+
+        $nombre_usuario = $_POST["nombre_usuario"];
+        $email_usuario = $_POST["email_usuario"];
+        $contraseña_usuario = $_POST["contraseña_usuario"];
+        $rol_usuario = $_POST["rol_usuario"];
+
+        $data = array(
+            'nombre_usuario' => $nombre_usuario,
+            'email_usuario' => $email_usuario,
+            'contraseña_usuario' => $contraseña_usuario,
+            'rol_usuario' => $rol_usuario
+
+        );
+
+        $dataBase = new Usuarios();
+        $result = $dataBase->insertUsuario($data);
+
+        if($result === true){
+            echo true;
+
+        }else {
+            echo $result;
+        }
+
+
+    }
 
 ?>
 

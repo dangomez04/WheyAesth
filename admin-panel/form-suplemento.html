@@ -24,7 +24,7 @@
 
     <!-- jquery -->
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/Accesorios.js"></script>
+    <script src="js/Suplementos.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8"
@@ -216,68 +216,74 @@
                                     Crear Suplemento</h6>
                             </div>
                             <div class="card-body">
+                                <form method="post" enctype="multipart/form-data">
 
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="nombre-suplemento" placeholder="Nombre">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="nombre-suplemento"
+                                            placeholder="Nombre">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" id="precio-suplemento"
-                                        placeholder="Precio">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" id="precio-suplemento"
+                                            placeholder="Precio">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" id="peso-suplemento"
-                                        placeholder="Peso(g)">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="sabor-suplemento"
-                                        placeholder="Sabor">
-                                </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" id="peso-suplemento"
+                                            placeholder="Peso(g)">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="sabor-suplemento"
+                                            placeholder="Sabor">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <textarea class="form-control" id="desc-suplemento" rows="3"
-                                        placeholder="Descripción"></textarea>
-                                </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="desc-suplemento" rows="3"
+                                            placeholder="Descripción"></textarea>
+                                    </div>
 
-                               
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control" id="stock-suplemento"
+                                            placeholder="Stock">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" id="stock-suplemento" placeholder="Stock">
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="novedad" class="form-label">Novedad</label>
 
-                                <div class="mb-3">
-                                    <label for="novedad" class="form-label">Novedad</label>
+                                        <select name="novedad-suplemento" class="form-control">
+                                            <option value="1">True</option>
+                                            <option value="0">False</option>
 
-                                    <select name="novedad-suplemento" class="form-control">
-                                        <option value="1">True</option>
-                                        <option value="0">False</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="tipo-suplemento"
+                                            placeholder="Tipo. P.ej: Proteína">
+                                    </div>
 
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="tipo-suplemento" placeholder="Tipo. P.ej: Proteína">
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="imagen" class="form-label">Imagen</label>
 
-                                <div class="mb-3">
-                                    <label for="imagen" class="form-label">Imagen</label>
+                                        <input type="file" class="form-control" name="imagen-suplemento">
+                                        <br>
+                                        <p id="create-help"></p>
+                                     </div>
 
-                                    <input type="file" class="form-control" name="imagen-suplemento">
-                                </div>
+                                    <div class="mb-3">
 
-                                <div class="mb-3">
+                                        <input type="submit" class="form-control btn btn-success btn-icon-split"
+                                            id="submit-crear-suplemento" value="Crear">
 
-                                    <input type="submit" class="form-control btn btn-success btn-icon-split" id="submit-crear-suplemento" value="Crear">
+                                    </div>
 
-                                </div>
+                                    <div class="mb-3">
 
-                                <div class="mb-3">
+                                        <input type="submit" class="form-control btn btn-secondary btn-icon-split"
+                                            id="cancelar-crear-suplemento" value="Cancelar">
 
-                                    <input type="submit" class="form-control btn btn-secondary btn-icon-split" id="cancelar-crear-suplemento" value="Cancelar">
+                                    </div>
 
-                                </div>
-
-
+                                </form>
                             </div>
 
                         </div>

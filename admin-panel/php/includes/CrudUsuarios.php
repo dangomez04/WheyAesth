@@ -28,6 +28,40 @@ class Usuarios{
 
     }
 
+
+    function insertUsuario($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $nombre_usuario = $data['nombre_usuario'];
+        $email_usuario = $data['email_usuario'];
+        $contraseña_usuario = $data['contraseña_usuario'];
+        $rol_usuario = $data['rol_usuario'];
+
+
+    
+		$stmt = $conexion->prepare("INSERT INTO usuarios (nombre_usuario, correo_usuario, contraseña_usuario,rol_usuario) VALUES (?, ?, ?, ?)");
+
+        $stmt->bind_param("sssi", $nombre_usuario,$email_usuario,$contraseña_usuario, $rol_usuario);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al insertar el usuario";
+        }
+
+
+   		 $conexion->close();
+
+
+    }
+
     
 
 
