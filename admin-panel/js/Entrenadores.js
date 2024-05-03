@@ -1,30 +1,38 @@
 $(document).ready(function () {
 
-    let currentAction = 'show';
-
-            $.ajax({
-                type: "GET",
-                url: "php/Entrenadores.php",
-                dataType: "json",
-
-                data: {
-                    action: currentAction,
-                  
-                },
-                success: function (resultado) {
-                  
-
-                    pintar_entrenadores(resultado);
-                    pintar_entrenadores_select(resultado);
-                },
 
 
-                error: function (xhr) {
-                    
-                    console.log(xhr);
-                },
+    function show(){
+        let currentAction = 'show';
 
-            });
+        $.ajax({
+            type: "GET",
+            url: "php/Entrenadores.php",
+            dataType: "json",
+
+            data: {
+                action: currentAction,
+              
+            },
+            success: function (resultado) {
+              
+
+                pintar_entrenadores(resultado);
+                pintar_entrenadores_select(resultado);
+            },
+
+
+            error: function (xhr) {
+                
+                console.log(xhr);
+            },
+
+        });
+
+    }
+
+    show();
+   
 
             $('input#submit-crear-entrenador').on('click',function(event){
                 event.preventDefault();
@@ -103,6 +111,9 @@ $(document).ready(function () {
 
 
             function pintar_entrenadores(array_entrenadores){
+
+                $('table#dataTable tbody').empty();
+
                 for (const entrenador of array_entrenadores) {
                 
                     $('table#dataTable tbody').append(
@@ -129,7 +140,7 @@ $(document).ready(function () {
    
                     +"<td>"
    
-                    +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                    +"<a  value="+entrenador.id_entrenador+" class='btn btn-danger btn-icon-split delete-entrenador'>"
                     
                     +"<span class='icon text-white-50'>"
                        +"<i class='fas fa-trash'></i>"
@@ -147,6 +158,13 @@ $(document).ready(function () {
                    );
    
                    }
+
+                   $('a.delete-entrenador').on('click',function(event){
+                    event.preventDefault();
+                    var id_entrenador = parseInt($(this).attr('value'));
+                    eliminar_entrenador(id_entrenador);
+
+                 });
              
             }   
 
@@ -156,6 +174,44 @@ $(document).ready(function () {
                     $('select[name="id_entrenador"]').append("<option value="+entrenador.id_entrenador+">"+entrenador.nombre_entrenador+"</option>");
                 }
 
+            }
+
+
+            function eliminar_entrenador(id_entrenador){
+                let action = "eliminar-entrenador";
+             
+                $.ajax({
+                    type: "POST",
+                    url: "php/Entrenadores.php?action=" + action,
+                    data: {
+                        id_entrenador: id_entrenador    
+                    },
+        
+             
+        
+                    success: function (resultado) {
+        
+        
+                        if (resultado == true) {
+                           
+                            //para reflejar los cambios al usuario
+                          show();
+                          
+                        } else {
+                            console.log(resultado);
+                        }
+        
+        
+        
+        
+        
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+        
+                });
+            
             }
 
 

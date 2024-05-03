@@ -1,33 +1,39 @@
 $(document).ready(function () {
 
+    function show(){
+        let currentAction = 'show';
 
-    let currentAction = 'show';
+        $.ajax({
+            type: "GET",
+            url: "php/Suplementos.php",
+            dataType: "json",
 
-            $.ajax({
-                type: "GET",
-                url: "php/Suplementos.php",
-                dataType: "json",
+            data: {
+                action: currentAction,
+              
+            },
+            success: function (resultado) {
+              
 
-                data: {
-                    action: currentAction,
-                  
-                },
-                success: function (resultado) {
-                  
+                pintar_suplementos(resultado);
+                pintar_suplementos_select(resultado);
 
-                    pintar_suplementos(resultado);
-                    pintar_suplementos_select(resultado);
-
-                },
+            },
 
 
-                error: function (xhr) {
-                    
-                    console.log(xhr);
-                },
+            error: function (xhr) {
+                
+                console.log(xhr);
+            },
 
-            });
+        });
 
+
+
+    }
+
+    show();
+   
 
 
                 $('input#submit-crear-suplemento').on('click',function(event){
@@ -128,6 +134,7 @@ $(document).ready(function () {
 
 
             function pintar_suplementos(array_suplementos){
+                $('table#dataTable tbody').empty();
 
                 var booleanValue = false;
 
@@ -169,7 +176,7 @@ $(document).ready(function () {
    
                     +"<td>"
    
-                    +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                    +"<a  value="+suplemento.id_suplemento+" class='btn btn-danger btn-icon-split delete-suplemento'>"
                     
                     +"<span class='icon text-white-50'>"
                        +"<i class='fas fa-trash'></i>"
@@ -188,6 +195,11 @@ $(document).ready(function () {
    
                    }
              
+                   $('a.delete-suplemento').on('click',function(event){
+                    event.preventDefault();
+                    var id_suplemento = parseInt($(this).attr('value'));
+                    eliminar_suplemento(id_suplemento);
+                 });
                 
 
             }   
@@ -196,6 +208,44 @@ $(document).ready(function () {
                 for (const suplemento of array_suplementos) {
                         $('select[name="id_suplemento"]').append("<option value="+suplemento.id_suplemento+">"+suplemento.nombre_suplemento+"</option>");
                 }
+            }
+
+            function eliminar_suplemento(id_suplemento){
+
+                let action = "eliminar-suplemento";
+             
+                $.ajax({
+                    type: "POST",
+                    url: "php/Suplementos.php?action=" + action,
+                    data: {
+                    id_suplemento: id_suplemento    
+                    },
+        
+             
+        
+                    success: function (resultado) {
+        
+        
+                        if (resultado == true) {
+                           
+                            //para reflejar los cambios al usuario
+                          show();
+                          
+                        } else {
+                            console.log(resultado);
+                        }
+        
+        
+        
+        
+        
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+        
+                });
+            
             }
 
 

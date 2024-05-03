@@ -62,7 +62,31 @@ class Usuarios{
 
     }
 
-    
+    function deleteUsuario($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_usuario = $data['id_usuario'];
+
+        $stmt = $conexion->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
+
+        $stmt->bind_param("i", $id_usuario);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar el usuario";
+        }
+
+
+
+    }
 
 
 }

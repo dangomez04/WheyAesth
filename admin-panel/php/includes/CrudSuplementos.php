@@ -64,6 +64,33 @@ class Suplementos{
     }
 
 
+    function deleteSuplemento($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_suplemento = $data['id_suplemento'];
+
+        $stmt = $conexion->prepare("DELETE FROM suplementos WHERE id_suplemento = ?");
+
+        $stmt->bind_param("i", $id_suplemento);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar el suplemento";
+        }
+
+
+
+    }
+
+
     
 
 

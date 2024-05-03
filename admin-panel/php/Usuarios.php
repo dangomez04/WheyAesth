@@ -9,9 +9,14 @@ if (isset($_GET['action'])){
             echo showUsuarios();
             break;
 
-         case "insertar-usuario":
-                echo insertUsuario();
-                break;
+        case "insertar-usuario":
+             echo insertUsuario();
+             break;
+
+
+        case "eliminar-usuario":
+             echo deleteUsuario();
+             break;       
     }
 }
 
@@ -63,6 +68,30 @@ if (isset($_GET['action'])){
         }else {
             echo $result;
         }
+
+
+    }
+
+    function deleteUsuario(){
+
+        $id_usuario = $_POST['id_usuario'];
+        
+        $data = array(
+        
+            'id_usuario' => $id_usuario
+        
+         );
+
+
+         $dataBase = new Usuarios();
+         $result = $dataBase->deleteUsuario($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
 
 
     }

@@ -60,6 +60,31 @@ class Accesorios{
    		 $conexion->close();
     }
 
+
+    function deleteAccesorio($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_accesorio = $data['id_accesorio'];
+
+        $stmt = $conexion->prepare("DELETE FROM accesorios WHERE id_accesorio = ?");
+
+        $stmt->bind_param("i", $id_accesorio);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar el accesorio";
+        }
+
+
+    }
+
     
 
 

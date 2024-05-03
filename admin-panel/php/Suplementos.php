@@ -11,7 +11,11 @@ if (isset($_GET['action'])){
 
         case "insertar-suplemento":
             echo insertSuplemento();
-             break;       
+             break;  
+        
+        case "eliminar-suplemento":
+             echo deleteSuplemento();
+              break;  
        
     }
 }
@@ -77,6 +81,29 @@ if (isset($_GET['action'])){
             echo $result;
         }
 
+
+    }
+
+    function deleteSuplemento(){
+
+        $id_suplemento = $_POST['id_suplemento'];
+        
+        $data = array(
+        
+            'id_suplemento' => $id_suplemento
+        
+         );
+
+
+         $dataBase = new Suplementos();
+         $result = $dataBase->deleteSuplemento($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
 
     }
 

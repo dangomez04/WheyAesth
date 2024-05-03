@@ -61,7 +61,31 @@ class Entrenadores{
     }
 
     
+    function deleteEntrenador($data){
 
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_entrenador = $data['id_entrenador'];
+
+        $stmt = $conexion->prepare("DELETE FROM entrenadores WHERE id_entrenador = ?");
+
+        $stmt->bind_param("i", $id_entrenador);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar el entrenador";
+        }
+
+
+
+    }
 
 }
 

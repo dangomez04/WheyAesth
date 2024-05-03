@@ -1,31 +1,38 @@
 $(document).ready(function () {
 
+    function show(){
 
-    let currentAction = 'show';
+        let currentAction = 'show';
 
-            $.ajax({
-                type: "GET",
-                url: "php/Reuniones.php",
-                dataType: "json",
+        $.ajax({
+            type: "GET",
+            url: "php/Reuniones.php",
+            dataType: "json",
 
-                data: {
-                    action: currentAction,
-                  
-                },
-                success: function (resultado) {
-                  
+            data: {
+                action: currentAction,
+              
+            },
+            success: function (resultado) {
+              
 
-                    pintar_reuniones(resultado);
-                    pintar_reuniones_select(resultado);
-                },
+                pintar_reuniones(resultado);
+                pintar_reuniones_select(resultado);
+            },
 
 
-                error: function (xhr) {
-                    
-                    console.log(xhr);
-                },
+            error: function (xhr) {
+                
+                console.log(xhr);
+            },
 
-            });
+        });
+
+
+    }
+    
+    show();
+
 
 
             $('input#submit-crear-reunion').on('click',function(event){
@@ -110,6 +117,7 @@ $(document).ready(function () {
 
 
             function pintar_reuniones(array_reuniones){
+                $('table#dataTable tbody').empty();
 
                 for (const reunion of array_reuniones) {
 
@@ -150,7 +158,7 @@ $(document).ready(function () {
    
                     +"<td>"
    
-                    +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                    +"<a value="+reunion.id_reunion+" class='btn btn-danger btn-icon-split delete-reunion'>"
                     
                     +"<span class='icon text-white-50'>"
                        +"<i class='fas fa-trash'></i>"
@@ -168,6 +176,12 @@ $(document).ready(function () {
                    );
    
                    }
+
+                   $('a.delete-reunion').on('click',function(event){
+                    event.preventDefault();
+                    var id_reunion = parseInt($(this).attr('value'));
+                    eliminar_reunion(id_reunion);
+                 });
              
                 
             }   
@@ -179,6 +193,44 @@ $(document).ready(function () {
                 }
             }
 
+
+            function eliminar_reunion(id_reunion){
+
+                let action = "eliminar-reunion";
+             
+                $.ajax({
+                    type: "POST",
+                    url: "php/Reuniones.php?action=" + action,
+                    data: {
+                        id_reunion: id_reunion    
+                    },
+        
+             
+        
+                    success: function (resultado) {
+        
+        
+                        if (resultado == true) {
+                           
+                            //para reflejar los cambios al usuario
+                          show();
+                          
+                        } else {
+                            console.log(resultado);
+                        }
+        
+        
+        
+        
+        
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+        
+                });
+            
+            }
 
 
 

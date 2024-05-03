@@ -1,32 +1,36 @@
 $(document).ready(function () {
 
+    function show(){
+        
+        let currentAction = 'show';
 
-    let currentAction = 'show';
+        $.ajax({
+            type: "GET",
+            url: "php/Reservas.php",
+            dataType: "json",
+    
+            data: {
+                action: currentAction,
+    
+            },
+            success: function (resultado) {
+    
+    
+                pintar_reservas(resultado);
+    
+            },
+    
+    
+            error: function (xhr) {
+    
+                console.log(xhr);
+            },
+    
+        });
+    
+        }
 
-    $.ajax({
-        type: "GET",
-        url: "php/Reservas.php",
-        dataType: "json",
-
-        data: {
-            action: currentAction,
-
-        },
-        success: function (resultado) {
-
-
-            pintar_reservas(resultado);
-
-        },
-
-
-        error: function (xhr) {
-
-            console.log(xhr);
-        },
-
-    });
-
+        show();
 
     $('input#submit-crear-reserva').on('click', function (event) {
         event.preventDefault();
@@ -94,6 +98,7 @@ $(document).ready(function () {
 
 
     function pintar_reservas(array_reservas) {
+        $('table#dataTable tbody').empty();
 
 
         var reserva_confirmada = false;
@@ -133,7 +138,7 @@ $(document).ready(function () {
 
                 + "<td>"
 
-                + "<a href='#' class='btn btn-danger btn-icon-split'>"
+                + "<a value="+reserva.id_reserva+" class='btn btn-danger btn-icon-split delete-reserva'>"
 
                 + "<span class='icon text-white-50'>"
                 + "<i class='fas fa-trash'></i>"
@@ -152,7 +157,51 @@ $(document).ready(function () {
 
         }
 
+        $('a.delete-reserva').on('click',function(event){
+            event.preventDefault();
+            var id_reserva = parseInt($(this).attr('value'));
+            eliminar_reserva(id_reserva);
+         });
 
+
+
+         function eliminar_reserva(id_reserva){
+
+            let action = "eliminar-reserva";
+         
+            $.ajax({
+                type: "POST",
+                url: "php/Reservas.php?action=" + action,
+                data: {
+                    id_reserva: id_reserva    
+                },
+    
+         
+    
+                success: function (resultado) {
+    
+    
+                    if (resultado == true) {
+                       
+                        //para reflejar los cambios al usuario
+                      show();
+                      
+                    } else {
+                        console.log(resultado);
+                    }
+    
+    
+    
+    
+    
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                },
+    
+            });
+        
+        }
 
     }
 

@@ -10,8 +10,14 @@ if (isset($_GET['action'])){
             break;
 
           case "insertar-oferta":
-                echo insertOferta();
-                break;    
+            echo insertOferta();
+            break; 
+                
+         case "eliminar-oferta":
+             echo deleteOferta();
+             break;        
+
+               
        
     }
 }
@@ -67,6 +73,30 @@ if (isset($_GET['action'])){
         }
 
 
+    }
+
+    function deleteOferta(){
+
+        $id_oferta = $_POST['id_oferta'];
+        
+        $data = array(
+        
+            'id_oferta' => $id_oferta
+        
+         );
+
+
+         $dataBase = new Ofertas();
+         $result = $dataBase->deleteOferta($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
+        
+        
     }
 
 ?>

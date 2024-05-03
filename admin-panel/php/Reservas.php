@@ -9,10 +9,13 @@ if (isset($_GET['action'])){
             echo showReservas();
             break;
 
-         case "insertar-reserva":
+        case "insertar-reserva":
              echo insertReserva();
               break;
-       
+
+        case "eliminar-reserva":
+            echo deleteReserva();
+                 break;
     }
 }
 
@@ -64,9 +67,28 @@ if (isset($_GET['action'])){
             echo $result;
         }
 
+    }
 
 
+    function deleteReserva(){
+        $id_reserva = $_POST['id_reserva'];
+        
+        $data = array(
+        
+            'id_reserva' => $id_reserva
+        
+         );
 
+
+         $dataBase = new Reservas();
+         $result = $dataBase->deleteReserva($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
 
     }
 

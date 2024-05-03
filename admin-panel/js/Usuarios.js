@@ -1,33 +1,38 @@
 $(document).ready(function () {
 
+    function show(){
 
-    let currentAction = 'show';
+        let currentAction = 'show';
 
-            $.ajax({
-                type: "GET",
-                url: "php/Usuarios.php",
-                dataType: "json",
+        $.ajax({
+            type: "GET",
+            url: "php/Usuarios.php",
+            dataType: "json",
 
-                data: {
-                    action: currentAction,
-                  
-                },
-                success: function (resultado) {
-                  
+            data: {
+                action: currentAction,
+              
+            },
+            success: function (resultado) {
+              
 
-                    pintar_usuario(resultado);
-                    pintar_usuario_select(resultado);
-                },
-
-
-                error: function (xhr) {
-                    
-                    console.log(xhr);
-                },
-
-            });
+                pintar_usuario(resultado);
+                pintar_usuario_select(resultado);
+            },
 
 
+            error: function (xhr) {
+                
+                console.log(xhr);
+            },
+
+        });
+
+    }
+
+    show();
+
+   
             $('input#submit-crear-usuario').on('click',function(event){
                 event.preventDefault();
                 insertar_usuario();
@@ -115,6 +120,7 @@ $(document).ready(function () {
 
             function pintar_usuario(array_usuarios){
 
+                $('table#dataTable tbody').empty();
 
 
                 for (const usuario of array_usuarios) {
@@ -149,7 +155,7 @@ $(document).ready(function () {
    
                     +"<td>"
    
-                    +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                    +"<a value="+usuario.id_usuario+" class='btn btn-danger btn-icon-split delete-usuario'>"
                     
                     +"<span class='icon text-white-50'>"
                        +"<i class='fas fa-trash'></i>"
@@ -167,6 +173,13 @@ $(document).ready(function () {
                    );
    
                    }
+
+                   $('a.delete-usuario').on('click',function(event){
+                    event.preventDefault();
+                    var id_usuario = parseInt($(this).attr('value'));
+                    eliminar_usuario(id_usuario);
+                 });
+                
              
             }   
 
@@ -178,6 +191,44 @@ $(document).ready(function () {
 
                 }
 
+            }
+
+            function eliminar_usuario(id_usuario){
+
+                let action = "eliminar-usuario";
+             
+                $.ajax({
+                    type: "POST",
+                    url: "php/Usuarios.php?action=" + action,
+                    data: {
+                        id_usuario: id_usuario    
+                    },
+        
+             
+        
+                    success: function (resultado) {
+        
+        
+                        if (resultado == true) {
+                           
+                            //para reflejar los cambios al usuario
+                          show();
+                          
+                        } else {
+                            console.log(resultado);
+                        }
+        
+        
+        
+        
+        
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+        
+                });
+            
             }
 
 

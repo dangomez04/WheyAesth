@@ -12,6 +12,10 @@ if (isset($_GET['action'])){
         case "insertar-entrenador":
             echo insertEntrenador();
              break; 
+
+        case "eliminar-entrenador":
+                echo deleteEntrenador();
+                 break;      
     }
 }
 
@@ -62,6 +66,29 @@ if (isset($_GET['action'])){
             echo $result;
         }
 
+
+    }
+
+    function deleteEntrenador(){
+
+        $id_entrenador = $_POST['id_entrenador'];
+        
+        $data = array(
+        
+            'id_entrenador' => $id_entrenador
+        
+         );
+
+
+         $dataBase = new Entrenadores();
+         $result = $dataBase->deleteEntrenador($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
 
     }
 

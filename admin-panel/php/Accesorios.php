@@ -11,8 +11,12 @@ if (isset($_GET['action'])){
 
         case "insertar-accesorio":
             echo insertAccesorio();
-            break;   
-       
+            break;  
+         
+        case "eliminar-accesorio":
+                echo deleteAccesorio();
+                break;   
+           
     }
 }
 
@@ -75,6 +79,30 @@ if (isset($_GET['action'])){
         }else {
             echo $result;
         }
+
+    }
+
+
+    function deleteAccesorio(){
+        $id_accesorio = $_POST['id_accesorio'];
+        
+        $data = array(
+        
+            'id_accesorio' => $id_accesorio
+        
+         );
+
+
+         $dataBase = new Accesorios();
+         $result = $dataBase->deleteAccesorio($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
+
 
     }
 

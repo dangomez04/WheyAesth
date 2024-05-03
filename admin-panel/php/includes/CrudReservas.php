@@ -58,6 +58,32 @@ class Reservas{
 
     }
 
+    function deleteReserva($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_reserva = $data['id_reserva'];
+
+        $stmt = $conexion->prepare("DELETE FROM reserva_reuniones WHERE id_reserva = ?");
+
+        $stmt->bind_param("i", $id_reserva);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar la reserva";
+        }
+
+
+
+    }
+
     
 
 

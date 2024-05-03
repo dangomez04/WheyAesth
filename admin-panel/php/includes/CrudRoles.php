@@ -57,6 +57,28 @@ class Roles{
 
     }
     
+    function deleteRol($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_rol = $data['id_rol'];
+
+        $stmt = $conexion->prepare("DELETE FROM roles WHERE id_rol = ?");
+
+        $stmt->bind_param("i", $id_rol);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar el rol";
+        }
+
+    }
 
 
 }

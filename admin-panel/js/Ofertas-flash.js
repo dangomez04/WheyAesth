@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
-
-    let currentAction = 'show';
+    function show(){
+        
+        let currentAction = 'show';
 
             $.ajax({
                 type: "GET",
@@ -27,6 +28,10 @@ $(document).ready(function () {
 
             });
 
+        
+    }
+    show();
+    
 
             //control de selects, ya que el usuario solo puede elegir en uno de los dos select
 
@@ -87,8 +92,7 @@ $(document).ready(function () {
                 var stock_oferta = parseInt($('input#stock-oferta').val());
                 var suplemento_oferta = parseInt($('select[name="id_suplemento"]').val());
                 var accesorio_oferta = parseInt($('select[name="id_accesorio"]').val());
-                console.log(suplemento_oferta);
-                console.log(accesorio_oferta);
+
                
 
                 if(isNaN(precio_oferta) || isNaN(stock_oferta)){
@@ -103,7 +107,6 @@ $(document).ready(function () {
                     formData.append('precio_oferta', precio_oferta);
                     formData.append('stock_oferta', stock_oferta);
                     if(isNaN(suplemento_oferta)){
-                        console.log("es nan");;
                         formData.append('suplemento_oferta', nulValue);
                         formData.append('accesorio_oferta', accesorio_oferta);
 
@@ -161,6 +164,7 @@ $(document).ready(function () {
 
             function pintar_ofertas(array_ofertas){
 
+                $('table#dataTable tbody').empty();
 
                 for (const oferta of array_ofertas) {
 
@@ -192,7 +196,7 @@ $(document).ready(function () {
    
                     +"<td>"
    
-                    +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                    +"<a value="+oferta.id_oferta_flash+" class='btn btn-danger btn-icon-split delete-oferta'>"
                     
                     +"<span class='icon text-white-50'>"
                        +"<i class='fas fa-trash'></i>"
@@ -210,10 +214,56 @@ $(document).ready(function () {
                    );
    
                    }
+
+                   $('a.delete-oferta').on('click',function(event){
+                    event.preventDefault();
+                    var id_oferta = parseInt($(this).attr('value'));
+                    eliminar_oferta(id_oferta);
+                 });
              
                 
 
             }   
+
+
+            function eliminar_oferta(id_oferta){
+
+                let action = "eliminar-oferta";
+             
+                $.ajax({
+                    type: "POST",
+                    url: "php/Ofertas-flash.php?action=" + action,
+                    data: {
+                        id_oferta: id_oferta    
+                    },
+        
+             
+        
+                    success: function (resultado) {
+        
+        
+                        if (resultado == true) {
+                           
+                            //para reflejar los cambios al usuario
+                          show();
+                          
+                        } else {
+                            console.log(resultado);
+                        }
+        
+        
+        
+        
+        
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+        
+                });
+            
+            }
+
 
 
 

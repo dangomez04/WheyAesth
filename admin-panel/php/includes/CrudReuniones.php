@@ -60,6 +60,31 @@ class Reuniones{
 
     }
 
+    function deleteReunion($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_reunion = $data['id_reunion'];
+
+        $stmt = $conexion->prepare("DELETE FROM reuniones WHERE id_reunion = ?");
+
+        $stmt->bind_param("i", $id_reunion);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar la reunión";
+        }
+
+
+
+    }
     
 
 

@@ -1,34 +1,37 @@
 $(document).ready(function () {
 
 
-    let currentAction = 'show';
+    function show(){
+        let currentAction = 'show';
 
-            $.ajax({
-                type: "GET",
-                url: "php/Accesorios.php",
-                dataType: "json",
+        $.ajax({
+            type: "GET",
+            url: "php/Accesorios.php",
+            dataType: "json",
 
-                data: {
-                    action: currentAction,
-                  
-                },
-                success: function (resultado) {
-                  
+            data: {
+                action: currentAction,
+              
+            },
+            success: function (resultado) {
+              
 
-                    pintar_accesorios(resultado);
-                    pintar_accesorios_select(resultado);
+                pintar_accesorios(resultado);
+                pintar_accesorios_select(resultado);
 
-                },
-
-
-                error: function (xhr) {
-                    
-                    console.log(xhr);
-                },
-
-            });
+            },
 
 
+            error: function (xhr) {
+                
+                console.log(xhr);
+            },
+
+        });
+    }
+    
+
+    show();
 
         
 
@@ -45,7 +48,10 @@ $(document).ready(function () {
             location.href="Accesorios.html";
 
          });    
-    
+
+
+
+          
     
    
 
@@ -120,6 +126,10 @@ $(document).ready(function () {
 
 
             function pintar_accesorios(array_accesorios){
+
+                $('table#dataTable tbody').empty();
+
+
                 var booleanValue = false;
 
                 for (const accesorio of array_accesorios) {
@@ -156,7 +166,7 @@ $(document).ready(function () {
 
                  +"<td>"
 
-                 +"<a href='#' class='btn btn-danger btn-icon-split'>"
+                 +"<a value="+accesorio.id_accesorio+" class='btn btn-danger btn-icon-split delete-accesorio'>"
                  
                  +"<span class='icon text-white-50'>"
                     +"<i class='fas fa-trash'></i>"
@@ -173,7 +183,14 @@ $(document).ready(function () {
                 
                 );
 
+            
+
                 }
+                $('a.delete-accesorio').on('click',function(event){
+                    event.preventDefault();
+                    var id_accesorio = parseInt($(this).attr('value'));
+                    eliminar_accesorio(id_accesorio);
+                 });
 
             }   
 
@@ -182,6 +199,45 @@ $(document).ready(function () {
                 for (const accesorio of array_accesorios) {
                         $('select[name="id_accesorio"]').append("<option value="+accesorio.id_accesorio+">"+accesorio.nombre_accesorio+"</option>");
                 }
+            }
+
+
+            function eliminar_accesorio(id_accesorio){
+
+                let action = "eliminar-accesorio";
+             
+                $.ajax({
+                    type: "POST",
+                    url: "php/Accesorios.php?action=" + action,
+                    data: {
+                    id_accesorio: id_accesorio    
+                    },
+        
+             
+        
+                    success: function (resultado) {
+        
+        
+                        if (resultado == true) {
+                           
+                            //para reflejar los cambios al usuario
+                          show();
+                          
+                        } else {
+                            console.log(resultado);
+                        }
+        
+        
+        
+        
+        
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+        
+                });
+            
             }
 
 

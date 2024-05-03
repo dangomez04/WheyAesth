@@ -70,6 +70,30 @@ class Ofertas{
     
     }
 
+    function deleteOferta($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_oferta = $data['id_oferta'];
+
+        $stmt = $conexion->prepare("DELETE FROM ofertas_flash WHERE id_oferta_flash = ?");
+
+        $stmt->bind_param("i", $id_oferta);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al eliminar la oferta";
+        }
+
+
+    }
+
     
 
 

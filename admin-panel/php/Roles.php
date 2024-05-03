@@ -9,11 +9,17 @@ if (isset($_GET['action'])){
             echo showRoles();
             break;
 
-            case "insertar-rol":
-                echo insertRol();
-                break;
-       
-    }
+        case "insertar-rol":
+            echo insertRol();
+            break;
+            
+            
+        case "eliminar-rol":
+             echo deleteRol();
+            break;
+    
+    
+        }
 }
 
 
@@ -58,6 +64,30 @@ if (isset($_GET['action'])){
         }else {
             echo $result;
         }
+
+    }
+
+    function deleteRol(){
+
+        $id_rol = $_POST['id_rol'];
+        
+        $data = array(
+        
+            'id_rol' => $id_rol
+        
+         );
+
+
+         $dataBase = new Roles();
+         $result = $dataBase->deleteRol($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
+
 
     }
 ?>

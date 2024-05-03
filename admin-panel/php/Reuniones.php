@@ -12,6 +12,10 @@ if (isset($_GET['action'])){
         case "insertar-reunion":
            echo insertReunion();
              break; 
+
+        case "eliminar-reunion":
+            echo deleteReunion(); 
+            break;    
     }
 }
 
@@ -70,6 +74,28 @@ if (isset($_GET['action'])){
         }
 
 
+    }
+
+    function deleteReunion(){
+
+        $id_reunion = $_POST['id_reunion'];
+        
+        $data = array(
+        
+            'id_reunion' => $id_reunion
+        
+         );
+
+
+         $dataBase = new Reuniones();
+         $result = $dataBase->deleteReunion($data);
+ 
+         if($result === true){
+             echo true;
+ 
+         }else {
+             echo $result;
+         }
 
     }
 
