@@ -135,7 +135,7 @@ $(document).ready(function () {
 
                 + "<td>"
 
-                + "<a value=" + rol.id_rol + " class='btn btn-danger btn-icon-split delete-rol'>"
+                + "<a data-bs-toggle='modal' data-bs-target='#exampleModal' value=" + rol.id_rol + " class='btn btn-danger btn-icon-split delete-rol'>"
 
                 + "<span class='icon text-white-50'>"
                 + "<i class='fas fa-trash'></i>"
@@ -156,6 +156,7 @@ $(document).ready(function () {
 
         $('a.delete-rol').on('click',function(event){
             event.preventDefault();
+
             var id_rol = parseInt($(this).attr('value'));
             eliminar_rol(id_rol);
          });

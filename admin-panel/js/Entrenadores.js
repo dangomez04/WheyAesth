@@ -193,12 +193,12 @@ $(document).ready(function () {
         
         
                         if (resultado == true) {
-                           
+                           console.log(resultado);
                             //para reflejar los cambios al usuario
                           show();
                           
                         } else {
-                            console.log(resultado);
+                            console.log("error: "+resultado);
                         }
         
         
