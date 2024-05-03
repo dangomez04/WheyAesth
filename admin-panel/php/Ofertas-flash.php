@@ -46,6 +46,8 @@ if (isset($_GET['action'])){
         $suplemento_oferta = $_POST['suplemento_oferta'];
         $accesorio_oferta = $_POST['accesorio_oferta'];
 
+
+
         $data = array(
             'precio_oferta' => $precio_oferta,
             'stock_oferta' => $stock_oferta,

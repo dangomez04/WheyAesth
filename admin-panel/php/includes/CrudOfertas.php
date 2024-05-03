@@ -35,17 +35,29 @@ class Ofertas{
         $stock_oferta = $data['stock_oferta'];
         $suplemento_oferta = $data['suplemento_oferta'];
         $accesorio_oferta = $data['accesorio_oferta'];
-      
+        $nullVal = null;
 
-    
-		$stmt = $conexion->prepare("INSERT INTO ofertas_flash (precio_oferta, stock_oferta, id_suplemento,id_accesorio) VALUES (?, ?, ?, ?)");
 
-        $stmt->bind_param("diii", $precio_oferta,$stock_oferta,$suplemento_oferta, $accesorio_oferta);
+		$stmt = $conexion->prepare("INSERT INTO ofertas_flash (precio_oferta, stock_oferta, id_suplemento, id_accesorio) VALUES (?, ?, ?, ?)");
 
+        //condición para insertar segun que producto como nulo, debido a la logica con la que utilizo mi tabla en la web
+        if($suplemento_oferta=="null"){
+            $stmt->bind_param("diii", $precio_oferta,$stock_oferta,$nullVal, $accesorio_oferta,);
+
+        }else{
+            $stmt->bind_param("diii", $precio_oferta,$stock_oferta, $suplemento_oferta,$nullVal);
+
+        }
+
+        
+       
         try{
             $stmt->execute();
            
             $stmt->close();
+
+
+    
            
             return true;
 

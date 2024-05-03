@@ -115,6 +115,9 @@ input[type='file']{
     width: 40vw;
 }
 
+.card-body {
+    cursor: auto;
+}
 
 @media only screen and (max-width: 767px) {
    

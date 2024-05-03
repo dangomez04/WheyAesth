@@ -84,30 +84,32 @@ $(document).ready(function () {
             function insertar_oferta(){
 
                 var precio_oferta = parseFloat($('input#precio-oferta').val());
-                var stock_oferta = parseFloat($('input#stock-oferta').val());
-                var suplemento_oferta = $('select[name="id_suplemento"]').val();
-                var accesorio_oferta = $('select[name="id_accesorio"]').val();
-
+                var stock_oferta = parseInt($('input#stock-oferta').val());
+                var suplemento_oferta = parseInt($('select[name="id_suplemento"]').val());
+                var accesorio_oferta = parseInt($('select[name="id_accesorio"]').val());
+                console.log(suplemento_oferta);
+                console.log(accesorio_oferta);
                
 
                 if(isNaN(precio_oferta) || isNaN(stock_oferta)){
                     $('p#create-help').css({color: "red"});
                     $('p#create-help').text("Todos los campos son obligatorios!");
-                }else if(suplemento_oferta == "null" && accesorio_oferta == "null"){
+                }else if(isNaN(suplemento_oferta) && isNaN(accesorio_oferta)){
                     $('p#create-help').css({color: "red"});
                     $('p#create-help').text("Todos los campos son obligatorios!");
                 }else{
-                    
+                    var nulValue = null;
                     var formData = new FormData();
                     formData.append('precio_oferta', precio_oferta);
                     formData.append('stock_oferta', stock_oferta);
-                    if(suplemento_oferta == "null"){
-                        formData.append('suplemento_oferta', null);
+                    if(isNaN(suplemento_oferta)){
+                        console.log("es nan");;
+                        formData.append('suplemento_oferta', nulValue);
                         formData.append('accesorio_oferta', accesorio_oferta);
 
                     }else{
+                        formData.append('accesorio_oferta', nulValue);
                         formData.append('suplemento_oferta', suplemento_oferta);
-                        formData.append('accesorio_oferta', null);
 
                     }
 
@@ -126,7 +128,7 @@ $(document).ready(function () {
             
                             if (resultado == true) {
                                
-            
+                                console.log(resultado);
                                 $('p#create-help').css({color: "green"});
                                 $('p#create-help').text("Oferta creada correctamente!");
             
