@@ -193,7 +193,15 @@ $(document).ready(function () {
         
         
                         if (resultado == true) {
-                           console.log(resultado);
+
+                            $('span#user-help').css("visibility", "visible");
+
+                            setTimeout(() => {
+                                $('span#user-help').css("visibility", "hidden");
+
+                            }, 1000);
+
+
                             //para reflejar los cambios al usuario
                           show();
                           

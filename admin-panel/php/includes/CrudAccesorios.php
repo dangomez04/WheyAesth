@@ -61,6 +61,32 @@ class Accesorios{
     }
 
 
+   function searchAccesorio($data){
+
+    $sqlConnection = new Connection();
+    $conexion = $sqlConnection->getConnection();
+
+    $id_accesorio = $data['id_accesorio'];
+
+
+
+    $stmt = $conexion->prepare("SELECT * FROM accesorios WHERE accesorios.id_accesorio = ?");
+    
+    $stmt->bind_param("i", $id_accesorio);
+    try{
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if($result->num_rows==0){
+            return "No existe un accesorio con ese id";
+        }
+        return $result;
+
+    }catch(Exception $e){
+        return "Error al buscar un accesorio con ese id";
+    }
+    }
+
     function deleteAccesorio($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

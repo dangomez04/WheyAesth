@@ -14,8 +14,13 @@ if (isset($_GET['action'])){
             break;  
          
         case "eliminar-accesorio":
-                echo deleteAccesorio();
-                break;   
+            echo deleteAccesorio();
+            break;
+                
+                
+        case "buscar-accesorio":
+            echo editAccesorio();
+            break;
            
     }
 }
@@ -82,6 +87,27 @@ if (isset($_GET['action'])){
 
     }
 
+
+    function editAccesorio(){
+        $id_accesorio = $_POST['id_accesorio'];
+
+        $data = array(
+                'id_accesorio' =>  $id_accesorio
+            );
+
+    $dataBase = new Accesorios();
+    $result = $dataBase->searchAccesorio($data);
+
+    if($result=="No existe un accesorio con ese id" || $result=="Error al buscar un accesorio con ese id"){
+        echo $result;
+    }else{
+        $accesorio_encontrado = $result->fetch_assoc();
+        echo json_encode($accesorio_encontrado);
+
+    }
+
+
+    }
 
     function deleteAccesorio(){
         $id_accesorio = $_POST['id_accesorio'];

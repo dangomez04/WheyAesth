@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'proxima-nova-bold';
+    src: url('../fonts/ProximaNova-Bold.ttf') format('truetype');
+}
 
 #row-tables{
     display: flex;
@@ -101,7 +105,7 @@ div#logo-title span:hover {
 
 .btn-crear{
     position: relative;
-    left: 36vw;
+    left: 42vw;    
     margin-bottom: 20px;
 
 }
@@ -119,6 +123,24 @@ input[type='file']{
     cursor: auto;
 }
 
+#user-help{
+    visibility: hidden;
+    color: green;
+    position: relative;
+    right: 36vw;
+    font-family: 'proxima-nova-bold';
+    padding: 0;
+    text-align: center;
+    vertical-align: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#confirm-help,#pass-help{
+    margin-top: 15px;
+}
+
 @media only screen and (max-width: 767px) {
    
     a#searchDropdown{
@@ -134,6 +156,20 @@ input[type='file']{
 
     .card.shadow.mb-4.crud {
         width: 90vw;
+    }
+
+    #user-help {
+        color: green;
+        position: relative;
+        right: 0vw;
+        font-family: 'proxima-nova-bold';
+        padding: 0;
+        text-align: center;
+        vertical-align: center;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 26px;
     }
 
 
