@@ -35,12 +35,15 @@ $(document).ready(function () {
 
 
 
+    if (!localStorage.getItem('idAccesorio')) {
 
     $('input#submit-crear-accesorio').on('click', function (event) {
         event.preventDefault();
         insertar_accesorio();
 
     });
+
+}
 
 
     $('input#cancelar-crear-accesorio').on('click', function (event) {
@@ -243,6 +246,64 @@ $(document).ready(function () {
 
                     $(this).prop('selected', true);
                 }
+            });
+
+            $('input#id_accesorio').val(resultado.id_accesorio);
+
+            $("input#submit-crear-accesorio").on("click",function(event){
+                event.preventDefault();
+                var nombre_accesorio = $('input#nombre-accesorio').val();
+                var precio_accesorio = $('input#precio-accesorio').val();
+                var descripcion_accesorio = $('textarea#desc-accesorio').val();
+                var color_accesorio = $('input#color-accesorio').val();
+                var stock_accesorio = $('input#stock-accesorio').val();
+                var novedad_accesorio = $('select[name="novedad-accesorio"]').val();
+                var imagenprovisional = 'noimage.png';
+
+                var formData = new FormData();
+                formData.append('id_accesorio', idAccesorio);
+                formData.append('nombre_accesorio', nombre_accesorio);
+                formData.append('precio_accesorio', precio_accesorio);
+                formData.append('descripcion_accesorio', descripcion_accesorio);
+                formData.append('color_accesorio', color_accesorio);
+                formData.append('stock_accesorio', stock_accesorio);
+                formData.append('novedad_accesorio', novedad_accesorio);
+                formData.append('imagenprovisional', imagenprovisional);
+
+                let action = 'insertar-accesorio';
+
+                $.ajax({
+                    type: "POST",
+                    url: "php/Accesorios.php?action=" + action,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+
+
+
+                    success: function (resultado) {
+
+                        if(resultado == true){
+                            $('p#create-help').css({ color: "green" });
+                            $('p#create-help').text("Accesorio actualizado correctamente!");
+    
+                            setTimeout(() => {
+                                location.href = "Accesorios.html";
+                            }, 1300);
+    
+                        }else{
+                            $('p#create-help').css({ color: "red" });
+                            $('p#create-help').text(resultado);                            
+                        }
+                        
+
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+
+                });
+
             });
 
 

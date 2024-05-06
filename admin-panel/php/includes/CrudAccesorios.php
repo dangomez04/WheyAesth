@@ -87,6 +87,42 @@ class Accesorios{
     }
     }
 
+
+    function updateAccesorio($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $nombre_accesorio = $data['nombre_accesorio'];
+        $precio_accesorio = $data['precio_accesorio'];
+        $descripcion_accesorio = $data['desc_accesorio'];
+        $color_accesorio = $data['color_accesorio'];
+        $stock_accesorio = $data['stock_accesorio'];
+        $novedad_accesorio = $data['novedad_accesorio'];
+        $imagenprovisional = $data['imagenprovisional'];
+        $id_accesorio = $data['id_accesorio'];
+
+
+       
+
+        $stmt = $conexion->prepare("UPDATE accesorios SET nombre_accesorio = ?, precio_accesorio = ?, descripcion_accesorio = ?, color_accesorio = ?, stock = ?, novedad = ?, imagen_accesorio = ? WHERE accesorios.id_accesorio = ?");
+
+        $stmt->bind_param("sdssiisi", $nombre_accesorio,$precio_accesorio,$descripcion_accesorio, $color_accesorio, $stock_accesorio, $novedad_accesorio, $imagenprovisional, $id_accesorio);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar el accesorio";
+        }
+
+
+            $conexion->close();
+    }
+
     function deleteAccesorio($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

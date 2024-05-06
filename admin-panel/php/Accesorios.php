@@ -50,40 +50,84 @@ if (isset($_GET['action'])){
 	}
 
     function insertAccesorio(){
-        $nombre_accesorio = $_POST['nombre_accesorio'];
-        $precio_accesorio = $_POST['precio_accesorio'];
-        $desc_accesorio = $_POST['desc_accesorio'];
-        $color_accesorio = $_POST['color_accesorio'];
-        $stock_accesorio = $_POST['stock_accesorio'];
-        $novedad_accesorio = $_POST['novedad_accesorio'];
-        $imagenprovisional = $_POST['imagenprovisional'];
 
+        if(isset($_POST['id_accesorio']) && !empty($_POST['id_accesorio'])) {
 
-        $data = array(
+            $nombre_accesorio = $_POST['nombre_accesorio'];
+            $precio_accesorio = $_POST['precio_accesorio'];
+            $desc_accesorio = $_POST['descripcion_accesorio'];
+            $color_accesorio = $_POST['color_accesorio'];
+            $stock_accesorio = $_POST['stock_accesorio'];
+            $novedad_accesorio = $_POST['novedad_accesorio'];
+            $imagenprovisional = $_POST['imagenprovisional'];
+            $id_accesorio = $_POST['id_accesorio'];
+
+    
+            $data = array(
+                'id_accesorio' => $id_accesorio,
+               'nombre_accesorio' => $nombre_accesorio,
+               'precio_accesorio' => $precio_accesorio,
+               'desc_accesorio' => $desc_accesorio,
+               'color_accesorio' => $color_accesorio,
+               'stock_accesorio' => $stock_accesorio,
+               'novedad_accesorio' => $novedad_accesorio,
+               'imagenprovisional' =>  $imagenprovisional
             
-           'nombre_accesorio' => $nombre_accesorio,
-           'precio_accesorio' => $precio_accesorio,
-           'desc_accesorio' => $desc_accesorio,
-           'color_accesorio' => $color_accesorio,
-           'stock_accesorio' => $stock_accesorio,
-           'novedad_accesorio' => $novedad_accesorio,
-           'imagenprovisional' =>  $imagenprovisional
-        
-        
-        
-        );
+            
+            
+            );
+    
+          
+    
+            $dataBase = new Accesorios();
+            $result = $dataBase->updateAccesorio($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
 
-      
 
-        $dataBase = new Accesorios();
-        $result = $dataBase->insertAccesorio($data);
+         }else{
+            $nombre_accesorio = $_POST['nombre_accesorio'];
+            $precio_accesorio = $_POST['precio_accesorio'];
+            $desc_accesorio = $_POST['desc_accesorio'];
+            $color_accesorio = $_POST['color_accesorio'];
+            $stock_accesorio = $_POST['stock_accesorio'];
+            $novedad_accesorio = $_POST['novedad_accesorio'];
+            $imagenprovisional = $_POST['imagenprovisional'];
+    
+    
+            $data = array(
+                
+               'nombre_accesorio' => $nombre_accesorio,
+               'precio_accesorio' => $precio_accesorio,
+               'desc_accesorio' => $desc_accesorio,
+               'color_accesorio' => $color_accesorio,
+               'stock_accesorio' => $stock_accesorio,
+               'novedad_accesorio' => $novedad_accesorio,
+               'imagenprovisional' =>  $imagenprovisional
+            
+            
+            
+            );
+    
+          
+    
+            $dataBase = new Accesorios();
+            $result = $dataBase->insertAccesorio($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+         }
 
-        if($result === true){
-            echo true;
-
-        }else {
-            echo $result;
-        }
+       
 
     }
 
