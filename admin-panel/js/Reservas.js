@@ -32,12 +32,15 @@ $(document).ready(function () {
 
     show();
 
-    $('input#submit-crear-reserva').on('click', function (event) {
-        event.preventDefault();
-        insertar_reserva();
-
-
-    });
+    if(!localStorage.getItem('idReserva')){
+        $('input#submit-crear-reserva').on('click', function (event) {
+            event.preventDefault();
+            insertar_reserva();
+    
+    
+        });
+    }
+  
 
     $('input#cancelar-crear-reserva').on('click', function (event) {
         event.preventDefault();
@@ -183,14 +186,14 @@ $(document).ready(function () {
         if(localStorage.getItem('idReserva')){
 
             let action = 'buscar-reserva';
-            var idReunion = localStorage.getItem('idReserva');
+            var idReserva = localStorage.getItem('idReserva');
     
     
             $.ajax({
                 type: "POST",
                 url: "php/Reservas.php?action=" + action,
                 data: {
-                    id_reserva: idReunion
+                    id_reserva: idReserva
                 },
                 dataType: 'json',
     
@@ -200,7 +203,8 @@ $(document).ready(function () {
     
                     $("input#submit-crear-reserva").val("Actualizar");
                     $('h6#title-form-reserva').text("Editar Reserva");
-    
+                    $('input#id_reserva').val(resultado.id_reserva);
+
                     var valor_confirmacion = resultado.reserva_confirmada.toString();
                     $('select[name="reserva-confirmada"] option').each(function () {
     
@@ -228,6 +232,57 @@ $(document).ready(function () {
     
                             $(this).prop('selected', true);
                         }
+                    });
+
+
+
+                    $("input#submit-crear-reserva").on('click',function(event){
+                        event.preventDefault();
+
+                        var reserva_confirmada = $('select[name="reserva-confirmada"]').val();
+                        var usuario_reserva = $('select[name="usuario-reserva"]').val();
+                        var reunion_reserva = $('select[name="reunion-reserva"]').val();
+
+                        let action = 'insertar-reserva';
+
+                        var formData = new FormData();
+                        formData.append('id_reserva', idReserva);
+                        formData.append('reserva_confirmada', reserva_confirmada);
+                        formData.append('usuario_reserva', usuario_reserva);
+                        formData.append('reunion_reserva', reunion_reserva);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "php/Reservas.php?action=" + action,
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+        
+        
+        
+                            success: function (resultado) {
+        
+                                if(resultado == true){
+                                    $('p#create-help').css({ color: "green" });
+                                    $('p#create-help').text("Reserva actualizada correctamente!");
+            
+                                    setTimeout(() => {
+                                        location.href = "Reservas.html";
+                                    }, 1300);
+            
+                                }else{
+                                    $('p#create-help').css({ color: "red" });
+                                    $('p#create-help').text(resultado);                            
+                                }
+                                
+    
+                            },
+                            error: function (xhr) {
+                                console.log(xhr);
+                            },
+        
+                        });
+
                     });
     
     

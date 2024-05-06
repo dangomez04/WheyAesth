@@ -34,12 +34,14 @@ $(document).ready(function () {
     show();
 
 
+    if(!localStorage.getItem('idReunion')){
 
     $('input#submit-crear-reunion').on('click', function (event) {
         event.preventDefault();
         insertar_reunion();
 
     });
+}
 
     $('input#cancelar-crear-reunion').on('click', function (event) {
         event.preventDefault();
@@ -224,6 +226,7 @@ $(document).ready(function () {
             $('input#duracion-reunion').val(resultado.duracion_reunion);
             $('input#tematica-reunion').val(resultado.tematica_reunion);
             $('input#aforo-reunion').val(resultado.aforo_reunion);
+            $('input#id_reunion').val(resultado.id_reunion);
 
             var valor_entrenador = resultado.id_entrenador.toString();
 
@@ -242,7 +245,60 @@ $(document).ready(function () {
 
 
          
+            $("input#submit-crear-reunion").on('click',function(event){
+                event.preventDefault();
+                var fecha_reunion =  $('input#fecha-reunion').val();
+                var hora_reunion =  $('input#hora-reunion').val();
+                var duracion_reunion =  $('input#duracion-reunion').val();
+                var tematica_reunion =  $('input#tematica-reunion').val();
+                var aforo_reunion =  $('input#aforo-reunion').val();
+                var id_entrenador =  $('select[name="id_entrenador"]').val();
 
+                var formData = new FormData();
+                formData.append('id_reunion', idReunion);
+                formData.append('fecha_reunion', fecha_reunion);
+                formData.append('hora_reunion', hora_reunion);
+                formData.append('duracion_reunion', duracion_reunion);
+                formData.append('tematica_reunion', tematica_reunion);
+                formData.append('aforo_reunion', aforo_reunion);
+                formData.append('id_entrenador', id_entrenador);
+
+                let action = 'insertar-reunion';
+
+                $.ajax({
+                    type: "POST",
+                    url: "php/Reuniones.php?action=" + action,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+
+
+
+                    success: function (resultado) {
+
+                        if(resultado == true){
+                            $('p#create-help').css({ color: "green" });
+                            $('p#create-help').text("Reunion actualizada correctamente!");
+    
+                            setTimeout(() => {
+                                location.href = "Reuniones.html";
+                            }, 1300);
+    
+                        }else{
+                            $('p#create-help').css({ color: "red" });
+                            $('p#create-help').text(resultado);                            
+                        }
+                        
+
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+
+                });
+
+
+            });
 
 
 

@@ -48,27 +48,60 @@ if (isset($_GET['action'])){
 	}
 
     function insertEntrenador(){
-        $nombre_entrenador = $_POST['nombre_entrenador'];
-        $especialidad_entrenador = $_POST['especialidad_entrenador'];
-        $email_entrenador = $_POST['email_entrenador'];
+
+        if(isset($_POST['id_entrenador']) && !empty($_POST['id_entrenador'])) {
+
+            $id_entrenador = $_POST['id_entrenador'];
+            $nombre_entrenador = $_POST['nombre_entrenador'];
+            $especialidad_entrenador = $_POST['especialidad_entrenador'];
+            $email_entrenador = $_POST['correo_entrenador'];
+    
+    
+            $data = array(
+                'id_entrenador' => $id_entrenador,
+                'nombre_entrenador' => $nombre_entrenador,
+                'especialidad_entrenador' => $especialidad_entrenador,
+                'email_entrenador' => $email_entrenador
+    
+            );
+    
+            $dataBase = new Entrenadores();
+            $result = $dataBase->updateEntrenador($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
 
 
-        $data = array(
-            'nombre_entrenador' => $nombre_entrenador,
-            'especialidad_entrenador' => $especialidad_entrenador,
-            'email_entrenador' => $email_entrenador
 
-        );
-
-        $dataBase = new Entrenadores();
-        $result = $dataBase->insertEntrenador($data);
-
-        if($result === true){
-            echo true;
-
-        }else {
-            echo $result;
+        }else{
+            $nombre_entrenador = $_POST['nombre_entrenador'];
+            $especialidad_entrenador = $_POST['especialidad_entrenador'];
+            $email_entrenador = $_POST['email_entrenador'];
+    
+    
+            $data = array(
+                'nombre_entrenador' => $nombre_entrenador,
+                'especialidad_entrenador' => $especialidad_entrenador,
+                'email_entrenador' => $email_entrenador
+    
+            );
+    
+            $dataBase = new Entrenadores();
+            $result = $dataBase->insertEntrenador($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
         }
+
+        
 
 
     }

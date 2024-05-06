@@ -58,6 +58,42 @@ class Reservas{
 
     }
 
+
+    function updateReserva($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_reserva = $data['id_reserva'];
+        $reunion_reserva = $data['reunion_reserva'];
+        $usuario_reserva = $data['usuario_reserva'];
+        $reserva_confirmada = $data['reserva_confirmada'];
+
+        $stmt = $conexion->prepare("UPDATE reserva_reuniones SET reserva_confirmada = ?, id_usuario = ?, id_reunion = ? WHERE reserva_reuniones.id_reserva = ?");
+
+        $stmt->bind_param("iiii", $reserva_confirmada,$usuario_reserva,$reunion_reserva, $id_reserva);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar la reserva";
+        }
+
+
+            $conexion->close();
+
+    }
+
+
+
+
+
+
     function searchReserva($data){
 
         $sqlConnection = new Connection();

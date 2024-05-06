@@ -68,27 +68,56 @@ if (isset($_GET['action'])){
 
     function insertReserva(){
 
-        $reserva_confirmada = $_POST['reserva_confirmada'];
-        $usuario_reserva = $_POST['usuario_reserva'];
-        $reunion_reserva = $_POST['reunion_reserva'];
+        if(isset($_POST['id_reserva']) && !empty($_POST['id_reserva'])) {
 
-        $data = array(
+            $id_reserva = $_POST['id_reserva'];+
+            $reunion_reserva = $_POST['reunion_reserva'];
+            $usuario_reserva = $_POST['usuario_reserva'];
+            $reserva_confirmada = $_POST['reserva_confirmada'];
 
-            'reserva_confirmada' => $reserva_confirmada,
-            'usuario_reserva' => $usuario_reserva,
-            'reunion_reserva' => $reunion_reserva
+           
+            $data = array(
+                'id_reserva' => $id_reserva,
+                'reunion_reserva' => $reunion_reserva,
+                'usuario_reserva' => $usuario_reserva,
+                'reserva_confirmada' => $reserva_confirmada
 
-        );
-
-        $dataBase = new Reservas();
-        $result = $dataBase->insertReserva($data);
-
-        if($result === true){
-            echo true;
-
-        }else {
-            echo $result;
+               
+            );
+    
+            $dataBase = new Reservas();
+            $result = $dataBase->updateReserva($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+        }else{
+            $reserva_confirmada = $_POST['reserva_confirmada'];
+            $usuario_reserva = $_POST['usuario_reserva'];
+            $reunion_reserva = $_POST['reunion_reserva'];
+    
+            $data = array(
+    
+                'reserva_confirmada' => $reserva_confirmada,
+                'usuario_reserva' => $usuario_reserva,
+                'reunion_reserva' => $reunion_reserva
+    
+            );
+    
+            $dataBase = new Reservas();
+            $result = $dataBase->insertReserva($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
         }
+       
 
     }
 

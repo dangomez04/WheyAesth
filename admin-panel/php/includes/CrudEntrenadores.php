@@ -63,6 +63,35 @@ class Entrenadores{
 
     }
 
+
+    function updateEntrenador($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_entrenador = $data['id_entrenador'];
+        $email_entrenador = $data['email_entrenador'];
+        $especialidad_entrenador = $data['especialidad_entrenador'];
+        $nombre_entrenador = $data['nombre_entrenador'];
+
+        $stmt = $conexion->prepare("UPDATE entrenadores SET nombre_entrenador = ?, especialidad_entrenador = ?, correo_entrenador = ? WHERE entrenadores.id_entrenador = ?");
+
+        $stmt->bind_param("sssi", $nombre_entrenador,$especialidad_entrenador,$email_entrenador, $id_entrenador);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar el entrenador";
+        }
+
+
+            $conexion->close();
+    }
+
     
     function deleteEntrenador($data){
 

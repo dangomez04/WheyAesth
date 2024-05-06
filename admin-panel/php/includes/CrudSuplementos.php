@@ -29,6 +29,44 @@ class Suplementos{
     }
 
 
+    function updateSuplemento($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_suplemento = $data['id_suplemento'];
+        $nombre_suplemento = $data['nombre_suplemento'];
+        $precio_suplemento = $data['precio_suplemento'];
+        $peso_suplemento = $data['peso_suplemento'];
+        $sabor_suplemento = $data['sabor_suplemento'];
+        $descripcion_suplemento = $data['descripcion_suplemento'];
+        $stock_suplemento = $data['stock_suplemento'];
+        $novedad_suplemento = $data['novedad_suplemento'];
+        $tipo_suplemento = $data['tipo_suplemento'];
+        $imagenprovisional = $data['imagenprovisional'];
+
+
+       
+
+        $stmt = $conexion->prepare("UPDATE suplementos SET nombre_suplemento = ?, precio_suplemento = ?, peso_suplemento = ?, sabor_suplemento = ?, descripcion_suplemento = ?, stock = ?, novedad = ?, tipo_suplemento = ?, imagen_suplemento = ?  WHERE suplementos.id_suplemento = ?");
+
+        $stmt->bind_param("sdissiissi", $nombre_suplemento,$precio_suplemento,$peso_suplemento, $sabor_suplemento, $descripcion_suplemento, $stock_suplemento, $novedad_suplemento, $tipo_suplemento, $imagenprovisional, $id_suplemento);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar el suplemento";
+        }
+
+
+            $conexion->close();
+    }
+
+
     function insertSuplemento($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

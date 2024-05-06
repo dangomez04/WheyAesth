@@ -56,6 +56,37 @@ class Reuniones{
 
     }
 
+    function updateReunion($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_reunion = $data['id_reunion'];
+        $aforo_reunion = $data['aforo_reunion'];
+        $hora_reunion = $data['hora_reunion'];
+        $duracion_reunion = $data['duracion_reunion'];
+        $tematica_reunion = $data['tematica_reunion'];
+        $fecha_reunion = $data['fecha_reunion'];
+        $id_entrenador = $data['id_entrenador'];
+
+        $stmt = $conexion->prepare("UPDATE reuniones SET fecha_reunion = ?, hora_reunion = ?, duracion_reunion = ?, tematica_reunion = ?, aforo_reunion = ?, id_entrenador = ? WHERE reuniones.id_reunion = ?");
+
+        $stmt->bind_param("siisiii", $fecha_reunion,$hora_reunion, $duracion_reunion, $tematica_reunion, $aforo_reunion, $id_entrenador,$id_reunion );
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar la reserva";
+        }
+
+
+            $conexion->close();
+    }
+
     function insertReunion($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

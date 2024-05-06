@@ -33,12 +33,15 @@ $(document).ready(function () {
 
     show();
 
+    if (!localStorage.getItem('idEntrenador')) {
 
-    $('input#submit-crear-entrenador').on('click', function (event) {
-        event.preventDefault();
-        insertar_entrenador();
+        $('input#submit-crear-entrenador').on('click', function (event) {
+            event.preventDefault();
+            insertar_entrenador();
 
-    });
+        });
+
+    }
 
     $('input#cancelar-crear-entrenador').on('click', function (event) {
         event.preventDefault();
@@ -47,7 +50,7 @@ $(document).ready(function () {
     });
 
 
-    $('a.btn-crear').on('click',function(){
+    $('a.btn-crear').on('click', function () {
         localStorage.removeItem('idEntrenador');
 
     });
@@ -183,42 +186,90 @@ $(document).ready(function () {
     }
 
     //editar
-    if(localStorage.getItem('idEntrenador')){
+    if (localStorage.getItem('idEntrenador')) {
 
-    let action = 'buscar-entrenador';
-    var idEntreandor = localStorage.getItem('idEntreandor');
-
-
-    $.ajax({
-        type: "POST",
-        url: "php/Entrenadores.php?action=" + action,
-        data: {
-            id_entrenador: idEntreandor
-        },
-        dataType: 'json',
+        let action = 'buscar-entrenador';
+        var idEntrenador = localStorage.getItem('idEntrenador');
 
 
-
-        success: function (resultado) {
-
-            $("input#submit-crear-entrenador").val("Actualizar");
-            $('h6#title-form-entrenador').text("Editar Entrenador");
-            $('input#nombre-entrenador').val(resultado.nombre_entrenador);
-            $('input#especialidad-entrenador').val(resultado.especialidad_entrenador);
-            $('input#email-entrenador').val(resultado.correo_entrenador);
+        $.ajax({
+            type: "POST",
+            url: "php/Entrenadores.php?action=" + action,
+            data: {
+                id_entrenador: idEntrenador
+            },
+            dataType: 'json',
 
 
 
+            success: function (resultado) {
+
+                $("input#submit-crear-entrenador").val("Actualizar");
+                $('h6#title-form-entrenador').text("Editar Entrenador");
+                $('input#nombre-entrenador').val(resultado.nombre_entrenador);
+                $('input#especialidad-entrenador').val(resultado.especialidad_entrenador);
+                $('input#email-entrenador').val(resultado.correo_entrenador);
+                $('input#id_entrenador').val(resultado.id_entrenador);
+
+                $("input#submit-crear-entrenador").on('click', function (event) {
+                    event.preventDefault();
+                    var nombre_entrenador = $('input#nombre-entrenador').val();
+                    var especialidad_entrenador = $('input#especialidad-entrenador').val();
+                    var correo_entrenador = $('input#email-entrenador').val();
+
+                    let action = 'insertar-entrenador';
+
+                    var formData = new FormData();
+                    formData.append('id_entrenador', idEntrenador);
+                    formData.append('nombre_entrenador', nombre_entrenador);
+                    formData.append('especialidad_entrenador', especialidad_entrenador);
+                    formData.append('correo_entrenador', correo_entrenador);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "php/Entrenadores.php?action=" + action,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+    
+    
+    
+                        success: function (resultado) {
+    
+                            if(resultado == true){
+                                $('p#create-help').css({ color: "green" });
+                                $('p#create-help').text("Entrenador actualizado correctamente!");
+        
+                                setTimeout(() => {
+                                    location.href = "Entrenadores.html";
+                                }, 1300);
+        
+                            }else{
+                                $('p#create-help').css({ color: "red" });
+                                $('p#create-help').text(resultado);                            
+                            }
+                            
+
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                        },
+    
+                    });
 
 
-        },
-        error: function (xhr) {
-            console.log(xhr);
-        },
+                });
 
-    });
 
-}
+
+            },
+            error: function (xhr) {
+                console.log(xhr);
+            },
+
+        });
+
+    }
 
     function pintar_entrenadores_select(array_entrenadores) {
 
