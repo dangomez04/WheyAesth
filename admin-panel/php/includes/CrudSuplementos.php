@@ -63,6 +63,33 @@ class Suplementos{
    		 $conexion->close();
     }
 
+    function searchSuplemento($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+    
+        $id_suplemento = $data['id_suplemento'];
+    
+    
+    
+        $stmt = $conexion->prepare("SELECT * FROM suplementos WHERE suplementos.id_suplemento = ?");
+        
+        $stmt->bind_param("i", $id_suplemento);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "No existe un suplemento con ese id";
+            }
+            return $result;
+    
+        }catch(Exception $e){
+            return "Error al buscar un suplemento con ese id";
+        }
+
+    }
+
 
     function deleteSuplemento($data){
 

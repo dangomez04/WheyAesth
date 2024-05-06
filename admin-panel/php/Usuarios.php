@@ -16,7 +16,11 @@ if (isset($_GET['action'])){
 
         case "eliminar-usuario":
              echo deleteUsuario();
-             break;       
+             break;    
+             
+        case "buscar-usuario":
+            echo searchUsuario();
+            break;     
     }
 }
 
@@ -43,6 +47,29 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function searchUsuario(){
+
+        $id_usuario = $_POST['id_usuario'];
+
+        $data = array(
+                'id_usuario' =>  $id_usuario
+            );
+
+    $dataBase = new Usuarios();
+    $result = $dataBase->searchUsuario($data);
+
+    if($result=="No existe un usuario con ese id" || $result=="Error al buscar un usuario con ese id"){
+        echo $result;
+    }else{
+        $usuario_encontrado = $result->fetch_assoc();
+        echo json_encode($usuario_encontrado);
+
+    }
+
+
+    }
+
 
     function insertUsuario(){
 

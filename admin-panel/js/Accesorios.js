@@ -49,6 +49,11 @@ $(document).ready(function () {
 
     });
 
+    $('a.btn-crear').on('click',function(){
+        localStorage.removeItem('idAccesorio');
+
+    });
+
 
 
 
@@ -205,6 +210,8 @@ $(document).ready(function () {
     }
 
     //editar 
+    if(localStorage.getItem('idAccesorio')){
+
     let action = 'buscar-accesorio';
     var idAccesorio = localStorage.getItem('idAccesorio');
 
@@ -221,13 +228,22 @@ $(document).ready(function () {
 
         success: function (resultado) {
 
-            console.log(resultado);
                 
-            
-
-            $('input#nombre-accesorio').val(resultado.nombre_accesorio);
-            
+            $("input#submit-crear-accesorio").val("Actualizar");
             $('h6#title-form').text("Editar Accesorio");
+            $('input#nombre-accesorio').val(resultado.nombre_accesorio);
+            $('input#precio-accesorio').val(resultado.precio_accesorio);
+            $('textarea#desc-accesorio').val(resultado.descripcion_accesorio);
+            $('input#color-accesorio').val(resultado.color_accesorio);
+            $('input#stock-accesorio').val(resultado.stock);
+            var valor_novedad = resultado.novedad.toString();
+            $('select[name="novedad-accesorio"] option').each(function() {
+
+                if ($(this).val() === valor_novedad) {
+
+                    $(this).prop('selected', true);
+                }
+            });
 
 
         },
@@ -237,7 +253,7 @@ $(document).ready(function () {
 
     });
 
-
+    }
 
 
     function pintar_accesorios_select(array_accesorios) {

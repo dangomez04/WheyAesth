@@ -1,36 +1,36 @@
 $(document).ready(function () {
 
-    function show(){
-        
+    function show() {
+
         let currentAction = 'show';
 
         $.ajax({
             type: "GET",
             url: "php/Reservas.php",
             dataType: "json",
-    
+
             data: {
                 action: currentAction,
-    
+
             },
             success: function (resultado) {
-    
-    
+
+
                 pintar_reservas(resultado);
-    
+
             },
-    
-    
+
+
             error: function (xhr) {
-    
+
                 console.log(xhr);
             },
-    
-        });
-    
-        }
 
-        show();
+        });
+
+    }
+
+    show();
 
     $('input#submit-crear-reserva').on('click', function (event) {
         event.preventDefault();
@@ -45,8 +45,14 @@ $(document).ready(function () {
 
     });
 
+    $('a.btn-crear').on('click',function(){
+        localStorage.removeItem('idReserva');
 
-    function insertar_reserva(){
+    });
+
+
+    function insertar_reserva() {
+      
         var reserva_confirmada = $('select[name="reserva-confirmada"]').val();
         var usuario_reserva = $('[name="usuario-reserva"]').val();
         var reunion_reserva = $('[name="reunion-reserva"]').val();
@@ -70,13 +76,13 @@ $(document).ready(function () {
 
 
                 if (resultado == true) {
-                   
 
-                    $('p#create-help').css({color: "green"});
+
+                    $('p#create-help').css({ color: "green" });
                     $('p#create-help').text("Reserva creada correctamente!");
 
                     setTimeout(() => {
-                        location.href="Reservas.html";
+                        location.href = "Reservas.html";
                     }, 1300);
 
                 } else {
@@ -125,7 +131,7 @@ $(document).ready(function () {
 
                 + "<td>"
 
-                + "<a href='#' class='btn btn-primary btn-icon-split'>"
+                + "<a  value=" + reserva.id_reserva + " class='btn btn-primary btn-icon-split edit-reservas'>"
 
                 + "<span class='icon text-white-50'>"
                 + "<i class='bi bi-pencil-fill'></i>"
@@ -138,7 +144,7 @@ $(document).ready(function () {
 
                 + "<td>"
 
-                + "<a value="+reserva.id_reserva+" class='btn btn-danger btn-icon-split delete-reserva'>"
+                + "<a value=" + reserva.id_reserva + " class='btn btn-danger btn-icon-split delete-reserva'>"
 
                 + "<span class='icon text-white-50'>"
                 + "<i class='fas fa-trash'></i>"
@@ -157,48 +163,72 @@ $(document).ready(function () {
 
         }
 
-        $('a.delete-reserva').on('click',function(event){
+        $('a.delete-reserva').on('click', function (event) {
             event.preventDefault();
             var id_reserva = parseInt($(this).attr('value'));
             eliminar_reserva(id_reserva);
-         });
+        });
+
+        $('a.edit-reservas').on('click', function (event) {
+            event.preventDefault();
+            var id_reserva = parseInt($(this).attr('value'));
+            localStorage.setItem('idReserva', id_reserva);
+            window.location.href = 'form-reservas.html';
+
+        });
 
 
 
-         function eliminar_reserva(id_reserva){
+        //editar    
+        if(localStorage.getItem('idReserva')){
 
-            let action = "eliminar-reserva";
-         
+            let action = 'buscar-reserva';
+            var idReunion = localStorage.getItem('idReserva');
+    
+    
             $.ajax({
                 type: "POST",
                 url: "php/Reservas.php?action=" + action,
                 data: {
-                    id_reserva: id_reserva    
+                    id_reserva: idReunion
                 },
+                dataType: 'json',
     
-         
+    
     
                 success: function (resultado) {
     
+                    $("input#submit-crear-reserva").val("Actualizar");
+                    $('h6#title-form-reserva').text("Editar Reserva");
     
-                    if (resultado == true) {
-
-                        $('span#user-help').css("visibility", "visible");
-
-                        setTimeout(() => {
-                            $('span#user-help').css("visibility", "hidden");
-
-                        }, 1000);
-
-                       
-                        //para reflejar los cambios al usuario
-                      show();
-                      
-                    } else {
-                        console.log(resultado);
-                    }
+                    var valor_confirmacion = resultado.reserva_confirmada.toString();
+                    $('select[name="reserva-confirmada"] option').each(function () {
     
+                        if ($(this).val() === valor_confirmacion) {
     
+                            $(this).prop('selected', true);
+                        }
+                    });
+    
+                    var valor_usuario = resultado.id_usuario.toString();
+    
+                    $('select[name="usuario-reserva"] option').each(function () {
+    
+                        if ($(this).val() === valor_usuario) {
+    
+                            $(this).prop('selected', true);
+                        }
+                    });
+    
+                    var valor_reunion = resultado.id_reunion.toString();
+    
+                    $('select[name="reunion-reserva"] option').each(function () {
+    
+                        if ($(this).val() === valor_reunion) {
+    
+                            $(this).prop('selected', true);
+                        }
+                    });
     
     
     
@@ -208,7 +238,55 @@ $(document).ready(function () {
                 },
     
             });
-        
+     
+       
+        }
+
+
+        function eliminar_reserva(id_reserva) {
+
+            let action = "eliminar-reserva";
+
+            $.ajax({
+                type: "POST",
+                url: "php/Reservas.php?action=" + action,
+                data: {
+                    id_reserva: id_reserva
+                },
+
+
+
+                success: function (resultado) {
+
+
+                    if (resultado == true) {
+
+                        $('span#user-help').css("visibility", "visible");
+
+                        setTimeout(() => {
+                            $('span#user-help').css("visibility", "hidden");
+
+                        }, 1000);
+
+
+                        //para reflejar los cambios al usuario
+                        show();
+
+                    } else {
+                        console.log(resultado);
+                    }
+
+
+
+
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                },
+
+            });
+
         }
 
     }

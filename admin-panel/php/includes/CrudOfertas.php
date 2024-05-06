@@ -27,6 +27,32 @@ class Ofertas{
 
     }
 
+
+    function searchOferta($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+    
+        $id_oferta = $data['id_oferta'];
+    
+    
+    
+        $stmt = $conexion->prepare("SELECT * FROM ofertas_flash WHERE ofertas_flash.id_oferta_flash = ?");
+        
+        $stmt->bind_param("i", $id_oferta);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "No existe una oferta con ese id";
+            }
+            return $result;
+    
+        }catch(Exception $e){
+            return "Error al buscar una oferta con ese id";
+        }
+    }
+
     function insertOferta($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

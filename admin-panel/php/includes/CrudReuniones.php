@@ -28,6 +28,34 @@ class Reuniones{
 
     }
 
+
+    function searchReunion($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+    
+        $id_reunion = $data['id_reunion'];
+    
+    
+    
+        $stmt = $conexion->prepare("SELECT * FROM reuniones WHERE reuniones.id_reunion = ?");
+        
+        $stmt->bind_param("i", $id_reunion);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "No existe una reunion con ese id";
+            }
+            return $result;
+    
+        }catch(Exception $e){
+            return "Error al buscar una reunion con ese id";
+        }
+        
+
+    }
+
     function insertReunion($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

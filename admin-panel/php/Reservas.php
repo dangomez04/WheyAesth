@@ -15,7 +15,11 @@ if (isset($_GET['action'])){
 
         case "eliminar-reserva":
             echo deleteReserva();
-                 break;
+              break;
+
+        case "buscar-reserva":
+            echo searchReserva();
+            break;         
     }
 }
 
@@ -42,6 +46,25 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function searchReserva(){
+        $id_reserva = $_POST['id_reserva'];
+
+        $data = array(
+                'id_reserva' =>  $id_reserva
+            );
+
+    $dataBase = new Reservas();
+    $result = $dataBase->searchReserva($data);
+
+    if($result=="No existe una reserva con ese id" || $result=="Error al buscar una reserva con ese id"){
+        echo $result;
+    }else{
+        $reserva_encontrada = $result->fetch_assoc();
+        echo json_encode($reserva_encontrada);
+
+    }
+    }
 
     function insertReserva(){
 

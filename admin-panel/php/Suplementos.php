@@ -16,6 +16,10 @@ if (isset($_GET['action'])){
         case "eliminar-suplemento":
              echo deleteSuplemento();
               break;  
+
+        case "buscar-suplemento":
+            echo editSuplemento();
+            break;      
        
     }
 }
@@ -80,6 +84,28 @@ if (isset($_GET['action'])){
         }else {
             echo $result;
         }
+
+
+    }
+
+    function editSuplemento(){
+
+        $id_suplemento = $_POST['id_suplemento'];
+
+        $data = array(
+                'id_suplemento' =>  $id_suplemento
+            );
+
+    $dataBase = new Suplementos();
+    $result = $dataBase->searchSuplemento($data);
+
+    if($result=="No existe un suplemento con ese id" || $result=="Error al buscar un suplemento con ese id"){
+        echo $result;
+    }else{
+        $suplemento_encontrado = $result->fetch_assoc();
+        echo json_encode($suplemento_encontrado);
+
+    }
 
 
     }

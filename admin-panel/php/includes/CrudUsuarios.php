@@ -62,6 +62,34 @@ class Usuarios{
 
     }
 
+    function searchUsuario($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+    
+        $id_usuario = $data['id_usuario'];
+    
+    
+    
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuarios.id_usuario = ?");
+        
+        $stmt->bind_param("i", $id_usuario);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "No existe un usuario con ese id";
+            }
+            return $result;
+    
+        }catch(Exception $e){
+            return "Error al buscar un usuario con ese id";
+        }
+        
+
+
+    }
+
     function deleteUsuario($data){
 
         $sqlConnection = new Connection();

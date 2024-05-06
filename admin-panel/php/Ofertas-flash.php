@@ -15,7 +15,12 @@ if (isset($_GET['action'])){
                 
          case "eliminar-oferta":
              echo deleteOferta();
-             break;        
+             break;
+         
+         case "buscar-oferta":
+            echo searchOferta();
+            break;
+
 
                
        
@@ -45,6 +50,29 @@ if (isset($_GET['action'])){
 
 
 	}
+
+
+    function searchOferta(){
+
+        $id_oferta = $_POST['id_oferta'];
+
+        $data = array(
+                'id_oferta' =>  $id_oferta
+            );
+
+    $dataBase = new Ofertas();
+    $result = $dataBase->searchOferta($data);
+
+    if($result=="No existe una oferta con ese id" || $result=="Error al buscar una oferta con ese id"){
+        echo $result;
+    }else{
+        $oferta_encontrada = $result->fetch_assoc();
+        echo json_encode($oferta_encontrada);
+
+    }
+
+
+    }
 
     function insertOferta(){
         $precio_oferta = $_POST['precio_oferta'];

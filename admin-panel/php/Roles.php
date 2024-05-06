@@ -17,7 +17,14 @@ if (isset($_GET['action'])){
         case "eliminar-rol":
              echo deleteRol();
             break;
+
+        case "buscar-rol":
+            echo searchRol();
+            break;    
     
+        case "actualizar-rol":
+            echo updateRol();
+            break;
     
         }
 }
@@ -48,15 +55,64 @@ if (isset($_GET['action'])){
 
 
     function insertRol(){
+
+        if(isset($_POST['id_rol']) && !empty($_POST['id_rol'])) {
+            $id_rol = $_POST['id_rol'];
+            $nombre_rol = $_POST['nombre_rol'];
+            $data = array(
+                'id_rol' => $id_rol,
+                'nombre_rol' => $nombre_rol
+               
+            );
+    
+            $dataBase = new Roles();
+            $result = $dataBase->updateRol($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+    
+
+
+        }else{
+            $nombre_rol = $_POST['nombre_rol'];
+
+            $data = array(
+                'nombre_rol' => $nombre_rol
+               
+            );
+    
+            $dataBase = new Roles();
+            $result = $dataBase->insertRol($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+        }
+
+        
+
+    }
+
+    function updateRol(){
+
+        $id_rol = $_POST['id_rol'];
         $nombre_rol = $_POST['nombre_rol'];
 
         $data = array(
+            'id_rol' => $id_rol,
             'nombre_rol' => $nombre_rol
            
         );
 
         $dataBase = new Roles();
-        $result = $dataBase->insertRol($data);
+        $result = $dataBase->updateRol($data);
 
         if($result === true){
             echo true;
@@ -65,7 +121,35 @@ if (isset($_GET['action'])){
             echo $result;
         }
 
+
     }
+
+
+    function searchRol(){
+
+
+        $id_rol = $_POST['id_rol'];
+
+        $data = array(
+                'id_rol' =>  $id_rol
+            );
+
+    $dataBase = new Roles();
+    $result = $dataBase->searchRol($data);
+
+    if($result=="No existe un rol con ese id" || $result=="Error al buscar un rol con ese id"){
+        echo $result;
+    }else{
+        $rol_encontrado = $result->fetch_assoc();
+        echo json_encode($rol_encontrado);
+
+    }
+
+
+
+    }
+
+
 
     function deleteRol(){
 

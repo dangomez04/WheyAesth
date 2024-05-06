@@ -28,6 +28,9 @@ class Entrenadores{
 
     }
 
+
+  
+
     function insertEntrenador($data){
 
         $sqlConnection = new Connection();
@@ -85,6 +88,33 @@ class Entrenadores{
 
 
 
+    }
+
+    function searchEntrenador($data){
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+    
+        $id_entrenador = $data['id_entrenador'];
+    
+    
+    
+        $stmt = $conexion->prepare("SELECT * FROM entrenadores WHERE entrenadores.id_entrenador = ?");
+        
+        $stmt->bind_param("i", $id_entrenador);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "No existe un entrenador con ese id";
+            }
+            return $result;
+    
+        }catch(Exception $e){
+            return "Error al buscar un entrenador con ese id";
+        }
+        
+    
     }
 
 }

@@ -126,6 +126,11 @@ $(document).ready(function () {
 
     });
 
+    $('a.btn-crear').on('click',function(){
+        localStorage.removeItem('idUsuario');
+
+    });
+
     function insertar_usuario() {
         var nombre_usuario = $('input#nombre-usuario').val();
         var email_usuario = $('input#correo-usuario').val();
@@ -223,7 +228,7 @@ $(document).ready(function () {
 
                 + "<td>"
 
-                + "<a href='#' class='btn btn-primary btn-icon-split'>"
+                + "<a value="+usuario.id_usuario+" class='btn btn-primary btn-icon-split edit-usuario'>"
 
                 + "<span class='icon text-white-50'>"
                 + "<i class='bi bi-pencil-fill'></i>"
@@ -261,9 +266,69 @@ $(document).ready(function () {
             eliminar_usuario(id_usuario);
         });
 
+        $('a.edit-usuario').on('click', function (event) {
+            event.preventDefault();
+            var id_usuario = parseInt($(this).attr('value'));
+            localStorage.setItem('idUsuario', id_usuario);
+            window.location.href = 'form-usuario.html';
+
+
+        });
 
     }
 
+    
+    //editar
+    if(localStorage.getItem('idUsuario')){
+
+    let action = 'buscar-usuario';
+    var idUsuario = localStorage.getItem('idUsuario');
+
+
+    $.ajax({
+        type: "POST",
+        url: "php/Usuarios.php?action=" + action,
+        data: {
+            id_usuario: idUsuario
+        },
+        dataType: 'json',
+
+
+
+        success: function (resultado) {
+            $("input#submit-crear-usuario").val("Actualizar");
+
+            $('h6#title-form-usuario').text("Editar Usuario");
+            $('input#nombre-usuario').val(resultado.nombre_usuario);
+            $('input#correo-usuario').val(resultado.correo_usuario);
+            $('input#contraseña-usuario').val(resultado.contraseña_usuario);
+            $('input#confirmar-contraseña-usuario').val(resultado.contraseña_usuario);
+
+            var valor_rol = resultado.rol_usuario.toString();
+
+            setTimeout(() => {
+                $('select[name="id_rol"] option').each(function() {
+
+                    if ($(this).val() === valor_rol) {
+    
+                        $(this).prop('selected', true);
+                    }
+                });
+            }, 10);
+
+         
+
+
+
+
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        },
+
+    });
+
+    }
     function pintar_usuario_select(array_usuarios) {
 
 

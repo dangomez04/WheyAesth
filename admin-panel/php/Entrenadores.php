@@ -15,7 +15,11 @@ if (isset($_GET['action'])){
 
         case "eliminar-entrenador":
                 echo deleteEntrenador();
-                 break;      
+             break;  
+           
+        case "buscar-entrenador":
+              echo searchEntrenador();
+             break;               
     }
 }
 
@@ -66,6 +70,27 @@ if (isset($_GET['action'])){
             echo $result;
         }
 
+
+    }
+
+    function searchEntrenador(){
+
+        $id_entrenador = $_POST['id_entrenador'];
+
+        $data = array(
+                'id_entrenador' =>  $id_entrenador
+            );
+
+    $dataBase = new Entrenadores();
+    $result = $dataBase->searchEntrenador($data);
+
+    if($result=="No existe un entrenador con ese id" || $result=="Error al buscar un entrenador con ese id"){
+        echo $result;
+    }else{
+        $entrenador_encontrado = $result->fetch_assoc();
+        echo json_encode($entrenador_encontrado);
+
+    }
 
     }
 

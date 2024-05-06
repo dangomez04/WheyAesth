@@ -16,6 +16,10 @@ if (isset($_GET['action'])){
         case "eliminar-reunion":
             echo deleteReunion(); 
             break;    
+
+        case "buscar-reunion":
+            echo searchReunion(); 
+             break;     
     }
 }
 
@@ -42,6 +46,29 @@ if (isset($_GET['action'])){
 
 
 	}
+
+    function searchReunion(){
+
+        $id_reunion = $_POST['id_reunion'];
+
+        $data = array(
+                'id_reunion' =>  $id_reunion
+            );
+
+    $dataBase = new Reuniones();
+    $result = $dataBase->searchReunion($data);
+
+    if($result=="No existe una reunion con ese id" || $result=="Error al buscar una reunion con ese id"){
+        echo $result;
+    }else{
+        $reunion_encontrada = $result->fetch_assoc();
+        echo json_encode($reunion_encontrada);
+
+    }
+
+
+
+    }
 
 
     function insertReunion(){

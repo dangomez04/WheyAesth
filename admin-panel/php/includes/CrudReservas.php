@@ -58,6 +58,34 @@ class Reservas{
 
     }
 
+    function searchReserva($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+    
+        $id_reserva = $data['id_reserva'];
+    
+    
+    
+        $stmt = $conexion->prepare("SELECT * FROM reserva_reuniones WHERE reserva_reuniones.id_reserva = ?");
+        
+        $stmt->bind_param("i", $id_reserva);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "No existe una reserva con ese id";
+            }
+            return $result;
+    
+        }catch(Exception $e){
+            return "Error al buscar una reserva con ese id";
+        }
+
+
+    }
+
     function deleteReserva($data){
 
         $sqlConnection = new Connection();
