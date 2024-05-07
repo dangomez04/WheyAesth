@@ -141,6 +141,11 @@ input[type='file']{
     margin-top: 15px;
 }
 
+
+p#email-help{
+    margin-top: 15px;
+}
+
 @media only screen and (max-width: 767px) {
    
     a#searchDropdown{

@@ -37,10 +37,40 @@ $(document).ready(function () {
     $('input#submit-crear-usuario').prop("disabled", true);
     $('input#submit-crear-usuario').css({ opacity: 0.3 });
 
-    //manejo de contraseñas
-    const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$()#€!%*?&+.])[A-Za-z\d@$()#€!%*?&+. ]{8,}$/;
+
+    //control de correo válido
+    const regexCorreo = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}/;
+    var conditionCorreo = false;
     var conditionRegex = false;
     var conditionRepeat = false;
+
+    $('input#correo-usuario').on('input', function () {
+        var correo_intro = $('input#correo-usuario').val();
+
+        if (!regexCorreo.test(correo_intro)) {
+            $('p#email-help').css({ color: "red" });
+            $('p#email-help').text("Introduce un correo válido")
+            conditionCorreo = false;
+        } else {
+            $('p#email-help').text("");
+            conditionCorreo = true;
+
+        }
+
+        if (conditionRegex && conditionRepeat && conditionCorreo) {
+            $('input#submit-crear-usuario').prop("disabled", false);
+            $('input#submit-crear-usuario').css({ opacity: 1 });
+        } else {
+            $('input#submit-crear-usuario').prop("disabled", true);
+            $('input#submit-crear-usuario').css({ opacity: 0.3 });
+        }
+
+    });
+
+
+    //manejo de contraseñas
+    const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$()#€!%*?&+.])[A-Za-z\d@$()#€!%*?&+. ]{8,}$/;
+
 
     $('input#contraseña-usuario').on('input', function () {
 
@@ -71,7 +101,7 @@ $(document).ready(function () {
         }
 
 
-        if (conditionRegex && conditionRepeat) {
+        if (conditionRegex && conditionRepeat && conditionCorreo) {
             $('input#submit-crear-usuario').prop("disabled", false);
             $('input#submit-crear-usuario').css({ opacity: 1 });
         } else {
@@ -102,7 +132,7 @@ $(document).ready(function () {
 
         }
 
-        if (conditionRegex && conditionRepeat) {
+        if (conditionRegex && conditionRepeat && conditionCorreo) {
             $('input#submit-crear-usuario').prop("disabled", false);
             $('input#submit-crear-usuario').css({ opacity: 1 });
         } else {
@@ -320,10 +350,64 @@ $(document).ready(function () {
                     });
                 }, 10);
 
-                //manejo de contraseñas
-                const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$()#€!%*?&+.])[A-Za-z\d@$()#€!%*?&+. ]{8,}$/;
+                //control de correo válido
+                const regexCorreo = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}/;
+                var conditionCorreo = false;
                 var conditionRegex = false;
                 var conditionRepeat = false;
+
+                var correo_intro = $('input#correo-usuario').val();
+            
+                if(!regexCorreo.test(correo_intro)){
+                    $('p#email-help').css({ color: "red" });
+                    $('p#email-help').text("Introduce un correo válido")
+                    conditionCorreo = false;
+                }else{
+                    $('p#email-help').text("");
+                    conditionCorreo = true;
+        
+                }
+        
+                if (conditionRegex && conditionRepeat && conditionCorreo) {
+                    $('input#submit-crear-usuario').prop("disabled", false);
+                    $('input#submit-crear-usuario').css({ opacity: 1 });
+                } else {
+                    $('input#submit-crear-usuario').prop("disabled", true);
+                    $('input#submit-crear-usuario').css({ opacity: 0.3 });
+                }
+
+                $('input#correo-usuario').on('input',function(){
+                    var correo_intro = $('input#correo-usuario').val();
+            
+                    if(!regexCorreo.test(correo_intro)){
+                        $('p#email-help').css({ color: "red" });
+                        $('p#email-help').text("Introduce un correo válido")
+                        conditionCorreo = false;
+                    }else{
+                        $('p#email-help').text("");
+                        conditionCorreo = true;
+            
+                    }
+            
+                    if (conditionRegex && conditionRepeat && conditionCorreo) {
+                        $('input#submit-crear-usuario').prop("disabled", false);
+                        $('input#submit-crear-usuario').css({ opacity: 1 });
+                    } else {
+                        $('input#submit-crear-usuario').prop("disabled", true);
+                        $('input#submit-crear-usuario').css({ opacity: 0.3 });
+                    }
+            
+                });
+
+
+
+
+
+
+
+
+                //manejo de contraseñas
+                const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$()#€!%*?&+.])[A-Za-z\d@$()#€!%*?&+. ]{8,}$/;
 
                 var contraseña = $('input#contraseña-usuario').val();
                 var confirmarContraseña = $('input#confirmar-contraseña-usuario').val();
@@ -352,7 +436,7 @@ $(document).ready(function () {
                 }
 
 
-                if (conditionRegex && conditionRepeat) {
+                if (conditionRegex && conditionRepeat && conditionCorreo) {
                     $('input#submit-crear-usuario').prop("disabled", false);
                     $('input#submit-crear-usuario').css({ opacity: 1 });
                 } else {
@@ -391,7 +475,7 @@ $(document).ready(function () {
                     }
 
 
-                    if (conditionRegex && conditionRepeat) {
+                    if (conditionRegex && conditionRepeat && conditionCorreo) {
                         $('input#submit-crear-usuario').prop("disabled", false);
                         $('input#submit-crear-usuario').css({ opacity: 1 });
                     } else {
@@ -436,7 +520,7 @@ $(document).ready(function () {
 
 
 
-                $("input#submit-crear-usuario").on("click",function(event){
+                $("input#submit-crear-usuario").on("click", function (event) {
 
                     event.preventDefault()
                     let action = 'insertar-usuario';
@@ -460,32 +544,32 @@ $(document).ready(function () {
                         data: formData,
                         processData: false,
                         contentType: false,
-    
-    
-    
+
+
+
                         success: function (resultado) {
-    
-                            if(resultado == true){
+
+                            if (resultado == true) {
                                 $('p#create-help').css({ color: "green" });
                                 $('p#create-help').text("Usuario actualizado correctamente!");
-        
+
                                 setTimeout(() => {
                                     location.href = "Usuarios.html";
                                 }, 1300);
-        
-                            }else{
+
+                            } else {
                                 $('p#create-help').css({ color: "red" });
-                                $('p#create-help').text(resultado);                            
+                                $('p#create-help').text(resultado);
                             }
-                            
+
 
                         },
                         error: function (xhr) {
                             console.log(xhr);
                         },
-    
+
                     });
-    
+
 
 
 
