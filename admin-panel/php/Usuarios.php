@@ -106,7 +106,7 @@ if (isset($_GET['action'])){
             }
     
 
-        }else{
+        }else {
             $nombre_usuario = $_POST["nombre_usuario"];
             $email_usuario = $_POST["email_usuario"];
             $contraseña_usuario = $_POST["contraseña_usuario"];

@@ -221,9 +221,7 @@ $(document).ready(function () {
                             location.href = "Usuarios.html";
                         }, 1300);
 
-                    } else {
-                        console.log(resultado);
-                    }
+                    } 
 
 
 

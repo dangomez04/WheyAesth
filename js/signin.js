@@ -149,13 +149,9 @@ $(document).ready(function () {
         var email_usuario = $('input#email-usuario').val();
         var contraseña = $('input#contraseña').val();
         var fecha = $('input#fecha-usuario').val();
+        var default_rol = 1;
 
-        var fecha_formateada = new Date(fecha);
-
-        var opcionesFecha = { day: '2-digit', month: '2-digit', year: 'numeric' };
-
-        var fecha_usuario = fecha_formateada.toLocaleDateString('es-ES', opcionesFecha);
-
+      
         var inputSexo = $('input[name="sexo"]:checked');
         var sexo;
 
@@ -166,15 +162,68 @@ $(document).ready(function () {
 
         }
     
-        if(nombre_usuario == "" || apellidos == "" || fecha_usuario == "Invalid Date"){
+        if(nombre_usuario == "" || apellidos == "" || fecha == "Invalid Date"){
            
             $('p#register-help').css({color: 'red'});
             $('p#register-help').text("Todos los campos son obligatorios!");
         
         }else{
-            $('p#register-help').text("ok");
+            //buscar si hay otro usuario con el mismo correo ya que no pueden haber 2 con el mismo.
+
+
+            var formData = new FormData();
+            formData.append('nombre_usuario', nombre_usuario);
+            formData.append('email_usuario', email_usuario);
+            formData.append('contraseña_usuario', contraseña);
+            formData.append('apellidos_usuario', apellidos);
+            formData.append('fecha_usuario', fecha);
+            formData.append('sexo_usuario', sexo);
+            formData.append('rol_usuario', default_rol);
+
+            let action = "insertar-usuario";
+
+            $.ajax({
+                type: "POST",
+                url: "admin-panel/php/Usuarios.php?action=" + action,
+                data: formData,
+
+                processData: false,
+                contentType: false,
+
+                success: function (resultado) {
+
+
+                    if (resultado == true) {
+
+
+                        $('p#register-help').css({ color: "green" });
+                        $('p#register-help').text("Usuario creado correctamente!");
+
+                        setTimeout(() => {
+                            location.href = "login.html";
+                        }, 1300);
+
+                    } else {
+                        $('p#register-help').text(resultado);
+                    }
+
+
+
+
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                },
+
+            });
+
+
 
         }
+
+
+
 
 
     }
