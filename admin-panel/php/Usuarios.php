@@ -20,7 +20,11 @@ if (isset($_GET['action'])){
              
         case "buscar-usuario":
             echo searchUsuario();
-            break;     
+            break;  
+
+        case "login":
+            echo loginUser();
+            break;       
     }
 }
 
@@ -160,6 +164,39 @@ if (isset($_GET['action'])){
          }else {
              echo $result;
          }
+
+
+    }
+
+    function loginUser(){
+      
+        $correo_usuario = $_POST['correo_registrado'];
+        $contraseña_usuario = md5($_POST['contraseña_registrada']);
+
+       
+    
+        $data = array(
+            'correo_registrado' => $correo_usuario,
+            'contraseña_usuario' => $contraseña_usuario        
+        );
+
+        $dataBase = new Usuarios();
+        $result = $dataBase->login($data);
+    
+    
+        if($result=="Credenciales incorrectas" || $result=="Error en el login"){
+                echo $result;
+        }else{
+            
+            $usuario = $result->fetch_assoc();
+
+            // session_start();
+            // $_SESSION["usuario"] = $usuario["nombre"];
+            // $_SESSION["rol"] = $usuario["rol"];
+            
+            echo json_encode($usuario);
+    
+        }
 
 
     }

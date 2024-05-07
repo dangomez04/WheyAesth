@@ -63,20 +63,29 @@ class Usuarios{
     }
 
     function insertUsuario($data){
-
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();
 
         $nombre_usuario = $data['nombre_usuario'];
         $email_usuario = $data['email_usuario'];
-        $contraseña_usuario = $data['contraseña_usuario'];
+        $contraseña_usuario = md5($data['contraseña_usuario']);
         $rol_usuario = $data['rol_usuario'];
         $apellidos_usuario = $data['apellidos_usuario'];
         $fecha_usuario = $data['fecha_usuario'];
         $sexo = $data['sexo'];
 
+        //comprobar que el correo no existe ya en la base de datos
 
-    
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo_usuario = ?");
+        $stmt->bind_param("s", $email_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return "El correo electrónico ya esta en uso, prueba con otro";
+        }
+
+        //si no esta en uso, insertar
+
 		$stmt = $conexion->prepare("INSERT INTO usuarios (nombre_usuario, apellidos_usuario, correo_usuario, contraseña_usuario, fecha_nacimiento, sexo_usuario, rol_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         $stmt->bind_param("ssssssi", $nombre_usuario,$apellidos_usuario,$email_usuario, $contraseña_usuario, $fecha_usuario, $sexo, $rol_usuario);
@@ -147,7 +156,33 @@ class Usuarios{
         }catch(Exception $e){
             return "Error al eliminar el usuario";
         }
+    }
 
+
+    function login($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $correo_registrado = $data['correo_registrado'];
+        $contraseña_usuario = $data['contraseña_usuario'];
+
+
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo_usuario = ? AND contraseña_usuario = ?");
+        
+        $stmt->bind_param("ss", $correo_registrado,$contraseña_usuario);
+        try{
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if($result->num_rows==0){
+                return "Credenciales incorrectas";
+            }
+            return $result;
+
+        }catch(Exception $e){
+            return "Error en el login";
+        }
 
 
     }

@@ -221,7 +221,11 @@ $(document).ready(function () {
                             location.href = "Usuarios.html";
                         }, 1300);
 
-                    } 
+                    }else{
+                        $('p#create-help').css({ color: "red" });
+                        $('p#create-help').text(resultado);
+
+                    }
 
 
 

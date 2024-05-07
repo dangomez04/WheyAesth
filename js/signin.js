@@ -199,11 +199,15 @@ $(document).ready(function () {
                         $('p#register-help').css({ color: "green" });
                         $('p#register-help').text("Usuario creado correctamente!");
 
+                        localStorage.setItem('correo_registrado', email_usuario);
+                        localStorage.setItem('contraseña_registrada', contraseña);
+
                         setTimeout(() => {
                             location.href = "login.html";
                         }, 1300);
 
                     } else {
+                        $('p#register-help').css({ color: "red" });
                         $('p#register-help').text(resultado);
                     }
 
