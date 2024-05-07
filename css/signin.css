@@ -55,6 +55,18 @@ div.mb-3 input[type='submit']:hover{
     transform: scale(1.05); 
 }   
 
+.form-check {
+    display: inline-block;
+    min-height: 1.5rem;
+    padding-left: 2.5em;
+    margin-bottom: .125rem;
+}
+
+
+#email-help,#confirm-help,#pass-help{
+    margin-top: 15px;
+}
+
 
 @media (max-width: 768px) {
     div#container-form {
@@ -85,5 +97,7 @@ div.mb-3 input[type='submit']:hover{
         font-family: 'proxima-nova-bold';
        
     } 
+
+    
 
 }

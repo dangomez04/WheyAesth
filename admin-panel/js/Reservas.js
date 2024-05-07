@@ -242,11 +242,12 @@ $(document).ready(function () {
                         var reserva_confirmada = $('select[name="reserva-confirmada"]').val();
                         var usuario_reserva = $('select[name="usuario-reserva"]').val();
                         var reunion_reserva = $('select[name="reunion-reserva"]').val();
+                        var id_reserva = $('input#id_reserva').val();
 
                         let action = 'insertar-reserva';
 
                         var formData = new FormData();
-                        formData.append('id_reserva', idReserva);
+                        formData.append('id_reserva', id_reserva);
                         formData.append('reserva_confirmada', reserva_confirmada);
                         formData.append('usuario_reserva', usuario_reserva);
                         formData.append('reunion_reserva', reunion_reserva);

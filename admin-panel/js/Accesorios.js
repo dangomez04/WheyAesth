@@ -259,9 +259,10 @@ $(document).ready(function () {
                 var stock_accesorio = $('input#stock-accesorio').val();
                 var novedad_accesorio = $('select[name="novedad-accesorio"]').val();
                 var imagenprovisional = 'noimage.png';
+                var id_accesorio =  $('input#id_accesorio').val();
 
                 var formData = new FormData();
-                formData.append('id_accesorio', idAccesorio);
+                formData.append('id_accesorio', id_accesorio);
                 formData.append('nombre_accesorio', nombre_accesorio);
                 formData.append('precio_accesorio', precio_accesorio);
                 formData.append('descripcion_accesorio', descripcion_accesorio);

@@ -212,8 +212,10 @@ $(document).ready(function () {
                     let action = 'insertar-rol';
 
                     var nombre_rol = $('input#nombre-rol').val();
+                    var id_rol = $('input#id_rol').val();
+
                     var formData = new FormData();
-                    formData.append('id_rol', idRol);
+                    formData.append('id_rol', id_rol);
                     formData.append('nombre_rol', nombre_rol);
     
                     $.ajax({

@@ -273,12 +273,13 @@ $(document).ready(function () {
                 var tipo_suplemento = $('input#tipo-suplemento').val();
                 var novedad_suplemento = $('select[name="novedad-suplemento"]').val();
                 var imagenprovisional = 'noimage.png';
+                var id_suplemento = $('input#id_suplemento').val();
 
 
                 let action = 'insertar-suplemento';
 
                 var formData = new FormData();
-                formData.append('id_suplemento', idSuplemento);
+                formData.append('id_suplemento', id_suplemento);
                 formData.append('nombre_suplemento', nombre_suplemento);
                 formData.append('precio_suplemento', precio_suplemento);
                 formData.append('sabor_suplemento', sabor_suplemento);

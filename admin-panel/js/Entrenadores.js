@@ -216,11 +216,13 @@ $(document).ready(function () {
                     var nombre_entrenador = $('input#nombre-entrenador').val();
                     var especialidad_entrenador = $('input#especialidad-entrenador').val();
                     var correo_entrenador = $('input#email-entrenador').val();
+                    var id_entrenador = $('input#id_entrenador').val();
+
 
                     let action = 'insertar-entrenador';
 
                     var formData = new FormData();
-                    formData.append('id_entrenador', idEntrenador);
+                    formData.append('id_entrenador', id_entrenador);
                     formData.append('nombre_entrenador', nombre_entrenador);
                     formData.append('especialidad_entrenador', especialidad_entrenador);
                     formData.append('correo_entrenador', correo_entrenador);

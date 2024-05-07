@@ -79,13 +79,19 @@ if (isset($_GET['action'])){
             $email_usuario = $_POST["correo_usuario"];
             $contraseña_usuario = $_POST["contraseña_usuario"];
             $rol_usuario = $_POST["rol_usuario"];
+            $apellidos_usuario = $_POST["apellidos_usuario"];
+            $fecha_usuario = $_POST["fecha_usuario"];
+            $sexo = $_POST["sexo"];
     
             $data = array(
                 'id_usuario' => $id_usuario,
                 'nombre_usuario' => $nombre_usuario,
                 'email_usuario' => $email_usuario,
                 'contraseña_usuario' => $contraseña_usuario,
-                'rol_usuario' => $rol_usuario
+                'rol_usuario' => $rol_usuario,
+                'apellidos_usuario' => $apellidos_usuario,
+                'fecha_usuario' => $fecha_usuario,
+                'sexo' => $sexo
     
             );
     
@@ -105,13 +111,20 @@ if (isset($_GET['action'])){
             $email_usuario = $_POST["email_usuario"];
             $contraseña_usuario = $_POST["contraseña_usuario"];
             $rol_usuario = $_POST["rol_usuario"];
+            $apellidos_usuario = $_POST["apellidos_usuario"];
+            $fecha_usuario = $_POST["fecha_usuario"];
+            $sexo = $_POST["sexo_usuario"];
+
     
             $data = array(
                 'nombre_usuario' => $nombre_usuario,
                 'email_usuario' => $email_usuario,
                 'contraseña_usuario' => $contraseña_usuario,
-                'rol_usuario' => $rol_usuario
-    
+                'rol_usuario' => $rol_usuario,
+                'apellidos_usuario' => $apellidos_usuario,
+                'fecha_usuario' => $fecha_usuario,
+                'sexo' => $sexo
+
             );
     
             $dataBase = new Usuarios();
@@ -125,9 +138,6 @@ if (isset($_GET['action'])){
             }
     
         }
-
-       
-
     }
 
     function deleteUsuario(){

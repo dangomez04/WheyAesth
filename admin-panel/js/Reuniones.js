@@ -142,10 +142,11 @@ $(document).ready(function () {
                 "<tr>"
 
                 + "<td>" + reunion.id_reunion + "</td>"
+                + "<td>" + reunion.tematica_reunion + "</td>"
+
                 + "<td>" + fechaFormateada + "</td>"
                 + "<td>" + reunion.hora_reunion + "</td>"
                 + "<td>" + reunion.duracion_reunion + "</td>"
-                + "<td>" + reunion.tematica_reunion + "</td>"
                 + "<td>" + reunion.aforo_reunion + "</td>"
                 + "<td>" + reunion.nombre_entrenador + "</td>"
 
@@ -248,14 +249,15 @@ $(document).ready(function () {
             $("input#submit-crear-reunion").on('click',function(event){
                 event.preventDefault();
                 var fecha_reunion =  $('input#fecha-reunion').val();
-                var hora_reunion =  $('input#hora-reunion').val();
+                var hora_reunion =  parseFloat($('input#hora-reunion').val());
                 var duracion_reunion =  $('input#duracion-reunion').val();
                 var tematica_reunion =  $('input#tematica-reunion').val();
                 var aforo_reunion =  $('input#aforo-reunion').val();
                 var id_entrenador =  $('select[name="id_entrenador"]').val();
+                var id_reunion = $('input#id_reunion').val();
 
                 var formData = new FormData();
-                formData.append('id_reunion', idReunion);
+                formData.append('id_reunion', id_reunion);
                 formData.append('fecha_reunion', fecha_reunion);
                 formData.append('hora_reunion', hora_reunion);
                 formData.append('duracion_reunion', duracion_reunion);

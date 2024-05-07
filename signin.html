@@ -16,7 +16,9 @@
     <!-- jquery -->
     <script src="js/jquery-3.7.1.min.js"></script>
 
-   
+    <!-- js -->
+    <script src="js/signin.js"></script>
+
 
     <!-- css -->
     <link rel="stylesheet" href="css/header.css">
@@ -56,42 +58,75 @@
     <div id="content-signin">
 
         <h1>Crear una cuenta</h1>
-    <div id="container-form">
-        <form id="form-signin">
-            <div class="mb-3">
-                <input type="text" class="form-control" id="nombre-usuario" placeholder="Nombre">
+        <div id="container-form">
+            <form id="form-signin">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="nombre-usuario" placeholder="Nombre">
 
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
-            </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+                </div>
 
-            <div class="mb-3">
-                <input type="text" class="form-control" id="email-usuario" placeholder="Email">
-            </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="email-usuario" placeholder="Email">
+                    <p id="email-help"></p>
+                </div>
 
-            <div class="mb-3">
-                <input type="password" class="form-control" id="contraseña" placeholder="Contraseña">
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" id="confirmar-contraseña" placeholder="Confirmar contraseña">
-            </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="contraseña" placeholder="Contraseña">
+                    <p id="pass-help"></p>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="confirmar-contraseña"
+                        placeholder="Confirmar contraseña">
+                        <p id="confirm-help"></p>
+                </div>
 
-           
 
-            <div class="mb-3">
-                <input type="date" class="form-control" id="fecha-usuario" >
-            </div>
 
-            <div class="mb-3">
-                <input type="submit" class="form-control" id="enviar-registro" value="Crear cuenta">
-            </div>
+                <div class="mb-3">
+                    <label for="email-usuario" class="form-label">Fecha de nacimiento</label>
 
-            
-        </form>
+                    <input type="date" class="form-control" id="fecha-usuario">
+                </div>
+                <div class="mb-3">
+                    <label for="sexo-usuario" class="form-label">Sexo</label>
 
-    </div>
-    
+                    <div class="form-check">
+                        <input class="form-check-input mujer" type="radio" name="sexo"  id="radio_mujer" checked>
+                        <label class="form-check-label" for="radio_mujer">
+                            Mujer
+                        </label>
+                        
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input hombre" type="radio" name="sexo" id="radio_hombre">
+                        <label class="form-check-label" for="radio_hombre">
+                            Hombre
+                        </label>
+                        
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="mb-3">
+                    <p id="register-help"></p>
+                    <input type="submit" class="form-control" id="enviar-registro" value="Crear cuenta">
+
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" class="form-control" id="cancelar-registro" value="Cancelar">
+
+                </div>
+
+
+            </form>
+
+        </div>
+
 
     </div>
 

@@ -166,13 +166,24 @@ $(document).ready(function () {
 
     function insertar_usuario() {
         var nombre_usuario = $('input#nombre-usuario').val();
+        var apellidos_usuario = $('input#apellidos-usuario').val();
         var email_usuario = $('input#correo-usuario').val();
         var contraseña_usuario = $('input#contraseña-usuario').val();
         var confirmar_contraseña_usuario = $('input#confirmar-contraseña-usuario').val();
+        var fecha_usuario = $('input#fecha-usuario').val();
+        var inputSexo = $('input[name="sexo"]:checked');
+        var sexo;
+
+        if(inputSexo.hasClass('hombre')){
+            sexo = "Hombre";
+        }else{
+            sexo = "Mujer";
+
+        }
 
         var rol_usuario = parseInt($('select[name="id_rol"]').val());
 
-        if (nombre_usuario == "" || email_usuario == "" || contraseña_usuario == "" || isNaN(rol_usuario) || confirmar_contraseña_usuario == "") {
+        if (nombre_usuario == "" || email_usuario == "" || contraseña_usuario == "" || isNaN(rol_usuario) || confirmar_contraseña_usuario == "" || apellidos_usuario == "" || fecha_usuario == "") {
             $('p#create-help').css({ color: "red" });
             $('p#create-help').text("Todos los campos son obligatorios!");
         } else {
@@ -182,6 +193,10 @@ $(document).ready(function () {
             formData.append('email_usuario', email_usuario);
             formData.append('contraseña_usuario', contraseña_usuario);
             formData.append('rol_usuario', rol_usuario);
+            formData.append('apellidos_usuario', apellidos_usuario);
+            formData.append('fecha_usuario', fecha_usuario);
+            formData.append('sexo_usuario', sexo);
+
 
             let action = "insertar-usuario";
 
@@ -244,6 +259,11 @@ $(document).ready(function () {
 
         for (const usuario of array_usuarios) {
 
+            var fecha_formateada = new Date(usuario.fecha_nacimiento);
+
+            var opcionesFecha = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+            var fecha_nacimiento_usuario = fecha_formateada.toLocaleDateString('es-ES', opcionesFecha);
 
 
 
@@ -254,8 +274,11 @@ $(document).ready(function () {
 
                 + "<td>" + usuario.id_usuario + "</td>"
                 + "<td>" + usuario.nombre_usuario + "</td>"
+                + "<td>" + usuario.apellidos_usuario + "</td>"
                 + "<td>" + usuario.correo_usuario + "</td>"
                 + "<td>" + usuario.contraseña_usuario + "</td>"
+                + "<td>" + fecha_nacimiento_usuario + "</td>"
+                + "<td>" + usuario.sexo_usuario + "</td>"
                 + "<td>" + usuario.rol + "</td>"
 
 
@@ -332,11 +355,26 @@ $(document).ready(function () {
                 $("input#submit-crear-usuario").val("Actualizar");
 
                 $('h6#title-form-usuario').text("Editar Usuario");
+
                 $('input#nombre-usuario').val(resultado.nombre_usuario);
+                $('input#apellidos-usuario').val(resultado.apellidos_usuario);
                 $('input#correo-usuario').val(resultado.correo_usuario);
                 $('input#contraseña-usuario').val(resultado.contraseña_usuario);
                 $('input#confirmar-contraseña-usuario').val(resultado.contraseña_usuario);
+                $('input#fecha-usuario').val(resultado.fecha_nacimiento);
+
+                if(resultado.sexo_usuario == "Hombre"){
+                    $('input#radio_hombre').prop('checked',true);
+
+                }else{
+                    $('input#radio_mujer').prop('checked',true);
+
+                }
+
+
+
                 $('input#id_usuario').val(resultado.id_usuario);
+
 
                 var valor_rol = resultado.rol_usuario.toString();
 
@@ -526,16 +564,30 @@ $(document).ready(function () {
                     let action = 'insertar-usuario';
 
                     var nombre_usuario = $('input#nombre-usuario').val();
+                    var apellidos_usuario = $('input#apellidos-usuario').val();
                     var correo_usuario = $('input#correo-usuario').val();
                     var contraseña_usuario = $('input#contraseña-usuario').val();
                     var rol_usuario = $('select[name="id_rol"]').val();
+                    var fecha_usuario = $('input#fecha-usuario').val();
+                    var inputSexo = $('input[name="sexo"]:checked');
+                    var sexo;
+            
+                    if(inputSexo.hasClass('hombre')){
+                        sexo = "Hombre";
+                    }else{
+                        sexo = "Mujer";
+            
+                    }
                     var id_usuario = $('input#id_usuario').val();
 
                     var formData = new FormData();
                     formData.append('id_usuario', id_usuario);
                     formData.append('nombre_usuario', nombre_usuario);
+                    formData.append('apellidos_usuario', apellidos_usuario);
                     formData.append('correo_usuario', correo_usuario);
                     formData.append('contraseña_usuario', contraseña_usuario);
+                    formData.append('fecha_usuario', fecha_usuario);
+                    formData.append('sexo', sexo);
                     formData.append('rol_usuario', rol_usuario);
 
                     $.ajax({

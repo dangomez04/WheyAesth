@@ -70,7 +70,7 @@ class Reuniones{
 
         $stmt = $conexion->prepare("UPDATE reuniones SET fecha_reunion = ?, hora_reunion = ?, duracion_reunion = ?, tematica_reunion = ?, aforo_reunion = ?, id_entrenador = ? WHERE reuniones.id_reunion = ?");
 
-        $stmt->bind_param("siisiii", $fecha_reunion,$hora_reunion, $duracion_reunion, $tematica_reunion, $aforo_reunion, $id_entrenador,$id_reunion );
+        $stmt->bind_param("sdisiii", $fecha_reunion,$hora_reunion, $duracion_reunion, $tematica_reunion, $aforo_reunion, $id_entrenador,$id_reunion );
 
         try{
             $stmt->execute();

@@ -38,11 +38,14 @@ class Usuarios{
         $email_usuario = $data['email_usuario'];
         $contraseña_usuario = $data['contraseña_usuario'];
         $rol_usuario = $data['rol_usuario'];
+        $apellidos_usuario = $data['apellidos_usuario'];
+        $fecha_usuario = $data['fecha_usuario'];
+        $sexo = $data['sexo'];
 
 
-        $stmt = $conexion->prepare("UPDATE usuarios SET nombre_usuario = ?, correo_usuario = ?, contraseña_usuario = ?, rol_usuario = ? WHERE usuarios.id_usuario = ?");
+        $stmt = $conexion->prepare("UPDATE usuarios SET nombre_usuario = ?, apellidos_usuario = ?, correo_usuario = ?, contraseña_usuario = ?, fecha_nacimiento = ?, sexo_usuario = ?, rol_usuario = ? WHERE usuarios.id_usuario = ?");
 
-        $stmt->bind_param("sssii", $nombre_usuario,$email_usuario,$contraseña_usuario,$rol_usuario,$id_usuario);
+        $stmt->bind_param("ssssssii", $nombre_usuario, $apellidos_usuario, $email_usuario, $contraseña_usuario, $fecha_usuario, $sexo, $rol_usuario, $id_usuario);
 
         try{
             $stmt->execute();
@@ -68,12 +71,15 @@ class Usuarios{
         $email_usuario = $data['email_usuario'];
         $contraseña_usuario = $data['contraseña_usuario'];
         $rol_usuario = $data['rol_usuario'];
+        $apellidos_usuario = $data['apellidos_usuario'];
+        $fecha_usuario = $data['fecha_usuario'];
+        $sexo = $data['sexo'];
 
 
     
-		$stmt = $conexion->prepare("INSERT INTO usuarios (nombre_usuario, correo_usuario, contraseña_usuario,rol_usuario) VALUES (?, ?, ?, ?)");
+		$stmt = $conexion->prepare("INSERT INTO usuarios (nombre_usuario, apellidos_usuario, correo_usuario, contraseña_usuario, fecha_nacimiento, sexo_usuario, rol_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("sssi", $nombre_usuario,$email_usuario,$contraseña_usuario, $rol_usuario);
+        $stmt->bind_param("ssssssi", $nombre_usuario,$apellidos_usuario,$email_usuario, $contraseña_usuario, $fecha_usuario, $sexo, $rol_usuario);
 
         try{
             $stmt->execute();
