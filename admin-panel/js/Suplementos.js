@@ -111,9 +111,7 @@ $(document).ready(function () {
                             location.href = "Suplementos.html";
                         }, 1300);
 
-                    } else {
-                        console.log(resultado);
-                    }
+                    } 
 
 
 
@@ -371,8 +369,6 @@ $(document).ready(function () {
                     //para reflejar los cambios al usuario
                     show();
 
-                } else {
-                    console.log(resultado);
                 }
 
 

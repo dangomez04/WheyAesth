@@ -40,41 +40,41 @@ $(document).ready(function () {
     //manejo de contraseñas
     const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$()#€!%*?&+.])[A-Za-z\d@$()#€!%*?&+. ]{8,}$/;
     var conditionRegex = false;
-    var conditionRepeat = false; 
+    var conditionRepeat = false;
 
-    $('input#contraseña-usuario').on('input',function(){
+    $('input#contraseña-usuario').on('input', function () {
 
         var contraseña = $('input#contraseña-usuario').val();
         var confirmarContraseña = $('input#confirmar-contraseña-usuario').val();
 
-        if(confirmarContraseña!=contraseña){
+        if (confirmarContraseña != contraseña) {
             $('p#confirm-help').css({ color: "red" });
             $('p#confirm-help').text("Las contraseñas no coinciden");
             conditionRepeat = false;
-        }else {
+        } else {
             $('p#confirm-help').text("");
-          
+
             conditionRepeat = true;
 
         }
 
 
-        if(!regex_pass.test(contraseña)){
+        if (!regex_pass.test(contraseña)) {
             $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
-            $('#pass-help').css({color: 'red'});
+            $('#pass-help').css({ color: 'red' });
             conditionRegex = false;
-          
-        }else{
+
+        } else {
             $('#pass-help').text("");
             conditionRegex = true;
-            
+
         }
 
 
-        if(conditionRegex && conditionRepeat){
+        if (conditionRegex && conditionRepeat) {
             $('input#submit-crear-usuario').prop("disabled", false);
             $('input#submit-crear-usuario').css({ opacity: 1 });
-        }else{
+        } else {
             $('input#submit-crear-usuario').prop("disabled", true);
             $('input#submit-crear-usuario').css({ opacity: 0.3 });
         }
@@ -94,18 +94,18 @@ $(document).ready(function () {
             $('p#confirm-help').text("Las contraseñas no coinciden");
             conditionRepeat = false;
 
-          
+
         } else {
             $('p#confirm-help').text("");
-          
+
             conditionRepeat = true;
 
         }
 
-        if(conditionRegex && conditionRepeat){
+        if (conditionRegex && conditionRepeat) {
             $('input#submit-crear-usuario').prop("disabled", false);
             $('input#submit-crear-usuario').css({ opacity: 1 });
-        }else{
+        } else {
             $('input#submit-crear-usuario').prop("disabled", true);
             $('input#submit-crear-usuario').css({ opacity: 0.3 });
         }
@@ -114,11 +114,14 @@ $(document).ready(function () {
 
     });
 
-    $('input#submit-crear-usuario').on('click', function (event) {
-        event.preventDefault();
-        insertar_usuario();
+    if (!localStorage.getItem('idUsuario')) {
 
-    });
+        $('input#submit-crear-usuario').on('click', function (event) {
+            event.preventDefault();
+            insertar_usuario();
+
+        });
+    }
 
     $('input#cancelar-crear-usuario').on('click', function (event) {
         event.preventDefault();
@@ -126,7 +129,7 @@ $(document).ready(function () {
 
     });
 
-    $('a.btn-crear').on('click',function(){
+    $('a.btn-crear').on('click', function () {
         localStorage.removeItem('idUsuario');
 
     });
@@ -228,7 +231,7 @@ $(document).ready(function () {
 
                 + "<td>"
 
-                + "<a value="+usuario.id_usuario+" class='btn btn-primary btn-icon-split edit-usuario'>"
+                + "<a value=" + usuario.id_usuario + " class='btn btn-primary btn-icon-split edit-usuario'>"
 
                 + "<span class='icon text-white-50'>"
                 + "<i class='bi bi-pencil-fill'></i>"
@@ -277,56 +280,228 @@ $(document).ready(function () {
 
     }
 
-    
+
     //editar
-    if(localStorage.getItem('idUsuario')){
+    if (localStorage.getItem('idUsuario')) {
 
-    let action = 'buscar-usuario';
-    var idUsuario = localStorage.getItem('idUsuario');
-
-
-    $.ajax({
-        type: "POST",
-        url: "php/Usuarios.php?action=" + action,
-        data: {
-            id_usuario: idUsuario
-        },
-        dataType: 'json',
+        let action = 'buscar-usuario';
+        var idUsuario = localStorage.getItem('idUsuario');
 
 
+        $.ajax({
+            type: "POST",
+            url: "php/Usuarios.php?action=" + action,
+            data: {
+                id_usuario: idUsuario
+            },
+            dataType: 'json',
 
-        success: function (resultado) {
-            $("input#submit-crear-usuario").val("Actualizar");
 
-            $('h6#title-form-usuario').text("Editar Usuario");
-            $('input#nombre-usuario').val(resultado.nombre_usuario);
-            $('input#correo-usuario').val(resultado.correo_usuario);
-            $('input#contraseña-usuario').val(resultado.contraseña_usuario);
-            $('input#confirmar-contraseña-usuario').val(resultado.contraseña_usuario);
 
-            var valor_rol = resultado.rol_usuario.toString();
+            success: function (resultado) {
+                $("input#submit-crear-usuario").val("Actualizar");
 
-            setTimeout(() => {
-                $('select[name="id_rol"] option').each(function() {
+                $('h6#title-form-usuario').text("Editar Usuario");
+                $('input#nombre-usuario').val(resultado.nombre_usuario);
+                $('input#correo-usuario').val(resultado.correo_usuario);
+                $('input#contraseña-usuario').val(resultado.contraseña_usuario);
+                $('input#confirmar-contraseña-usuario').val(resultado.contraseña_usuario);
+                $('input#id_usuario').val(resultado.id_usuario);
 
-                    if ($(this).val() === valor_rol) {
-    
-                        $(this).prop('selected', true);
+                var valor_rol = resultado.rol_usuario.toString();
+
+                setTimeout(() => {
+                    $('select[name="id_rol"] option').each(function () {
+
+                        if ($(this).val() === valor_rol) {
+
+                            $(this).prop('selected', true);
+                        }
+                    });
+                }, 10);
+
+                //manejo de contraseñas
+                const regex_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$()#€!%*?&+.])[A-Za-z\d@$()#€!%*?&+. ]{8,}$/;
+                var conditionRegex = false;
+                var conditionRepeat = false;
+
+                var contraseña = $('input#contraseña-usuario').val();
+                var confirmarContraseña = $('input#confirmar-contraseña-usuario').val();
+
+                if (confirmarContraseña != contraseña) {
+                    $('p#confirm-help').css({ color: "red" });
+                    $('p#confirm-help').text("Las contraseñas no coinciden");
+                    conditionRepeat = false;
+                } else {
+                    $('p#confirm-help').text("");
+
+                    conditionRepeat = true;
+
+                }
+
+
+                if (!regex_pass.test(contraseña)) {
+                    $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
+                    $('#pass-help').css({ color: 'red' });
+                    conditionRegex = false;
+
+                } else {
+                    $('#pass-help').text("");
+                    conditionRegex = true;
+
+                }
+
+
+                if (conditionRegex && conditionRepeat) {
+                    $('input#submit-crear-usuario').prop("disabled", false);
+                    $('input#submit-crear-usuario').css({ opacity: 1 });
+                } else {
+                    $('input#submit-crear-usuario').prop("disabled", true);
+                    $('input#submit-crear-usuario').css({ opacity: 0.3 });
+                }
+
+
+
+                $('input#contraseña-usuario').on('input', function () {
+
+                    var contraseña = $('input#contraseña-usuario').val();
+                    var confirmarContraseña = $('input#confirmar-contraseña-usuario').val();
+
+                    if (confirmarContraseña != contraseña) {
+                        $('p#confirm-help').css({ color: "red" });
+                        $('p#confirm-help').text("Las contraseñas no coinciden");
+                        conditionRepeat = false;
+                    } else {
+                        $('p#confirm-help').text("");
+
+                        conditionRepeat = true;
+
                     }
+
+
+                    if (!regex_pass.test(contraseña)) {
+                        $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
+                        $('#pass-help').css({ color: 'red' });
+                        conditionRegex = false;
+
+                    } else {
+                        $('#pass-help').text("");
+                        conditionRegex = true;
+
+                    }
+
+
+                    if (conditionRegex && conditionRepeat) {
+                        $('input#submit-crear-usuario').prop("disabled", false);
+                        $('input#submit-crear-usuario').css({ opacity: 1 });
+                    } else {
+                        $('input#submit-crear-usuario').prop("disabled", true);
+                        $('input#submit-crear-usuario').css({ opacity: 0.3 });
+                    }
+
+
+
                 });
-            }, 10);
-
-         
 
 
 
+                $('input#confirmar-contraseña-usuario').on('input', function () {
+                    var contraseña = $('input#contraseña-usuario').val();
+                    var confirmarContraseña = $(this).val();
 
-        },
-        error: function (xhr) {
-            console.log(xhr);
-        },
+                    if (contraseña != confirmarContraseña) {
+                        $('p#confirm-help').css({ color: "red" });
+                        $('p#confirm-help').text("Las contraseñas no coinciden");
+                        conditionRepeat = false;
 
-    });
+
+                    } else {
+                        $('p#confirm-help').text("");
+
+                        conditionRepeat = true;
+
+                    }
+
+                    if (conditionRegex && conditionRepeat) {
+                        $('input#submit-crear-usuario').prop("disabled", false);
+                        $('input#submit-crear-usuario').css({ opacity: 1 });
+                    } else {
+                        $('input#submit-crear-usuario').prop("disabled", true);
+                        $('input#submit-crear-usuario').css({ opacity: 0.3 });
+                    }
+
+
+
+                });
+
+
+
+                $("input#submit-crear-usuario").on("click",function(event){
+
+                    event.preventDefault()
+                    let action = 'insertar-usuario';
+
+                    var nombre_usuario = $('input#nombre-usuario').val();
+                    var correo_usuario = $('input#correo-usuario').val();
+                    var contraseña_usuario = $('input#contraseña-usuario').val();
+                    var rol_usuario = $('select[name="id_rol"]').val();
+                    var id_usuario = $('input#id_usuario').val();
+
+                    var formData = new FormData();
+                    formData.append('id_usuario', id_usuario);
+                    formData.append('nombre_usuario', nombre_usuario);
+                    formData.append('correo_usuario', correo_usuario);
+                    formData.append('contraseña_usuario', contraseña_usuario);
+                    formData.append('rol_usuario', rol_usuario);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "php/Usuarios.php?action=" + action,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+    
+    
+    
+                        success: function (resultado) {
+    
+                            if(resultado == true){
+                                $('p#create-help').css({ color: "green" });
+                                $('p#create-help').text("Usuario actualizado correctamente!");
+        
+                                setTimeout(() => {
+                                    location.href = "Usuarios.html";
+                                }, 1300);
+        
+                            }else{
+                                $('p#create-help').css({ color: "red" });
+                                $('p#create-help').text(resultado);                            
+                            }
+                            
+
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                        },
+    
+                    });
+    
+
+
+
+                });
+
+
+
+
+
+
+            },
+            error: function (xhr) {
+                console.log(xhr);
+            },
+
+        });
 
     }
     function pintar_usuario_select(array_usuarios) {

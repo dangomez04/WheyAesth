@@ -53,6 +53,41 @@ class Ofertas{
         }
     }
 
+    function updateOferta($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_oferta = $data['id_oferta'];
+        $precio_oferta = $data['precio_oferta'];
+        $stock_oferta = $data['stock_oferta'];
+        $accesorio_oferta = $data['accesorio_oferta'];
+        $suplemento_oferta = $data['suplemento_oferta'];
+        $stmt = $conexion->prepare("UPDATE ofertas_flash SET precio_oferta = ?, stock_oferta = ?, id_suplemento = ?, id_accesorio = ? WHERE ofertas_flash.id_oferta_flash = ?");
+
+        if($suplemento_oferta=="null"){
+            $stmt->bind_param("diiii", $precio_oferta,$stock_oferta,$nullVal, $accesorio_oferta,$id_oferta);
+
+        }else{
+            $stmt->bind_param("diiii", $precio_oferta,$stock_oferta, $suplemento_oferta,$nullVal,$id_oferta);
+
+        }
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar la oferta";
+        }
+
+
+            $conexion->close();
+    }
+
     function insertOferta($data){
         $sqlConnection = new Connection();
         $conexion = $sqlConnection->getConnection();

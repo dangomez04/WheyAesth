@@ -28,6 +28,36 @@ class Usuarios{
 
     }
 
+    function updateUsuario($data){
+
+        $sqlConnection = new Connection();
+        $conexion = $sqlConnection->getConnection();
+
+        $id_usuario = $data['id_usuario'];
+        $nombre_usuario = $data['nombre_usuario'];
+        $email_usuario = $data['email_usuario'];
+        $contraseña_usuario = $data['contraseña_usuario'];
+        $rol_usuario = $data['rol_usuario'];
+
+
+        $stmt = $conexion->prepare("UPDATE usuarios SET nombre_usuario = ?, correo_usuario = ?, contraseña_usuario = ?, rol_usuario = ? WHERE usuarios.id_usuario = ?");
+
+        $stmt->bind_param("sssii", $nombre_usuario,$email_usuario,$contraseña_usuario,$rol_usuario,$id_usuario);
+
+        try{
+            $stmt->execute();
+           
+            $stmt->close();
+           
+            return true;
+
+        }catch(Exception $e){
+            return "Error al actualizar el usuario";
+        }
+
+
+            $conexion->close();
+    }
 
     function insertUsuario($data){
 

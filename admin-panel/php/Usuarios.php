@@ -72,30 +72,61 @@ if (isset($_GET['action'])){
 
 
     function insertUsuario(){
+        if(isset($_POST['id_usuario']) && !empty($_POST['id_usuario'])) {
 
-        $nombre_usuario = $_POST["nombre_usuario"];
-        $email_usuario = $_POST["email_usuario"];
-        $contraseña_usuario = $_POST["contraseña_usuario"];
-        $rol_usuario = $_POST["rol_usuario"];
+            $id_usuario = $_POST["id_usuario"];
+            $nombre_usuario = $_POST["nombre_usuario"];
+            $email_usuario = $_POST["correo_usuario"];
+            $contraseña_usuario = $_POST["contraseña_usuario"];
+            $rol_usuario = $_POST["rol_usuario"];
+    
+            $data = array(
+                'id_usuario' => $id_usuario,
+                'nombre_usuario' => $nombre_usuario,
+                'email_usuario' => $email_usuario,
+                'contraseña_usuario' => $contraseña_usuario,
+                'rol_usuario' => $rol_usuario
+    
+            );
+    
+            $dataBase = new Usuarios();
+            $result = $dataBase->updateUsuario($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+    
 
-        $data = array(
-            'nombre_usuario' => $nombre_usuario,
-            'email_usuario' => $email_usuario,
-            'contraseña_usuario' => $contraseña_usuario,
-            'rol_usuario' => $rol_usuario
-
-        );
-
-        $dataBase = new Usuarios();
-        $result = $dataBase->insertUsuario($data);
-
-        if($result === true){
-            echo true;
-
-        }else {
-            echo $result;
+        }else{
+            $nombre_usuario = $_POST["nombre_usuario"];
+            $email_usuario = $_POST["email_usuario"];
+            $contraseña_usuario = $_POST["contraseña_usuario"];
+            $rol_usuario = $_POST["rol_usuario"];
+    
+            $data = array(
+                'nombre_usuario' => $nombre_usuario,
+                'email_usuario' => $email_usuario,
+                'contraseña_usuario' => $contraseña_usuario,
+                'rol_usuario' => $rol_usuario
+    
+            );
+    
+            $dataBase = new Usuarios();
+            $result = $dataBase->insertUsuario($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+    
         }
 
+       
 
     }
 

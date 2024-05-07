@@ -75,6 +75,39 @@ if (isset($_GET['action'])){
     }
 
     function insertOferta(){
+
+        if(isset($_POST['id_oferta']) && !empty($_POST['id_oferta'])) {
+
+            $id_oferta = $_POST['id_oferta'];
+            $precio_oferta = $_POST['precio_oferta'];
+            $stock_oferta = $_POST['stock_oferta'];
+            $suplemento_oferta = $_POST['id_suplemento'];
+            $accesorio_oferta = $_POST['id_accesorio'];
+    
+    
+    
+            $data = array(
+                'id_oferta' => $id_oferta,
+                'precio_oferta' => $precio_oferta,
+                'stock_oferta' => $stock_oferta,
+                'suplemento_oferta' => $suplemento_oferta,
+                'accesorio_oferta' => $accesorio_oferta
+            
+            );
+    
+            $dataBase = new Ofertas();
+            $result = $dataBase->updateOferta($data);
+    
+            if($result === true){
+                echo true;
+    
+            }else {
+                echo $result;
+            }
+    
+
+        }else{
+
         $precio_oferta = $_POST['precio_oferta'];
         $stock_oferta = $_POST['stock_oferta'];
         $suplemento_oferta = $_POST['suplemento_oferta'];
@@ -100,7 +133,7 @@ if (isset($_GET['action'])){
             echo $result;
         }
 
-
+    }
     }
 
     function deleteOferta(){

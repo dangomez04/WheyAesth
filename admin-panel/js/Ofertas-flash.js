@@ -72,12 +72,16 @@ $(document).ready(function () {
         }
     });
 
+    if (!localStorage.getItem('idOferta')) {
 
-    $('input#submit-crear-oferta').on('click', function (event) {
-        event.preventDefault();
-        insertar_oferta();
+        $('input#submit-crear-oferta').on('click', function (event) {
+            event.preventDefault();
+            insertar_oferta();
 
-    });
+        });
+    }
+        
+        
 
     $('input#cancelar-crear-oferta').on('click', function (event) {
         event.preventDefault();
@@ -85,7 +89,7 @@ $(document).ready(function () {
 
     });
 
-    $('a.btn-crear').on('click',function(){
+    $('a.btn-crear').on('click', function () {
         localStorage.removeItem('idOferta');
 
     });
@@ -238,8 +242,8 @@ $(document).ready(function () {
 
     }
 
-    //editar
-    if(localStorage.getItem('idOferta')){
+ //editar
+ if (localStorage.getItem('idOferta')) {
 
     let action = 'buscar-oferta';
     var idOferta = localStorage.getItem('idOferta');
@@ -260,33 +264,162 @@ $(document).ready(function () {
             $('h6#form-title-oferta').text("Editar Oferta flash");
             $('input#precio-oferta').val(resultado.precio_oferta);
             $('input#stock-oferta').val(resultado.stock_oferta);
+            $('input#id_oferta').val(resultado.id_oferta_flash);
 
-            
-            if(resultado.id_suplemento != null){
+
+            if (resultado.id_suplemento != null) {
                 var valor_suplemento = resultado.id_suplemento.toString();
 
-            setTimeout(() => {
-                $('select[name="id_suplemento"] option').each(function() {
-
-                    if ($(this).val() === valor_suplemento) {
-    
-                        $(this).prop('selected', true);
-                    }
-                });
-            }, 10);
-            }else{
-                var valor_accesorio = resultado.id_accesorio.toString();
-
                 setTimeout(() => {
-                    $('select[name="id_accesorio"] option').each(function() {
+                    $('select[name="id_suplemento"] option').each(function () {
 
-                        if ($(this).val() === valor_accesorio) {
-        
+                        if ($(this).val() === valor_suplemento) {
+
                             $(this).prop('selected', true);
                         }
                     });
-                }, 10);
+                }, 30);
+            } else {
+                var valor_accesorio = resultado.id_accesorio.toString();
+
+                setTimeout(() => {
+                    $('select[name="id_accesorio"] option').each(function () {
+
+                        if ($(this).val() === valor_accesorio) {
+
+                            $(this).prop('selected', true);
+                        }
+                    });
+                }, 30);
             }
+
+            //control de selects, ya que el usuario solo puede elegir en uno de los dos select
+
+            setTimeout(() => {
+                if ($('select[name="id_suplemento"]').val() != '') {
+
+                    $('select[name="id_accesorio"]').prop('disabled', true);
+                } else {
+
+                    $('select[name="id_accesorio"]').prop('disabled', false);
+                }
+
+
+                if ($('select[name="id_suplemento"]').val() == 'null') {
+                    $('select[name="id_accesorio"]').prop('disabled', false);
+                } else {
+                    $('select[name="id_accesorio"]').prop('disabled', true);
+                }
+
+
+                if ($('select[name="id_accesorio"]').val() != '') {
+
+                    $('select[name="id_suplemento"]').prop('disabled', true);
+                } else {
+
+                    $('select[name="id_suplemento"]').prop('disabled', false);
+                }
+
+                if ($('select[name="id_accesorio"]').val() == 'null') {
+                    $('select[name="id_suplemento"]').prop('disabled', false);
+                } else {
+                    $('select[name="id_suplemento"]').prop('disabled', true);
+                }
+
+            }, 50);
+            
+
+
+
+            $('select[name="id_suplemento"]').change(function () {
+
+                if ($(this).val() != '') {
+
+                    $('select[name="id_accesorio"]').prop('disabled', true);
+                } else {
+
+                    $('select[name="id_accesorio"]').prop('disabled', false);
+                }
+
+
+                if ($(this).val() == 'null') {
+                    $('select[name="id_accesorio"]').prop('disabled', false);
+                } else {
+                    $('select[name="id_accesorio"]').prop('disabled', true);
+                }
+            });
+
+            $('select[name="id_accesorio"]').change(function () {
+
+                if ($(this).val() != '') {
+
+                    $('select[name="id_suplemento"]').prop('disabled', true);
+                } else {
+
+                    $('select[name="id_suplemento"]').prop('disabled', false);
+                }
+
+                if ($(this).val() == 'null') {
+                    $('select[name="id_suplemento"]').prop('disabled', false);
+                } else {
+                    $('select[name="id_suplemento"]').prop('disabled', true);
+                }
+            });
+
+
+            $("input#submit-crear-oferta").on("click",function(event){
+
+                event.preventDefault();
+                let action = 'insertar-oferta';
+
+                var precio_oferta = $('input#precio-oferta').val();
+                var stock_oferta = $('input#stock-oferta').val();
+                var id_suplemento = $('select[name="id_suplemento"]').val();
+                var id_accesorio = $('select[name="id_accesorio"]').val();
+                var id_oferta = $('input#id_oferta').val();
+
+                var formData = new FormData();
+                formData.append('id_oferta', id_oferta);
+                formData.append('precio_oferta', precio_oferta);
+                formData.append('stock_oferta', stock_oferta);
+                formData.append('id_suplemento', id_suplemento);
+                formData.append('id_accesorio', id_accesorio);
+
+                $.ajax({
+                    type: "POST",
+                    url: "php/Ofertas-flash.php?action=" + action,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+
+
+
+                    success: function (resultado) {
+
+                        if(resultado == true){
+                            $('p#create-help').css({ color: "green" });
+                            $('p#create-help').text("Oferta actualizada correctamente!");
+    
+                            setTimeout(() => {
+                                location.href = "Ofertas-flash.html";
+                            }, 1300);
+    
+                        }else{
+                            $('p#create-help').css({ color: "red" });
+                            $('p#create-help').text(resultado);                            
+                        }
+                        
+
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    },
+
+                });
+            });
+
+
+
 
         },
         error: function (xhr) {
@@ -295,7 +428,9 @@ $(document).ready(function () {
 
     });
 
-    }
+}
+    
+   
 
     function eliminar_oferta(id_oferta) {
 
