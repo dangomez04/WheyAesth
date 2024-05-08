@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+   
 
     //inicialmente botón desabilitado hasta que se cumplan las condiciones
     $('input#enviar-registro').prop("disabled", true);
@@ -12,6 +12,24 @@ $(document).ready(function () {
     var conditionCorreo = false;
     var conditionRegex = false;
     var conditionRepeat = false;
+    var conditionLength = false;
+
+    $('input#nombre-usuario').on('blur',function(){
+        var nombre_intro = $('input#nombre-usuario').val();
+        var maxLength = 15;
+
+        if(nombre_intro.length > maxLength){
+            conditionLength = false;
+            $('p#length-help').css({ color: "red" });
+            $('p#length-help').text("La longitud máxima es de 15 caracteres");
+        }else{
+            $('p#length-help').text("");
+
+            conditionLength = true;
+
+        }
+
+    });
 
     $('input#email-usuario').on('input', function () {
         var email_intro = $('input#email-usuario').val();
@@ -26,7 +44,7 @@ $(document).ready(function () {
         }
 
 
-        if (conditionRegex && conditionRepeat && conditionCorreo) {
+        if (conditionRegex && conditionRepeat && conditionCorreo ) {
             $('input#enviar-registro').prop("disabled", false);
             $('input#enviar-registro').css({ opacity: 1 });
             $('input#enviar-registro').css("pointer-events", "");
@@ -162,13 +180,18 @@ $(document).ready(function () {
 
         }
     
-        if(nombre_usuario == "" || apellidos == "" || fecha == "Invalid Date"){
+        if(nombre_usuario == "" || apellidos == "" || fecha == "Invalid Date" || fecha == ""){
            
             $('p#register-help').css({color: 'red'});
             $('p#register-help').text("Todos los campos son obligatorios!");
         
+        }else if(!conditionLength){
+        
+
+            $('p#register-help').css({color: 'red'});
+            $('p#register-help').text("Introduce un nombre válido");
+
         }else{
-            //buscar si hay otro usuario con el mismo correo ya que no pueden haber 2 con el mismo.
 
 
             var formData = new FormData();

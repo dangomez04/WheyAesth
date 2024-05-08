@@ -41,18 +41,17 @@ $.ajax({
     contentType: false,
 
     success: function (resultado) {
-
+        //le quito espacios a la cadena devuelta
+        resultado = resultado.trim();
 
 
         if(resultado == "Credenciales incorrectas" || resultado=="Error en el login"){
-            console.log("entro aqui");
             $("p#help").text(resultado);
             $("p#help").css({color: "red"});
 
            
         }else{
-            // let result = JSON.parse(resultado);
-            // console.log(result);
+            
             $("p#help").text("Sesión iniciada con éxito");
             $("p#help").css({color: "green"});
             

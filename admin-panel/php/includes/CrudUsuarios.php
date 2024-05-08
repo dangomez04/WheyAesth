@@ -36,12 +36,21 @@ class Usuarios{
         $id_usuario = $data['id_usuario'];
         $nombre_usuario = $data['nombre_usuario'];
         $email_usuario = $data['email_usuario'];
-        $contraseña_usuario = $data['contraseña_usuario'];
         $rol_usuario = $data['rol_usuario'];
         $apellidos_usuario = $data['apellidos_usuario'];
         $fecha_usuario = $data['fecha_usuario'];
         $sexo = $data['sexo'];
+        $condition_same_pass = $_POST["condition_same_pass"];
 
+        //si es la misma contraseña que al darle a editar, no hacemos md5 sobre algo que ya tiene md5
+        
+        if($condition_same_pass == "true"){
+            $contraseña_usuario = $data['contraseña_usuario'];
+
+        }else{
+            $contraseña_usuario = md5($data['contraseña_usuario']);
+
+        }
 
         $stmt = $conexion->prepare("UPDATE usuarios SET nombre_usuario = ?, apellidos_usuario = ?, correo_usuario = ?, contraseña_usuario = ?, fecha_nacimiento = ?, sexo_usuario = ?, rol_usuario = ? WHERE usuarios.id_usuario = ?");
 
@@ -168,7 +177,7 @@ class Usuarios{
         $contraseña_usuario = $data['contraseña_usuario'];
 
 
-        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo_usuario = ? AND contraseña_usuario = ?");
+        $stmt = $conexion->prepare("SELECT usuarios.*, roles.rol FROM usuarios JOIN roles ON usuarios.rol_usuario=roles.id_rol WHERE correo_usuario = ? AND contraseña_usuario = ?");
         
         $stmt->bind_param("ss", $correo_registrado,$contraseña_usuario);
         try{

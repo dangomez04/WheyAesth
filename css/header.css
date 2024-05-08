@@ -44,7 +44,7 @@ ul#secondMenu{
 
 ul#secondMenu li{
     float: left;
-    margin-left: 1.7%;
+    margin-right: 1.7%;
     padding: 1.1vw;
     list-style-type: none;
     text-align: center;
@@ -59,7 +59,8 @@ ul#secondMenu li:hover{
 
 i.bi-person-fill,
 i.bi-cart,
-i.bi-envelope-fill
+i.bi-envelope-fill,
+i.bi-box-arrow-right
 {
     margin-right: 0.55vw;
 }
@@ -221,7 +222,7 @@ div.container-menu nav a:hover{
 /* responsive  movil*/
 
 @media screen and (max-width: 768px) {
-    i.bi-person-fill, i.bi-cart, i.bi-envelope-fill {
+    i.bi-person-fill, i.bi-cart, i.bi-envelope-fill, i.bi-box-arrow-right {
         margin-right: 2.55vw;
     }
 

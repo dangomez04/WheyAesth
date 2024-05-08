@@ -86,6 +86,8 @@ if (isset($_GET['action'])){
             $apellidos_usuario = $_POST["apellidos_usuario"];
             $fecha_usuario = $_POST["fecha_usuario"];
             $sexo = $_POST["sexo"];
+            $condition_same_pass = $_POST["condition_same_pass"];
+
     
             $data = array(
                 'id_usuario' => $id_usuario,
@@ -95,6 +97,7 @@ if (isset($_GET['action'])){
                 'rol_usuario' => $rol_usuario,
                 'apellidos_usuario' => $apellidos_usuario,
                 'fecha_usuario' => $fecha_usuario,
+                'condition_same_pass' => $condition_same_pass,
                 'sexo' => $sexo
     
             );
@@ -119,6 +122,7 @@ if (isset($_GET['action'])){
             $fecha_usuario = $_POST["fecha_usuario"];
             $sexo = $_POST["sexo_usuario"];
 
+         
     
             $data = array(
                 'nombre_usuario' => $nombre_usuario,
@@ -190,12 +194,11 @@ if (isset($_GET['action'])){
             
             $usuario = $result->fetch_assoc();
 
-            // session_start();
-            // $_SESSION["usuario"] = $usuario["nombre"];
-            // $_SESSION["rol"] = $usuario["rol"];
-            
+            session_start();
+            $_SESSION["usuario"] = $usuario["nombre_usuario"];
+            $_SESSION["rol"] = $usuario["rol"];
+        
             echo json_encode($usuario);
-    
         }
 
 

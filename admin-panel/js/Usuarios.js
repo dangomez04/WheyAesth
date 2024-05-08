@@ -43,6 +43,25 @@ $(document).ready(function () {
     var conditionCorreo = false;
     var conditionRegex = false;
     var conditionRepeat = false;
+    var conditionLength = false;
+
+    $('input#nombre-usuario').on('blur',function(){
+        var nombre_intro = $('input#nombre-usuario').val();
+        var maxLength = 15;
+
+        if(nombre_intro.length > maxLength){
+            conditionLength = false;
+            $('p#length-help').css({ color: "red" });
+            $('p#length-help').text("La longitud máxima es de 15 caracteres");
+        }else{
+            $('p#length-help').text("");
+
+            conditionLength = true;
+
+        }
+
+    });
+
 
     $('input#correo-usuario').on('input', function () {
         var correo_intro = $('input#correo-usuario').val();
@@ -186,6 +205,18 @@ $(document).ready(function () {
         if (nombre_usuario == "" || email_usuario == "" || contraseña_usuario == "" || isNaN(rol_usuario) || confirmar_contraseña_usuario == "" || apellidos_usuario == "" || fecha_usuario == "") {
             $('p#create-help').css({ color: "red" });
             $('p#create-help').text("Todos los campos son obligatorios!");
+            console.log(nombre_usuario);
+            console.log(apellidos_usuario);
+            console.log(email_usuario);
+            console.log(contraseña_usuario);
+            console.log(confirmar_contraseña_usuario);
+            console.log(fecha_usuario);
+            console.log(rol_usuario);
+        }else if(!conditionLength){
+           
+            $('p#create-help').css({color: 'red'});
+            $('p#create-help').text("Introduce un nombre válido");
+
         } else {
 
             var formData = new FormData();
@@ -408,7 +439,7 @@ $(document).ready(function () {
         
                 }
         
-                if (conditionRegex && conditionRepeat && conditionCorreo) {
+                if (conditionRepeat && conditionCorreo) {
                     $('input#submit-crear-usuario').prop("disabled", false);
                     $('input#submit-crear-usuario').css({ opacity: 1 });
                 } else {
@@ -429,7 +460,7 @@ $(document).ready(function () {
             
                     }
             
-                    if (conditionRegex && conditionRepeat && conditionCorreo) {
+                    if (conditionRepeat && conditionCorreo) {
                         $('input#submit-crear-usuario').prop("disabled", false);
                         $('input#submit-crear-usuario').css({ opacity: 1 });
                     } else {
@@ -464,19 +495,19 @@ $(document).ready(function () {
                 }
 
 
-                if (!regex_pass.test(contraseña)) {
-                    $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
-                    $('#pass-help').css({ color: 'red' });
-                    conditionRegex = false;
+                // if (!regex_pass.test(contraseña)) {
+                //     $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
+                //     $('#pass-help').css({ color: 'red' });
+                //     conditionRegex = false;
 
-                } else {
-                    $('#pass-help').text("");
-                    conditionRegex = true;
+                // } else {
+                //     $('#pass-help').text("");
+                //     conditionRegex = true;
 
-                }
+                // }
 
 
-                if (conditionRegex && conditionRepeat && conditionCorreo) {
+                if (conditionRepeat && conditionCorreo) {
                     $('input#submit-crear-usuario').prop("disabled", false);
                     $('input#submit-crear-usuario').css({ opacity: 1 });
                 } else {
@@ -503,19 +534,19 @@ $(document).ready(function () {
                     }
 
 
-                    if (!regex_pass.test(contraseña)) {
-                        $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
-                        $('#pass-help').css({ color: 'red' });
-                        conditionRegex = false;
+                    // if (!regex_pass.test(contraseña)) {
+                    //     $('#pass-help').text("La contraseña debe contener: Min. 8 caracteres, 1 Mayus, 1 Minus, 1 Número y Caracter especial")
+                    //     $('#pass-help').css({ color: 'red' });
+                    //     conditionRegex = false;
 
-                    } else {
-                        $('#pass-help').text("");
-                        conditionRegex = true;
+                    // } else {
+                    //     $('#pass-help').text("");
+                    //     conditionRegex = true;
 
-                    }
+                    // }
 
 
-                    if (conditionRegex && conditionRepeat && conditionCorreo) {
+                    if (conditionRepeat && conditionCorreo) {
                         $('input#submit-crear-usuario').prop("disabled", false);
                         $('input#submit-crear-usuario').css({ opacity: 1 });
                     } else {
@@ -546,7 +577,7 @@ $(document).ready(function () {
 
                     }
 
-                    if (conditionRegex && conditionRepeat) {
+                    if (conditionRepeat && conditionCorreo) {
                         $('input#submit-crear-usuario').prop("disabled", false);
                         $('input#submit-crear-usuario').css({ opacity: 1 });
                     } else {
@@ -573,6 +604,14 @@ $(document).ready(function () {
                     var fecha_usuario = $('input#fecha-usuario').val();
                     var inputSexo = $('input[name="sexo"]:checked');
                     var sexo;
+                    var conditionSamePass  = false;
+
+                    if(resultado.contraseña_usuario == contraseña_usuario){
+                        conditionSamePass = true;
+                    }else{
+                        conditionSamePass = false;
+
+                    }
             
                     if(inputSexo.hasClass('hombre')){
                         sexo = "Hombre";
@@ -591,6 +630,7 @@ $(document).ready(function () {
                     formData.append('fecha_usuario', fecha_usuario);
                     formData.append('sexo', sexo);
                     formData.append('rol_usuario', rol_usuario);
+                    formData.append('condition_same_pass', conditionSamePass);
 
                     $.ajax({
                         type: "POST",

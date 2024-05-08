@@ -63,7 +63,7 @@ div.mb-3 input[type='submit']:hover{
 }
 
 
-#email-help,#confirm-help,#pass-help{
+#email-help,#confirm-help,#pass-help, #length-help{
     margin-top: 15px;
 }
 
